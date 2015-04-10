@@ -1,0 +1,98 @@
+<h3>Shared Property::<code>width/height</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+        By default the control will sit itself to 100% width. This is often desired behaviour but not always. When it's
+        not you can take direct control over sizing with the <em>width</em> and <em>height</em> properties. As soon as 
+        you do, the control will auto-magically switch itself from 'block' display to 'inline-block' which allows for 
+        other things to fit onto the same line. Pretty sweet, eh?
+   </p>
+    <p class="descriptive col-xs-12">
+       There's nothing very much more to discuss other than to say that this is an example of where rather than leveraging a 
+       set of classes that already exist it must instead rely on the "style" HTML property. This is done with Ember's 
+       <code>htmlSafe()</code> to ensure that there is no cross-site scripting vunerabilities.
+    </p>        
+    <p  class="descriptive col-xs-12">Give it a whirl below ... </p>
+</div>
+
+<h4>Related Properties</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+          Often you'll want to stay clear of the explictness of width and height properties and instead just 
+          use the handy {{#link-to 'shared-size'}}<code>size</code>{{/link-to}} property. In some cases, however, these 
+          can be used together as well (that's particularly true with 'width').
+    </p>
+</div>
+
+<h4>Example(s)</h4>
+
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-6">
+            Width:
+            {{text-input value=myWidth width="65px"}}&nbsp;&nbsp;
+            Height:
+            {{text-input value=myHeight width="65px"}}&nbsp;&nbsp;
+        </span>
+        <span class="col-xs-6">Choose Style:            
+            {{ui-button-radio choices='bootstrap,flat' selected=myStyle}}<br/>
+        </span>
+    </div>
+</div>
+<br/>
+<hr/>
+
+<div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Tiny<br/>
+            {{text-input size='tiny' placeholder='size matters' style=myStyle width=myWidth height=myHeight}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input size='tiny' width='{{myWidth}}' height='{{myHeight}}'  style='{{myStyle}}'}}</code>  
+        </div>
+    </div>    
+    <div class="row">
+        <div class="widget col-xs-3">
+            Small<br/>
+            {{text-input size='small' placeholder='size matters' style=myStyle width=myWidth height=myHeight}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input size='small' width='{{myWidth}}' height='{{myHeight}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Default<br/>
+            {{text-input placeholder='size matters' style=myStyle width=myWidth height=myHeight}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input width='{{myWidth}}' height='{{myHeight}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Large<br/>
+            {{text-input size='large' placeholder='size matters' style=myStyle width=myWidth height=myHeight}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input size='large' width='{{myWidth}}' height='{{myHeight}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Huge<br/>
+            {{text-input size='huge' placeholder='size matters' style=myStyle width=myWidth height=myHeight}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input size='huge' width='{{myWidth}}' height='{{myHeight}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+</div>

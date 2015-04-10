@@ -1,0 +1,45 @@
+<h3>Shared Property::<code>textAlign</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+       Within an input control the placeholder text (to start) and the user's input (in the end) will live. Across the controls,
+       we want a consistent way to specify the text alignment of this text. This is done with the <code>textAlign</code> 
+       property. If not specified then alignment will default to <strong>left</strong>.
+    </p>        
+</div>
+
+<h4>Example(s)</h4>
+
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span>Choose Alignment:</span>             
+        {{ui-button-radio choices='left,center,right' selected=myAlignment}}<br/>
+    </div>
+</div>
+<br/>
+<hr/>
+
+<div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Bootstrap Styled
+            {{text-input placeholder=myAlignment textAlign=myAlignment align='left'}}
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input textAlign='{{myAlignment}}' placeholder='{{myAlignment}}'}}</code>  
+        </div>
+    </div>    
+    <div class="row">
+        <div class="widget col-xs-3">
+            Flat Styled
+            {{text-input placeholder=myAlignment textAlign=myAlignment style='flat'}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input placeholder='{{myAlignment}}' textAlign='{{myAlignment}}' style='flat'}} </code>  
+        </div>
+    </div>
+</div>

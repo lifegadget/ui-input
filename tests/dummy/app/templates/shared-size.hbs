@@ -1,0 +1,110 @@
+<h3>Shared Property::<code>size</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+       Borrowed from Bootstrap standards, there are a set of "standardized sizes" which map 1:1 to classes 
+       which then determine the height of the widget, the size of the font, padding within the control, etc. You'll
+       remember them as classes like 'input-sm' or 'input-lg'. Got it? Great well we're going to change the sizes to 
+       more memorable names, here are valid options:
+       <ul>
+           <li>tiny</li>
+           <li>small</li>
+           <li>normal</li>
+           <li>large</li>
+           <li>huge</li>
+       </ul>
+
+       If you're using bootstrap styling don't worry the style will be auto-magically set to the right name and 
+       whatever monkeying around you've done with your bootstrap styling will be left in it's monkey state. This 
+       is particularly monkey-good when you're using the LESS/SASS parameters of Bootstrap and you want them to carry
+       through. Note, however, that there is no "huge" equivalent in Bootstrap. Ya can't have it all. 
+   </p>
+    <p class="descriptive col-xs-12">
+       Now we must turn to a <em>sticky wicket</em> as they say in the industry.
+       It turns out the property "size" is reserved by HTML5. Bastards. That's ok we're smarter than them ...
+       well that's probably not true but still they're idea of <em>size</em> is really more a reflection of "length". For 
+       that reason, we have taken the liberty of taking over the "size" property and if you want the HTML "size" you can 
+       still get to that by setting "length". Fair?
+    </p>        
+    <p  class="descriptive col-xs-12">Happy days!</p>
+</div>
+
+<h4>Related Properties</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+          While size does a lot of things "size wise" it actually never touches the width. 
+          Furthermore for both {{#link-to 'shared-width-height'}}<code>width</code>{{/link-to}} and 
+          {{#link-to 'shared-width-height'}}<code>height</code>{{/link-to}} there are times where you want
+          more control. Click through to those properties for more.
+    </p>
+</div>
+
+<h4>Example(s)</h4>
+
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-6">Choose Style:            
+            {{ui-button-radio choices='bootstrap,flat' selected=myStyle}}<br/>
+        </span>
+        <span class="col-xs-6">Choose Alignment:
+            {{ui-button-radio choices='left,center,right' selected=myAlignment}}<br/>
+        </span>
+    </div>
+</div>
+<br/>
+<hr/>
+
+<div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Tiny
+            {{text-input size='tiny' placeholder='size matters' textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input size='tiny' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}}</code>  
+        </div>
+    </div>    
+    <div class="row">
+        <div class="widget col-xs-3">
+            Small
+            {{text-input size='small' placeholder='size matters' textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input size='small' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Default
+            {{text-input placeholder='size matters' textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Large
+            {{text-input size='large' placeholder='size matters' textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input size='large' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Huge
+            {{text-input size='huge' placeholder='size matters' textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input size='huge' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+</div>

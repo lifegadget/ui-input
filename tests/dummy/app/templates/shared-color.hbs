@@ -1,0 +1,85 @@
+<h3>Shared Property::<code>color</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+       Color can be set in one of two ways ... class-based and style-based. Starting with 'class-based' you'll see 
+       again a catering to Bootstrap nominclature. If any of the following string are used for the <code>color</code>
+       parameter then the coorsponding Bootstrap class will be used:
+       <ul>
+           <li>default</li>
+           <li>success</li>
+           <li>info</li>
+           <li>primary</li>
+           <li>warning</li>
+           <li>error</li>
+       </ul>
+
+       If you're using bootstrap styling don't worry the style will be auto-magically set to the right name and 
+       whatever monkeying around you've done with your bootstrap styling will be left in it's monkey state. This 
+       is particularly monkey-good when you're using the LESS/SASS parameters of Bootstrap and you want them to carry
+       through. Note, however, that there is no "huge" equivalent in Bootstrap. Ya can't have it all. 
+   </p>
+    <p class="descriptive col-xs-12">
+       Now we must turn to a <em>sticky wicket</em> as they say in the industry.
+       It turns out the property "size" is reserved by HTML5. Bastards. That's ok we're smarter than them ...
+       well that's probably not true but still they're idea of <em>size</em> is really more a reflection of "length". For 
+       that reason, we have taken the liberty of taking over the "size" property and if you want the HTML "size" you can 
+       still get to that by setting "length". Fair?
+    </p>        
+    <p  class="descriptive col-xs-12">Happy days!</p>
+</div>
+
+<h4>Related Properties</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+          While size does a lot of things "size wise" it actually never touches the width. 
+          Furthermore for both {{#link-to 'shared-width-height'}}<code>width</code>{{/link-to}} and 
+          {{#link-to 'shared-width-height'}}<code>height</code>{{/link-to}} there are times where you want
+          more control. Click through to those properties for more.
+    </p>
+</div>
+
+<h4>Example(s)</h4>
+
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-7">Color Class:            
+            {{ui-button-radio size='small' choices='default,success,info,primary,warning,error' selected=myClassColor}}<br/>
+        </span>
+        <span class="col-xs-5">Color Style:
+            {{text-input width='75%' size='small' value=myStyleColor}}
+        </span>
+        <p>&nbsp;</p>
+        <span class="col-xs-12">Style: 
+            {{ui-button-radio size='small' choices='bootstrap,flat' selected=myStyle}}
+        </span>
+    </div>
+</div>
+<br/>
+<hr/>
+
+<div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-4">
+            Class Color
+            {{text-input size='huge' placeholder='Classy' style=myStyle color=myClassColor}} 
+        </div>
+        <div class="handlebars col-xs-8">
+            <br/>
+            <code> \{{text-input size='tiny' placeholder='Classy' color='{{myClassColor}}' style='{{myStyle}}'}}</code>  
+        </div>
+    </div>    
+    <div class="row">
+        <div class="widget col-xs-4">
+            Style Color
+            {{text-input size='huge' placeholder='Sassy' style=myStyle color=myStyleColor}} 
+        </div>
+        <div class="handlebars col-xs-8">
+            <br/>
+            <code> \{{text-input size='tiny' placeholder='Sassy' color='{{myStyleColor}}' style='{{myStyle}}'}}</code>  
+        </div>
+    </div>    
+
+</div>

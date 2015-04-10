@@ -1,0 +1,154 @@
+html, body {
+	font-family: Verdana, Geneva, sans-serif;
+	margin: 20px;
+}
+h1 {
+	font-size: 4rem;
+	margin-bottom: .25rem;
+	padding-bottom: 0px;
+	font-family: "Courier New", Courier, monospace;
+}
+a {
+	text-decoration: none;
+	font-weight: 500;
+	margin: auto 2px auto 2px;
+}
+a:hover {
+	background: lightgrey;
+	border-radius: 5px;
+}
+h2 {
+	font-weight: 100;
+	font-size: 1.7rem;
+	font-style: italic;
+	color: darkgrey;
+	margin-top: .5rem;
+	margin-bottom: 3rem;
+}
+
+.demo-table td {
+	padding-right: 1rem;
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+}
+
+.demo-table td i {
+	font-size: 16pt;
+}
+
+code {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 9pt;
+	line-spacing: 1rem;
+	color: rgb(63, 63, 63);
+	background-color: rgb(235, 234, 234);
+}
+
+h3 code {
+    font-size: 3rem;
+}
+a code:hover {
+    background-color: #37AA26;
+}
+code:active {
+    color: white;
+    background-color: #15520B;
+}
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+note {
+	display: block;
+	color: #7C7C7C;
+	font-weight: 150;
+	border-left-style: solid;
+	border-left-color: lightgrey;
+	padding-left: 10px;
+	margin-bottom: 1rem;
+}
+
+.row {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.link {
+	cursor: pointer;
+	padding: 2px;
+	margin-bottom: 8px;
+	border-radius: 3px;
+	background-color: lightgrey;
+}
+.link.selected {
+	font-weight: 900;
+}
+
+
+.navbar-toggle {
+  display:inherit;
+}
+
+.snippet {
+    font-family: monospace;
+    line-height: 32px;
+}
+
+.descriptive {
+    color: darkgrey;
+}
+
+.descriptive ul {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.descriptive ul li ul {
+    padding-top: .25em;
+    padding-bottom: .25em;
+}
+
+.back-navigation {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    color: lightgrey;
+    opacity: .5;
+}
+
+.back-navigation a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.back-navigation a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: darkgrey;
+}
+
+.configuration {
+    border-left: 10px solid #C4C4C4;
+    border-top: 1px solid #C4C4C4;
+    border-bottom: 1px solid #C4C4C4;
+    border-right: 1px solid #C4C4C4;
+    border-radius: 5px;
+    
+    padding-bottom: 1em;
+    padding-top: 1em;
+    margin-bottom: 1em;
+}
+
+.examples {
+    border-left: 10px solid #F6F6F6;
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+    border-right: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+.examples .row {
+    vertical-align: middle;
+    height: 100%;
+}
+.examples .handlebars {
+    font-family: monospace;
+}

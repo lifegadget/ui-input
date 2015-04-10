@@ -1,0 +1,42 @@
+input.ui-input.flat {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    outline: none;
+}
+
+input.ui-input.flat:focus {
+    background: #F9F9F9;
+    border-radius: 3px;
+}
+
+input.ui-input.flat.input-tiny {
+    height: 16px;
+    font-size: 11px;
+    padding: 3px 2px;
+    line-height: 1.2;
+}
+
+input.ui-input.flat.input-small {
+    height: 20px;
+    font-size: 12px;
+    padding: 3px 4px;
+}
+
+input.ui-input.flat.input-default {
+    height: 26px;
+    font-size: 16px;
+    padding: 4px 4px;
+}
+
+input.ui-input.flat.input-large {
+    height: 32px;
+    font-size: 22px;
+    padding: 6px 6px;
+}
+
+input.ui-input.flat.input-huge {
+    height: 38px;
+    font-size: 26px;
+    padding: 6px 6px;
+}

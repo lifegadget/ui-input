@@ -1,0 +1,99 @@
+<h3>Shared Styling</h3>
+
+
+<h4>Overview</h4>
+
+
+<div class="row">
+    <div class="col-xs-12 descriptive">
+        <p>
+            There are three primary styling types which these components will support:
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <strong>Bootstrap</strong>
+                    <ul>
+                        <li>this was the original intent and probably still gets the greatest attention</li>
+                        <li>choosing this inserts a <code>form-control</code> class into the component</li>
+                        <li>
+                            styling classes that are bootstrap specific are included as "additive" ... 
+                            this means, for instance, a size of "large" the bootstrap style will apply both the 
+                            <code>large</code> and <code>input-lg</code> classes
+                        </li>
+                        <li>
+                            this means that whenever Bootstrap has styling ideas about a particular property
+                            then the styling for Bootstrap will be used and this component will typically just 
+                            sit back and enjoy the ride (occationally we might be presume we know more and override
+                            but that will be an absolute rarity)
+                        </li>
+                        <li>
+                            In other cases, this component gives control over things which 
+                        </li>
+                    </ul>
+              
+                </li>
+                <li>
+                    <strong>Flat</strong>
+                    <ul>
+                        <li>provides a minimalist styling that's popular in today's design circles</li>
+                        <li>the CSS used is scoped to only effect the component</li>
+                        <li>
+                            using the <strong>size</strong> styling example from above, these components would 
+                            derive their styling from a CSS scope of <code>.ui-input.large</code>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>None</strong>
+                    <ul>
+                        <li>
+                            classes are injected into the components but these classes do not 
+                            map to any styling
+                        </li>
+                        <li>
+                            the intent is then that this responsiblity would fall to the developer/designer without 
+                            needlessly polluting the CSS namespace
+                        </li>
+                        <li>Sure ... CSS <em>cascades</em>, but so do little balls of shit</li>
+                    </ul>
+              
+                </li>
+            </ul>
+            Styling is stated in any of the components by stating a <strong>style</strong> property like 
+            <code> \{{text-input style='bootstrap'}}</code>. 
+            If not specified then the default is <strong>bootstrap</strong>.
+        </p>
+        <p>
+            When on the topic of <em>styling</em> it's worth mentioning the HTML property "style". We think it's ugly and 
+            should be avoided. Our opinion, but one shared by others (giving us the strength of righteousness). 
+            Is it occasionally needed? Maybe, but we intentionally use the style property on the component to specify a broad 
+            style family rather than binding onto the "style" property. In some components we may offer a choice which 
+            does in a super-secrety sort of way inject style content into your HTML. Hey, we're sneaky but we're safe ...
+            all style injections use Ember's htmlSafe() to avoid cross-script bad behaviour.
+        </p>
+    </div>
+</div>
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-12">
+            <span>Choose a style:</span>             
+            {{ui-button-radio choices='bootstrap,flat,none' selected=myStyle}}<br/>
+        </span>
+    </div>
+</div>
+<br/>
+<hr/>
+
+<div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-3">
+            {{text-input placeholder=myStyle style=myStyle textAlign='center' size='large'}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input style='{{myStyle}}' placeholder='{{myStyle}}' size='large'}}</code>  
+        </div>
+    </div>    
+</div>
