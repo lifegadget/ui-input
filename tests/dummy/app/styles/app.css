@@ -108,6 +108,25 @@ note {
     padding-bottom: .25em;
 }
 
+desc {
+    color: darkgrey;
+    float: left;
+    margin: 0 0 10px;
+    width: 100%;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+desc ul {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+desc ul li ul {
+    padding-top: .25em;
+    padding-bottom: .25em;
+}
+
+
 .back-navigation {
     position: fixed;
     top: 50px;

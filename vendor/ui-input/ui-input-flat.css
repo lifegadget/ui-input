@@ -40,3 +40,8 @@ input.ui-input.flat.input-huge {
     font-size: 26px;
     padding: 6px 6px;
 }
+
+/* AUGMENT ATOMIC COLOR */
+input.ui-input.flat {
+    background-color: inherit;
+}

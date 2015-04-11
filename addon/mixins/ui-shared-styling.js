@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
   
-  classNameBindings: ['_formControl:form-control','style'],
+  classNameBindings: ['_formControl:form-control','style','_inputInliner:input-inliner'],
   attributeBindings: ['_styles:style'],
   
   // "style" refers to the family of styling that should be applied via class definitions
@@ -11,15 +11,24 @@ export default Ember.Mixin.create({
     let style = this.get('style');
     return style === 'bootstrap' ? true : false;
   })),
+  // by default a control is of type "block" but in some situations it will be set to inline using a class
+  _inputInliner: false,
   
   // "_styles" maps directly back to the HTML style property
-  _styles: Ember.on('init', Ember.computed('_styles', 'width', 'height', '_colorStyle', function() {
-    let { width, height, color } = this.getProperties('width', 'height', '_colorStyle');
+  _styles: Ember.on('init', Ember.computed('_styles', 'width', 'height', 'textColor','backgroundColor','borderColor','outlineColor', function() {
+    let { width, height, textColor, backgroundColor, borderColor, outlineColor } = this.getProperties('width', 'height', 'textColor','backgroundColor','borderColor','outlineColor');
     let style = '';
     style = width ? style + `width:${width};` : style;
     style = height ? style + `height:${height};` : style;
-    style = width || height ? style + 'display: inline-block;' : style;
-    style = color ? style + color : style;
+    if(width || height) {
+      this.set('_inputInliner',true);
+    } else {
+      this.set('_inputInliner',false);
+    }
+    style = textColor ? style + `color:${textColor};` : style;
+    style = backgroundColor ? style + `background-color:${backgroundColor};` : style;
+    style = borderColor ? style + `border-color:${borderColor};` : style;
+    style = outlineColor ? style + `outline-color:${outlineColor};` : style;
     style = style ? Ember.String.htmlSafe(style) : null;
     
     return style;
@@ -41,7 +50,7 @@ export default Ember.Mixin.create({
     let { icon, family, prefix, icon } = this.getProperties('icon','_iconFamily','_iconPrefix');
     if(icon) {
       icon = `${family} ${prefix}${icon}`;
-      return icon      
+      return icon;
     }
     
     return null;

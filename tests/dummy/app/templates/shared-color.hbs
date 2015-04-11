@@ -2,10 +2,18 @@
 
 <h4>Overview</h4>
 <div class="row">
-    <p class="descriptive col-xs-12">
-       Color can be set in one of two ways ... class-based and style-based. Starting with 'class-based' you'll see 
-       again a catering to Bootstrap nominclature. If any of the following string are used for the <code>color</code>
-       parameter then the coorsponding Bootstrap class will be used:
+    <desc>
+        Color is important and there are many facets to consider. The first one is that Bootstrap has avoided -- strictly 
+        speaking -- the inclusion of their standard default/success/info classes to the atomic 'input' component. Instead they 
+        have a set of <code>has-</code> classes which effect color at the "group level". To find out more about this 
+        look at the {{#link-to 'input-wrapper'}}<code>input-wrapper</code>{{/link-to}} component which mimics styling
+        at the group level.
+    </desc>
+    <desc>
+        This section will be exclusively how one can control color at the atomic level. In order to do this we've added a 
+        set of color classes which cut across the style families (aka, 'bootstrap', 'flat'). They use standard Bootstrap-like
+        nominclature:
+        
        <ul>
            <li>default</li>
            <li>success</li>
@@ -15,29 +23,38 @@
            <li>error</li>
        </ul>
 
-       If you're using bootstrap styling don't worry the style will be auto-magically set to the right name and 
-       whatever monkeying around you've done with your bootstrap styling will be left in it's monkey state. This 
-       is particularly monkey-good when you're using the LESS/SASS parameters of Bootstrap and you want them to carry
-       through. Note, however, that there is no "huge" equivalent in Bootstrap. Ya can't have it all. 
-   </p>
-    <p class="descriptive col-xs-12">
-       Now we must turn to a <em>sticky wicket</em> as they say in the industry.
-       It turns out the property "size" is reserved by HTML5. Bastards. That's ok we're smarter than them ...
-       well that's probably not true but still they're idea of <em>size</em> is really more a reflection of "length". For 
-       that reason, we have taken the liberty of taking over the "size" property and if you want the HTML "size" you can 
-       still get to that by setting "length". Fair?
-    </p>        
-    <p  class="descriptive col-xs-12">Happy days!</p>
+       The idea is to have each of these classes set a representative text color, text background, and border color that 
+       fit together. You'll find these classes defined in "ui-input.css" but because they are in CSS (not SCSS or LESS) they 
+       do not benefit from any color parameters you may have set. In the future we hope to address this and would hapily accept
+       a PR for this if you have the inclination to solve this. Also -- as you'll see in the example section below -- you can 
+       choose between setting <code>color</code> and <code>focusColor</code> where <em>focusColor</em> only take effect when 
+       the control has focus. 
+   </desc>
+   <desc>
+       Furthermore, if you want to step into greater control there are some additional color parameters which step past
+       the "class" and give you direct control with "style" elements. These controls are:
+       
+      <ul>
+          <li><code>textColor</code> - yup, the text color of the placeholder and input text</li>
+          <li><code>backgroundColor</code> - the background color of the control</li>
+          <li><code>borderColor</code> - the color of the control's border</li>
+          <li><code>outlineColor</code> - the outline color around a control when it has focus</li>
+      </ul> 
+   </desc>
+    <desc>
+       Remember that in many situations the color control here may be better left alone in favor of wrapping the control
+       into a group (using {{#link-to 'input-wrapper'}}<code>input-wrapper</code>{{/link-to}}) where you can use 
+       Bootstrap's normal <code>has-</code> CSS classes (which <em>will</em> react to your 
+       variable settings).
+    </desc>        
 </div>
 
 <h4>Related Properties</h4>
 <div class="row">
-    <p class="descriptive col-xs-12">
-          While size does a lot of things "size wise" it actually never touches the width. 
-          Furthermore for both {{#link-to 'shared-width-height'}}<code>width</code>{{/link-to}} and 
-          {{#link-to 'shared-width-height'}}<code>height</code>{{/link-to}} there are times where you want
-          more control. Click through to those properties for more.
-    </p>
+    <desc>
+        It's worth noting that another visual element that can be manipulated at both the atomic and group level is 
+        the concept of "status". Status is 
+    </desc>
 </div>
 
 <h4>Example(s)</h4>
@@ -48,8 +65,15 @@
         <span class="col-xs-7">Color Class:            
             {{ui-button-radio size='small' choices='default,success,info,primary,warning,error' selected=myClassColor}}<br/>
         </span>
-        <span class="col-xs-5">Color Style:
-            {{text-input width='75%' size='small' value=myStyleColor}}
+        <span class="col-xs-5 text-right">
+            Text Color:
+            {{text-input width='55%' size='small' value=textColor}}<br/>
+            Background Color:
+            {{text-input width='55%' size='small' value=backColor}}<br/>
+            Border Color:
+            {{text-input width='55%' size='small' value=borderColor}}<br/>
+            Outline Color:
+            {{text-input width='55%' size='small' value=outlineColor}}<br/>
         </span>
         <p>&nbsp;</p>
         <span class="col-xs-12">Style: 
@@ -68,17 +92,29 @@
         </div>
         <div class="handlebars col-xs-8">
             <br/>
-            <code> \{{text-input size='tiny' placeholder='Classy' color='{{myClassColor}}' style='{{myStyle}}'}}</code>  
+            <code> \{{text-input color='{{myClassColor}}' size='huge' placeholder='Classy' style='{{myStyle}}'}}</code>  
+        </div>
+    </div>    
+    <div class="row">
+        <div class="widget col-xs-4">
+            Focused Class Color
+            {{text-input size='huge' placeholder='Focused Class' style=myStyle focusColor=myClassColor}} 
+        </div>
+        <div class="handlebars col-xs-8">
+            <br/>
+            <code> \{{text-input focusColor='{{myClassColor}}' size='huge' placeholder='Focused Class' style='{{myStyle}}'}}</code>  
         </div>
     </div>    
     <div class="row">
         <div class="widget col-xs-4">
             Style Color
-            {{text-input size='huge' placeholder='Sassy' style=myStyle color=myStyleColor}} 
+            {{text-input textColor=textColor backgroundColor=backColor borderColor=borderColor outlineColor=outlineColor size='huge' placeholder='Stylistic' style=myStyle color=myStyleColor}} 
         </div>
         <div class="handlebars col-xs-8">
             <br/>
-            <code> \{{text-input size='tiny' placeholder='Sassy' color='{{myStyleColor}}' style='{{myStyle}}'}}</code>  
+            <code> 
+                \{{text-input textColor='{{textColor}}' backgroundColor='{{backColor}}' borderColor='{{borderColor}}' outlineColor=outlineColor <br/> 
+                &nbsp;&nbsp;&nbsp;&nbsp;size='huge' color='{{myStyleColor}}' placeholder='Stylistic' style='{{myStyle}}'}}</code>  
         </div>
     </div>    
 

@@ -1,3 +1,23 @@
+/* INLINE STYLE */
+input.input-inliner {
+    display: inline-block;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+input.input-inliner.input-tiny, input.input-inliner.input-xs {
+    margin-top: 1px;
+    margin-bottom: 1px;    
+}
+input.input-inliner.input-large, input.input-inliner.input-lg {
+    margin-top: 4px;
+    margin-bottom: 4px;    
+}
+input.input-inliner.input-huge, input.input-inliner.input-hg {
+    margin-top: 5px;
+    margin-bottom: 5px;    
+}
+
+/* TEXT ALIGNMENT */
 input.ui-input.text-align-left {
     text-align: left;
 }
@@ -6,4 +26,72 @@ input.ui-input.text-align-center {
 }
 input.ui-input.text-align-right {
     text-align: right;
+}
+
+/* ATOMIC COLOR */
+input.ui-input.input-success {
+    border-color: hsl(120, 39%, 54%) !important;
+    color: hsl(120, 39%, 20%);
+    background-color: hsl(120, 39%, 90%);
+    outline-color: hsl(120, 39%, 90%);
+}
+input.ui-input.input-focused-success:focus {
+    border-color: hsl(120, 39%, 54%);
+    color: hsl(120, 39%, 20%);
+    background-color: hsl(120, 39%, 90%);
+    outline-color: hsl(120, 39%, 90%);
+}
+
+input.ui-input.input-primary {
+    border-color: hsl(208, 56%, 46%) !important;
+    color: hsl(208, 56%, 20%);
+    background-color: hsl(208, 56%, 90%);
+    outline-color: hsl(208, 56%, 90%);
+}
+input.ui-input.input-focused-primary:focus {
+    border-color: hsl(208, 56%, 46%);
+    color: hsl(208, 56%, 20%);
+    background-color: hsl(208, 56%, 90%);
+    outline-color: hsl(208, 56%, 90%);
+}
+
+
+input.ui-input.input-info {
+    border-color: hsl(194, 66%, 61%) !important;
+    color: hsl(194, 66%, 14%);
+    background-color: hsl(194, 66%, 90%);
+    outline-color: hsl(194, 66%, 90%);
+}
+input.ui-input.input-focused-info:focus {
+    border-color: hsl(194, 66%, 61%);
+    color: hsl(194, 66%, 14%);
+    background-color: hsl(194, 66%, 90%);
+    outline-color: hsl(194, 66%, 90%);
+}
+
+
+input.ui-input.input-warning {
+    border-color: hsl(35, 84%, 62%) !important;
+    color: hsl(35, 84%, 20%);
+    background-color: hsl(35, 84%, 90%);
+    outline-color: hsl(35, 84%, 90%);
+}
+input.ui-input.input-focused-warning:focus {
+    border-color: hsl(35, 84%, 62%);
+    color: hsl(35, 84%, 20%);
+    background-color: hsl(35, 84%, 90%);
+    outline-color: hsl(35, 84%, 90%);
+}
+
+input.ui-input.input-error {
+    border-color: hsl(2, 64%, 58%) !important;
+    color: hsl(2, 64%, 20%);
+    background-color: hsl(2, 64%, 90%);
+    outline-color: hsl(2, 64%, 90%);
+}
+input.ui-input.input-focused-error:focus {
+    border-color: hsl(2, 64%, 58%) !important;
+    color: hsl(2, 64%, 20%);
+    background-color: hsl(2, 64%, 90%);
+    outline-color: hsl(2, 64%, 90%);
 }
