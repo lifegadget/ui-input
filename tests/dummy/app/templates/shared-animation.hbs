@@ -1,7 +1,64 @@
-<h3>Shared Principle::<code>thingy</code></h3>
-<div class="back-link">{{#link-to 'application'}}&lt;-- return to index{{/link-to}} </div>
+<h3>Shared Property::<code>animate</code></h3>
+
+<h4>Overview</h4>
 <div class="row">
-    <p class="descriptive col-xs-12 col-sm-8 col-lg-6">
-        desc
-    </p>        
+    <desc>
+        Secretly you love animation right? If you just said "no" you should now ask yourself ... why do I lie to myself?
+        Come on we all love it. Yes it's a guilty pleasure and its easily overdone but that doesn't mean it isn't 
+        amazingly cool. It is. With that lead-in its likely no surprise that <strong>ui-input</strong> supports animation. 
+        Yippie. So how does it work? Thought you'd never ask. 
+    </desc>
+    <desc>
+        First off, while there are cool JS technologies like Velocity and great animation frameworks for Ember like 
+        Liquid Fire what we're trying to achieve is quite isolated and doesn't need anything super fancy. For this 
+        reason we've gone with CSS animations. This plays well with a broader page or section-level animation strategy
+        using Liquid Fire or whatever you like. This package assumes the availability of the great CSS animation 
+        library <a href="http://daneden.github.io/animate.css/" target="_new"><strong>Animate.css</strong></a>. 
+        See the config section for more details on how to optimise this.
+    </desc>
+
+</div>
+
+<h4>Usage</h4>
+<div class="row">
+    <desc>
+        The basic idea is you bind to the <code>animate</code> property which has a default value of <em>null</em>. 
+        When you want to execute an animation on the control just set the property to <em>true</em> and it will animate, 
+        returning to the <em>null</em> state when done. When setting to <em>true</em> you will get the default animation
+        but if you want to control which animation you want to use then just specify a string value of the animation 
+        effect. Play with the example to get a feeling for it.
+    </desc>
+</div>
+
+<h4>Example(s)</h4>
+
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-7">Choose an animation effect: <br/>          
+            {{ui-button title='default' action="animateMe" param=true}}
+            {{ui-button title='tada' action="animateMe" param='tada'}}
+            {{ui-button title='swing' action="animateMe" param='swing'}}
+            {{ui-button title='wobble' action="animateMe" param='wobble'}}
+        </span>
+        <span class="col-xs-5 ">
+            Style: <br/>
+            {{ui-button-radio choices='bootstrap,flat' selected=style}}
+        </span>
+
+    </div>
+</div>
+<br/>
+<hr/>
+
+<div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-4 text-center">
+            {{text-input size='huge' textAlign='center' placeholder='I wanna dance' width='75%' style=style animate=myAnimation}} 
+        </div>
+        <div class="handlebars col-xs-8">
+            <br/>
+            <code> \{{text-input animate={{quotedMyAnimation}} textAlign='center' placeholder='I wanna dance' style='{{style}}' size='huge' width='75%'}}</code>  
+        </div>
+    </div>    
 </div>

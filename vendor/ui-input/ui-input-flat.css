@@ -1,5 +1,7 @@
 input.ui-input.flat {
-    border: none;
+    border-top: none;
+    border-right: none;
+    border-left-style: none;
     border-bottom: 1px solid #ccc;
     width: 100%;
     outline: none;
@@ -44,4 +46,8 @@ input.ui-input.flat.input-huge {
 /* AUGMENT ATOMIC COLOR */
 input.ui-input.flat {
     background-color: inherit;
+}
+input.flat.ui-input.status-success,input.flat.ui-input.status-info,input.flat.ui-input.status-warning, input.flat.ui-input.status-error {
+    border-radius: 3px;
+    border-left-style: solid;
 }

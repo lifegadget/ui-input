@@ -6,6 +6,8 @@ import InputCorrectionMixin from '../mixins/input-correction';
 import UiEventListenerMixin from '../mixins/ui-event-listener';
 import UiStylingMixin from '../mixins/ui-shared-styling';
 import UiSizeMixin from '../mixins/ui-shared-size';
+import UiStatusMixin from '../mixins/ui-shared-status';
+import UiAnimationMixin from '../mixins/ui-shared-animation';
 import UiColorMixin from '../mixins/ui-shared-color';
 import UiTextAlignMixin from '../mixins/ui-shared-text-align';
 
@@ -20,6 +22,8 @@ export default Ember.TextField.extend(
   UiStylingMixin, 
   UiSizeMixin, 
   UiTextAlignMixin, 
+  UiStatusMixin,
+  UiAnimationMixin,
   UiColorMixin, {
     
   layout: layout,

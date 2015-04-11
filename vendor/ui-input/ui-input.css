@@ -41,7 +41,6 @@ input.ui-input.input-focused-success:focus {
     background-color: hsl(120, 39%, 90%);
     outline-color: hsl(120, 39%, 90%);
 }
-
 input.ui-input.input-primary {
     border-color: hsl(208, 56%, 46%) !important;
     color: hsl(208, 56%, 20%);
@@ -54,8 +53,6 @@ input.ui-input.input-focused-primary:focus {
     background-color: hsl(208, 56%, 90%);
     outline-color: hsl(208, 56%, 90%);
 }
-
-
 input.ui-input.input-info {
     border-color: hsl(194, 66%, 61%) !important;
     color: hsl(194, 66%, 14%);
@@ -68,8 +65,6 @@ input.ui-input.input-focused-info:focus {
     background-color: hsl(194, 66%, 90%);
     outline-color: hsl(194, 66%, 90%);
 }
-
-
 input.ui-input.input-warning {
     border-color: hsl(35, 84%, 62%) !important;
     color: hsl(35, 84%, 20%);
@@ -82,7 +77,6 @@ input.ui-input.input-focused-warning:focus {
     background-color: hsl(35, 84%, 90%);
     outline-color: hsl(35, 84%, 90%);
 }
-
 input.ui-input.input-error {
     border-color: hsl(2, 64%, 58%) !important;
     color: hsl(2, 64%, 20%);
@@ -94,4 +88,21 @@ input.ui-input.input-focused-error:focus {
     color: hsl(2, 64%, 20%);
     background-color: hsl(2, 64%, 90%);
     outline-color: hsl(2, 64%, 90%);
+}
+/* ATOMIC STATUS */
+input.ui-input.status-success {
+    border-left-width: 5px;
+    border-left-color: #5cb85c;
+}
+input.ui-input.status-info {
+    border-left-width: 5px;
+    border-left-color: #5bc0de;
+}
+input.ui-input.status-warning {
+    border-left-width: 5px !important;
+    border-left-color: #f0ad4e !important;
+}
+input.ui-input.status-error {
+    border-left-width: 5px;
+    border-left-color: #d9534f;
 }
