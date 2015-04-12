@@ -106,3 +106,8 @@ input.ui-input.status-error {
     border-left-width: 5px;
     border-left-color: #d9534f;
 }
+/* SQUARE */
+input.ui-input.square {
+    height: calc(width);
+}
+

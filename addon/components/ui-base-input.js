@@ -10,6 +10,7 @@ import UiStatusMixin from '../mixins/ui-shared-status';
 import UiAnimationMixin from '../mixins/ui-shared-animation';
 import UiColorMixin from '../mixins/ui-shared-color';
 import UiTextAlignMixin from '../mixins/ui-shared-text-align';
+import UiSoundEffectsMixin from '../mixins/ui-shared-sound-effects';
 
 
 var isEmpty = Ember.isEmpty;
@@ -24,61 +25,96 @@ export default Ember.TextField.extend(
   UiTextAlignMixin, 
   UiStatusMixin,
   UiAnimationMixin,
+  UiSoundEffectsMixin,
   UiColorMixin, {
     
   layout: layout,
-  
 	classNames: ['ui-input'],
-	classNameBindings: ['statusClass','statusVisualize:visualize','showSpinners::hide-spinners'],
+	classNameBindings: ['statusClass','statusVisualize:visualize','square'],
 	attributeBindings: ['type','size','pattern','visualStyleStyle:style'],
 	pattern: null,
-	showSpinners: false,
 	type: 'text',
-	min: null,
-	max: null,
-	step: null,
+    
 	// EVENT HANDLING
+  // mouse
+  mouseEnter: function() {
+    this.processEvents('mouseEnter');
+  },
+  mouseDown: function() {
+    this.processEvents('mouseDown');
+  },
+  mouseUp: function() {
+    this.processEvents('mouseUp');
+  },
+  mouseLeave: function() {
+    this.processEvents('mouseLeave');
+  },
+  // form
+  focusIn: function() {
+    this.processEvents('focusIn');
+  },
 	focusOut: function(evt) {
+    this.processEvents('focusOut');
 		return this.processCorrections('focusOut',evt);
 	},
+  change: function() {
+    this.processEvents('change');
+  },
+  submit: function() {
+    this.processEvents('submit');
+  },
+  // keyboard
 	keyDown: function(evt) {
 		return this.processCorrections('keyDown',evt);
 	},
-	// MIXIN CONFIG
-	defaultCorrectionRules: ['numericOnly'], 
-	emphasize: function(animationType) {
-		// this.set('animationClass', animationType);
-		var self = this;
-		if (!isEmpty(animationType)) {
-			this.$().addClass(`animated ${animationType}`).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-				self.$().removeClass(`${animationType} animated`);
-			});			
-		}
-	},
+  
+  processEvents: function(event) {
+    let eventProp = Ember.String.capitalize(event);
+    let animate = this.get(`animate${eventProp}`);
+    let sound = this.get(`sound${eventProp}`);
+    if(animate) {
+      this.set('animate',animate);
+    }
+    if(sound) {
+      this.set('sound',sound);
+    }
+  },
+
+  // emphasize: function(animationType) {
+  //   // this.set('animationClass', animationType);
+  //   var self = this;
+  //   if (!isEmpty(animationType)) {
+  //     this.$().addClass(`animated ${animationType}`).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+  //       self.$().removeClass(`${animationType} animated`);
+  //     });
+  //   }
+  // },
+
 	// VISUAL STYLE
-	visualStyle: null,
-	visualStyleClass: Ember.computed('visualStyle', function() { // class adjustments
-		var style = this.get('visualStyle') || '';
-		if (style.indexOf('square') > -1) {
-			if(!this.get('align')) {
-				this.set('align', 'center');
-			}
-			return style;
-		} else {
-			return null;
-		}
-	}),
-	// direct style adjustments
-	visualStyleStyle: Ember.computed('visualStyle','_componentWidth',function() {
-		var style = this.get('visualStyle') || '';
-		if (style.indexOf('square') > -1) {
-			var height = Number(this.get('_componentWidth')) - 30;
-			var fontSize = height / 35;
-			return `height: ${height}px; font-size: {$fontSize}em;`;
-		} else {
-			return null;
-		}
-	}),
+  // visualStyle: null,
+  // visualStyleClass: Ember.computed('visualStyle', function() { // class adjustments
+  //   var style = this.get('visualStyle') || '';
+  //   if (style.indexOf('square') > -1) {
+  //     if(!this.get('align')) {
+  //       this.set('align', 'center');
+  //     }
+  //     return style;
+  //   } else {
+  //     return null;
+  //   }
+  // }),
+  // // direct style adjustments
+  // visualStyleStyle: Ember.computed('visualStyle','_componentWidth',function() {
+  //   var style = this.get('visualStyle') || '';
+  //   if (style.indexOf('square') > -1) {
+  //     var height = Number(this.get('_componentWidth')) - 30;
+  //     var fontSize = height / 35;
+  //     return `height: ${height}px; font-size: {$fontSize}em;`;
+  //   } else {
+  //     return null;
+  //   }
+  // }),
+  
 	// MESSAGE QUEUEING
 	messageQueue: [],
 	/**

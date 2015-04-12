@@ -1,21 +1,45 @@
 <h3>Component::<code>number-input</code></h3>
-<div class="row">
-    <p class="descriptive col-xs-12">
-        A component for getting user input on numeric values.
-    </p>        
-</div>
 
 <h4>Overview</h4>
 <div class="row">
     <p class="descriptive col-xs-12">
-        A scratch pad of options and their corresponding .
-    </p>        
+        An input for numbers only. This control is meant to force a user to only put in numeric values and for mobile phones, if possible, to 
+        only bring up a numeric keypad when the control is highlighted. 
+    </p>
+    <desc>
+        Also, because we're dealing with the narrower scope of just numeric values, there are set of constraints that we can offer to this control
+        that might not make sense to a more general purpose. HTML constraints like <code>min</code>, <code>min</code>, and <code>step</code> are 
+        not just observed but they can be enforced using "{{#link-to 'shared-rules'}}rules{{/link-to}}". 
+    </desc>
+    <desc>
+        The out-of-the box rules provided to a <code>number-input</code> component are:
+        <ul>
+            <li><code>min</code> - checks the value is not less than the min value stated, sets to min if it is</li>
+            <li><code>max</code> - checks the value is not greater than the max value, sets to max if it is</li>
+            <li>
+                <code>stretchMin</code> - 
+                if value less than min, min is decreased (visual animation cue typical)
+                {{icon-info tooltip='setting the <br/><em>animateRuleStretchMin</em><br/> property will give you an animation effect; by default it defaults to a rubberBand effect.' tooltipPlacement='top'}}
+            </li>
+            <li><code>stretchMax</code> - 
+                if value exceeds max, max is increased (visual animation cue typical)
+                {{icon-info tooltip='setting the <br/><em>animateRuleStretchMax</em><br/> property will give you an animation effect; by default it defaults to a rubberBand effect.' tooltipPlacement='top'}}
+            </li>
+        </ul>        
+    </desc>
+    <desc>
+        The last thing that distinguishes a numeric control is that a lot of browsers have a tendency to put some ugly-ass "spinner controls" 
+        into the control itself; this is presumably because they hate you. Well our love equals their hate and by default these will be disabled. If for some reason
+        you <em>wanted</em> to have those controls show up then you can enable them by setting the <code>showSpinners</code> to <em>true</em>. Good luck explaining
+        to your users what you were doing but hey ... not my business.
+    </desc>
 </div>
 
 
 <h4>Examples</h4>
 <div class="row">
     <p class="descriptive col-xs-12">
-        A scratch pad of options and their corresponding .
+        Have fun playing around with this numeric control.
     </p>        
 </div>
+

@@ -1,0 +1,39 @@
+<h3>Component::<code>form-wrapper</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <desc>
+        This component is intended to wrap a set of related controls together and provide aggregate functions such as
+        cross-form validation. This is the last part of the project and has not yet been done. If you'd like to contribute
+        this would be a great place to step in.
+   </desc>
+</div>
+
+<h4>Example(s)</h4>
+
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-6">Choose Style:            
+            {{ui-button-radio choices='bootstrap,flat' selected=myStyle}}<br/>
+        </span>
+        <span class="col-xs-6">Choose Alignment:
+            {{ui-button-radio choices='left,center,right' selected=myAlignment}}<br/>
+        </span>
+    </div>
+</div>
+<br/>
+<hr/>
+
+<div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Default
+            {{text-input placeholder='size matters' textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+</div>

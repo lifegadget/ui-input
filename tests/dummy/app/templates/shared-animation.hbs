@@ -28,6 +28,38 @@
         but if you want to control which animation you want to use then just specify a string value of the animation 
         effect. Play with the example to get a feeling for it.
     </desc>
+    <desc>
+        Another way to use the animations features is to hook an animation into a specific lifecycle event. The events available 
+        include:
+        <column class="col-xs-6">
+        <ul>
+            <li><code>enabled</code> - when control becomes <em>enabled</em> from a disabled state</li>
+            <li><code>disabled</code> - when control becomes <em>disabled</em> from an enabled state</li>
+        </ul>
+        </column>
+        <column class="col-xs-3">
+            <ul>
+                <li><code>change</code> </li>
+                <li><code>input</code> </li>
+                <li><code>submit</code> </li>
+            </ul>
+        </column>
+        <column class="col-xs-3">
+            <ul>
+                <li><code>focusIn</code> </li>
+                <li><code>focusOut</code> </li>
+                <li><code>MouseEnter</code> </li>
+                <li><code>MouseDown</code> </li>
+                <li><code>MouseLeave</code> </li>
+            </ul>
+        </column>
+        
+        Setting them is as simple as setting a property to the name of the animation you want and where the name of the animation is 
+        defined as: [animate][(event).capitalize()]. So for instance, making a focusIn event trigger a "tada" effect would
+        be accomplished with:
+        
+        <code>\{{text-input animateFocusIn='tada'}}</code>
+    </desc>
 </div>
 
 <h4>Example(s)</h4>
@@ -35,23 +67,36 @@
 <div class="configuration col-xs-12">
     <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
     <div class="config-section col-xs-11">
-        <span class="col-xs-7">Choose an animation effect: <br/>          
+        <span class="col-xs-5">Choose an animation effect: <br/>          
             {{ui-button title='default' action="animateMe" param=true}}
             {{ui-button title='tada' action="animateMe" param='tada'}}
             {{ui-button title='swing' action="animateMe" param='swing'}}
             {{ui-button title='wobble' action="animateMe" param='wobble'}}
         </span>
-        <span class="col-xs-5 ">
+        <span class="col-xs-4">
+            Button Enabled/Disabled:<br/>
+            {{ui-toggle-button value=buttonStatus onIcon='circle-thin' offIcon='dot-circle-o' on='Disable' off='Enabled'}}
+        </span>
+        <span class="col-xs-3 ">
             Style: <br/>
             {{ui-button-radio choices='bootstrap,flat' selected=style}}
         </span>
-
     </div>
 </div>
 <br/>
-<hr/>
 
 <div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-4 text-center">
+            {{text-input animate=focus1 animateFocusIn='tada' animateFocusOut='wobble' size='large' textAlign='center' placeholder='Focused' width='38%' style=style }} 
+            {{text-input animate=focus2 animateFocusIn='tada' animateFocusOut='wobble' size='large' textAlign='center' placeholder='Focused' width='38%' style=style }} 
+        </div>
+        <div class="handlebars col-xs-8">
+            Current Animation: {{focus1}}, {{focus2}}
+            <br/>
+            <code> \{{text-input animateFocusIn='tada' animateFocusOut='wobble' textAlign='center' placeholder='Enter' style='{{style}}' size='large' width='38%'}}</code>  
+        </div>
+    </div>    
     <div class="row">
         <div class="widget col-xs-4 text-center">
             {{text-input size='huge' textAlign='center' placeholder='I wanna dance' width='75%' style=style animate=myAnimation}} 
@@ -59,6 +104,15 @@
         <div class="handlebars col-xs-8">
             <br/>
             <code> \{{text-input animate={{quotedMyAnimation}} textAlign='center' placeholder='I wanna dance' style='{{style}}' size='huge' width='75%'}}</code>  
+        </div>
+    </div>    
+    <div class="row">
+        <div class="widget col-xs-4 text-center">
+            {{text-input size='huge' disabled=buttonStatus animateDisabled='rubberBand' animateEnabled='bounce' textAlign='center' placeholder='Disability' width='75%' style=style}} 
+        </div>
+        <div class="handlebars col-xs-8">
+            <br/>
+            <code> \{{text-input animateDisabled='rubberBand' animateEnabled='bounce' disabled={{buttonStatus}} textAlign='center' placeholder='Disability' style='{{style}}' size='huge' width='75%'}}</code>  
         </div>
     </div>    
 </div>

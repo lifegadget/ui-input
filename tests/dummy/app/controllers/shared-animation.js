@@ -16,7 +16,6 @@ export default Ember.Controller.extend({
   
   actions: {
     animateMe: function(animationType) {
-      console.info('animating using: %s', animationType);
       this.set('myAnimation', animationType);
     }
   }
