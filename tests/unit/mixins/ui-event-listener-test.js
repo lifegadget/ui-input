@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import UiEventListenerMixin from '../../../mixins/ui-event-listener';
+import UiEventListenerMixin from 'ui-input/mixins/ui-event-listener';
 import { module, test } from 'qunit';
 
 module('UiEventListenerMixin');

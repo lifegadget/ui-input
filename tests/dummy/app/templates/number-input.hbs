@@ -14,6 +14,15 @@
     <desc>
         The out-of-the box rules provided to a <code>number-input</code> component are:
         <ul>
+            <li>
+                <code>numeric</code> - 
+                this rule is on by default and ensures that only numbers are allowed to be input by the keyboard
+            </li>
+            <li>
+                <code>integer</code> - 
+                Enforces that only integer values are input. It enforces by blocking decimal place keyboard input and stripping out 
+                non-integer content if cut-and-pasted in.
+            </li>
             <li><code>min</code> - checks the value is not less than the min value stated, sets to min if it is</li>
             <li><code>max</code> - checks the value is not greater than the max value, sets to max if it is</li>
             <li>
@@ -36,10 +45,111 @@
 </div>
 
 
-<h4>Examples</h4>
+<h4>Example</h4>
 <div class="row">
     <p class="descriptive col-xs-12">
-        Have fun playing around with this numeric control.
+        Have fun playing around with this numeric control. The variables listed are not a complete list but hopefully representative enough you can get 
+        a strong feeling for this component.
     </p>        
 </div>
+
+
+<div class="examples">
+    <table class="row">
+        <tr class="col-xs-12">
+            <td class="col-xs-3">
+        
+            </td>
+            <td class="col-xs-6 text-center align-middle">
+                {{number-input 
+                    size=size 
+                    width=width 
+                    height=height
+                    textAlign=textAlign 
+                    placeholder='###' 
+                    style=style
+                    color=color
+                    textColor=textColor
+                    backgroundColor=backgroundColor
+                    borderColor=borderColor
+                    outlineColor=outlineColor
+                    animateFocusIn=animateFocusIn
+                    animateMouseEnter=animateMouseEnter
+                    animateMouseClick=animateMouseClick
+                    animateSubmit=animateSubmit
+                    animateChange=animateChange
+                    showSpinners=showSpinners
+                    rules=rules
+                }}            
+            </td>
+            <td class="col-xs-3">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repreh
+            </td>
+        </tr>
+    </table>
+</div>
+<p></p>
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-9">
+            Min: {{number-input value=min size='small' width='60px'}} &nbsp;&nbsp;
+            Max: {{number-input value=max size='small' width='60px'}} &nbsp;&nbsp;
+            Step: {{number-input value=step size='small' width='60px'}} &nbsp;&nbsp;
+            Show Spinners: {{ui-toggle-button value=showSpinners on='Yes' off="No" offIcon='circle-o' onIcon='dot-circle-o'}}
+            <p></p>
+            Rules: {{ui-button-radio size='small' choices='numeric,integer,min,max,minStretch,maxStretch' selected=rules}}
+            <p></p>
+            <hr/>
+            Size: {{ui-button-radio size='small' choices='tiny,small,default,large,huge' selected=size}}
+            Width: {{text-input size='small' value=width width='60px'}} 
+            Height: {{text-input size='small' value=height width='60px'}} <br/>
+            <p></p>
+            Style:
+            {{ui-button-radio size='small' choices='bootstrap,flat' selected=style}} &nbsp;&nbsp;
+            Text Alignment: 
+            {{ui-button-radio size='small' choices='left,center,right' selected=textAlign}}
+            <p></p>
+            <hr/>
+            Color Class:            
+            {{ui-button-radio size='small' choices='default,success,info,primary,warning,error' selected=color}}
+            <p></p>
+            Color (using style props):
+            <p></p>
+            Text: {{text-input width='50px' size='tiny' value=textColor}} &nbsp;
+            Back: {{text-input width='50px' size='tiny' value=backgroundColor}} &nbsp;
+            Border: {{text-input width='50px' size='tiny' value=borderColor}} &nbsp;
+            Outline: {{text-input width='50px' size='tiny' value=outlineColor}} &nbsp;
+            
+            
+        </span>
+        <span class="col-xs-3 text-right">
+            <strong>Animation Rule Events</strong>
+            <hr/>
+            min:
+            {{text-input width='42%' size='tiny' value=animateRuleMin}}<br/>
+            max:
+            {{text-input width='42%' size='tiny' value=animateRuleMax}}<br/>
+            minStretch:
+            {{text-input width='42%' size='tiny' value=animateRuleMinStretch}}<br/>
+            maxStretch:
+            {{text-input width='42%' size='tiny' value=animateRuleMaxStretch}}<br/>
+            <p>&nbsp;<br/></p>
+            <strong>Animation Other Events</strong>
+            <hr/>
+            focusIn:
+            {{text-input width='42%' size='tiny' value=animateFocusIn}}<br/>
+            mouseEnter:
+            {{text-input width='42%' size='tiny' value=animateMouseEnter}}<br/>
+            mouseClick:
+            {{text-input width='42%' size='tiny' value=animateMouseClick}}<br/>
+            submit:
+            {{text-input width='42%' size='tiny' value=animateSubmit}}<br/>
+            change:
+            {{text-input width='42%' size='tiny' value=animateChange}}<br/>
+            
+        </span>
+    </div>
+</div>
+
 

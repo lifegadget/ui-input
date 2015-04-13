@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import UiSharedTextAlignMixin from '../../../mixins/ui-shared-text-align';
+import UiSharedTextAlignMixin from 'ui-input/mixins/ui-shared-text-align';
 import { module, test } from 'qunit';
 
 module('UiSharedTextAlignMixin');
