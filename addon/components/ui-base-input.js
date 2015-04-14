@@ -78,6 +78,13 @@ export default Ember.TextField.extend(
     }
   },
   
+  nullOrStringObserver: Ember.on('init', Ember.computed('value', function() {
+    let { value, emptyIsNull } = this.getProperties('value', 'emptyIsNull');
+    if (emptyIsNull && value === '') {
+      this.set('value', null);
+    }
+  })),
+  
 	// MESSAGE QUEUEING
 	messageQueue: [],
 	/**

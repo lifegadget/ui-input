@@ -38,69 +38,75 @@ var RulesSupport = Ember.Mixin.create({
     let rules = Ember.A(this.get('_rules'));
     let library = this.get('_rulesLibrary');
     // iterate over each rule    
-    rules.forEach(function(rule) {
+    rules.forEach( (rule) => {
       let ruleDefinition = library.get(rule);
-      let defaults = {
-        animate: true,
-        sound: true,
-        cancel: false,
-        status: true
-      };
       try {
-        let test = ruleDefinition.rule;
-      } catch(e) {
-        console.warn('Problem with rule %s, ignoring rule: %o', rule, ruleDefinition); 
-        return;
+        var events = new Set(ruleDefinition.events); // ensure its a set (allows it to be defined as array)
+        var defaults = new Map(ruleDefinition.defaults); // ensure its a map (allows it to be defined as array or arrays too)        
+      } catch (e) {
+        console.warn('There was a problem with %s processing rule %s. Couldn\'t set either events or defaults: %o', this.get('elementId'), rule, ruleDefinition);
+        return false;
       }
-      let ruleName = Ember.String.capitalize(rule);
-      if(Ember.A(ruleDefinition.events).contains(eventType)) {
+      if (events.has(eventType)) {
+        if (!ruleDefinition.rule || typeOf(ruleDefinition.rule) !== 'function') {
+          return;
+        }
+        let ruleName = Ember.String.capitalize(rule);
         // set defaults if appropriate
-        if(ruleDefinition.defaults.has('animate') && typeOf(this.get(`animateRule${ruleName}`)) === 'undefined') {
-          this.set(`animateRule${ruleName}`, ruleDefinition.defaults.get('animate'));
-        }
-        if(ruleDefinition.defaults.has('sound') && typeOf(this.get(`soundRule${ruleName}`)) === 'undefined') {
-          this.set(`soundRule${ruleName}`, ruleDefinition.defaults.get('sound'));
-        }
-        console.log('rule defaults: %o', ruleDefinition.defaults);
-        
-        
-        if(ruleDefinition.defaultAnimation && typeOf(this.get(`animateRule${ruleName}`)) === 'undefined') {
-          this.set(`animateRule${ruleName}`, ruleDefinition.defaultAnimation);
-        }
-        if(ruleDefinition.defaultSound && this.get(`soundRule${ruleName}`) === null) {
-          this.set(`soundRule${ruleName}`, ruleDefinition.defaultSound);
-        }
-        // execute rule
-        let result = ruleDefinition.rule(this, eventType, evt);
-        for (let prop in defaults) {
-          if(result && !result.hasOwnProperty(prop)) {
-            result[prop] = defaults[prop];
+        let actionTypes = new Set(['animate','sound','status']);
+        actionTypes.forEach( (action) => {
+          let actionRuleVariable = `${action}Rule${ruleName}`;
+          if(defaults.has(action) && Ember.A([null,'undefined']).contains(typeOf(this.get(actionRuleVariable)))) {
+            this.set(actionRuleVariable, defaults.get(action));
+          }          
+        })
+        // parse parameters
+        let params = this.get(`ruleParams${ruleName}`) || {};
+        if(typeOf(params) === 'string') {
+          try {
+            params = JSON.parse(params);
+          } catch(e) {
+            if(!isNaN(Number(params))) {
+              params = Number(params);
+            }
+            params = { value: params };
           }
         }
-        console.log('result now: %o', result);
-        let animationType = this.get(`animateRule${ruleName}`);
-        let soundType = this.get(`soundRule${ruleName}`);
-        if(result.animate && animationType) {
-          this.set('animate', animationType);
+        if(typeOf(params) !== 'object') {
+          params = { value: params };
         }
-        if(result.sound && soundType) {
-          this.set('sound', soundType);
+        if(Ember.A(['number','boolean','array','date']).contains(typeOf(params))) {
+          params = { value: params };
         }
-        if(result.message) {
-          // TODO: implement
+        // execute rule
+        let result = ruleDefinition.rule(this, eventType, evt, params);
+        if(typeOf(result) === 'boolean') {
+          result = result ? {trigger: true, cancel: false} : {trigger: false, cancel: false};
         }
-        if(result.status) {
-          this.set('status', result.status);
+        if(result.trigger) {
+          actionTypes.forEach( (action) => {
+           let setting = this.get(`${action}Rule${ruleName}`);
+           // Note: rules can explicitly state a false value for an action; cancelling the action from taking
+           // place even if an action property was set
+           if(setting && result[action] !== false) {
+             this.set(action, setting);
+           }
+         }); // end actionTypes loop
         }
-        if(result.cancel) {
-          evt.preventDefault();
-          return false;
-        } else {
-          return true;
-        }
-      }
-    }, this); 
-  },
+       // process messages that came with the result
+       if(result.message) {
+         // TODO: implement
+       }
+      
+       if(result.cancel) {
+         evt.preventDefault();
+         return false;
+       } 
+      
+       return true;
+     }; // end eventType conditional
+   }); // end rules loop
+ },
   
   /**
    * For now anyway, there are NO rules which are common to all Input Types

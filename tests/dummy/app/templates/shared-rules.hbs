@@ -14,17 +14,126 @@
        The library is a set of "possible" rules which you can associate to a component. The library is defined at three levels:
        
        <ul>
-           <li><strong>Global</strong> - available to ALL components. Defined in mixins/</li>
-           <li><strong>Type</strong> - available to a particular type (e.g., text, numeric, password, etc.)</li>
-           <li><strong>User</strong> - user defined rules</li>
+           <li>
+               <strong>Global</strong> - 
+               available to ALL components. Defined in 
+               <a href="https://github.com/lifegadget/ui-input/blob/master/addon/mixins/ui-shared-rules.js#L108">mixins/ui-shared-rules</a>.
+           </li>
+           <li>
+               <strong>Type</strong> - available to a particular type (e.g., text, numeric, password, etc.). 
+               This is where most of the library resides currently.
+           </li>
+           <li><strong>User</strong> - user defined rules allows full extensibility</li>
        </ul>
    </desc>
    <desc>
-       You can understand what rules are available to the various components by navigating to their individual section. 
-       If you want to add a rule to a component then you just need to define a Rule Definition and then bind it to 
+       For global and type based rules just refer to the documentation here on available rules. 
+       If you want to add a rule to a component then you just need to define a Rule Definition and then bind it to control. For more on 
+       that process see the below section on Rule Binding.
    </desc>
 </div>
 <h4>Rule Definition</h4>
+<div class="row">
+    <desc>
+       A rule is defined by:
+       
+       <ul>
+           <li><strong>Events</strong> - what user events (e.g., focusIn, mouseDown, change, etc.) does this rule evalation on?</li>
+           <li>
+               <strong>Rule</strong> - 
+               When a rule is evaluated, it is responsible for two criteria:
+               
+               <ul>
+                   <li>trigger - should the rule <em>trigger</em> the actions associated with this rule? </li>
+                   <li>
+                       bubble - should the event continue to bubble? 
+                       This defaults to <em>true</em> but is useful to set to false if you want to stop a keypress 
+                       from completing (as the actual registration of the keypress takes place after our rule firing)
+                   </li>
+                   <li>
+                       animate/sound/status - 
+                       Typically these properties are just left off but if a rule wants to manage one of these settings themselves it should 
+                       pass back a boolean <em>false</em> value to indicate that this is being handeled by the rule execution rather than as 
+                       a general action step.
+                   </li>
+               </ul>
+           </li>
+           
+           <note>
+               <strong>Note</strong>: if you only want to specify a trigger condition then it's entirely reasonable to just pass back a boolean value of true/false.
+               Alternatively, if you want to explicitly state the bubble condition than pass back an object with <code>trigger</code> and <code>bubble</code>
+               properties set.
+           </note>
+           <li>
+               <strong>Defaults</strong> - 
+               this refers to the default actions that this rule should effect when triggered. For more on actions see section below but be aware
+               that the rule definition just states a default suggestion for the actions to be triggered, ultimately a container can take full
+               control over what happens when the rule is fired.
+           </li>
+       </ul>
+   </desc>
+</div>
+
+<h4>Actions</h4>
+<div class="row">
+    <desc>
+       When a rule is triggered the following steps are executed:
+       
+       <ul>
+           <li>
+               Animation:
+               <ul>
+                   <li>Is <code>animateRule<span style="color:blue">RULENAME</span></code> property set?</li>
+                   <li>If not, does rule have a default animation? </li>
+                   <li>Given either condition above, animate</li>
+               </ul>
+           </li> 
+           <li>
+               Sound:
+               <ul>
+                   <li>Is <code>soundRule<span style="color:blue">RULENAME</span></code> property set?</li>
+                   <li>If not, does rule have a default sound? </li>
+                   <li>Given either condition above, play sound</li>
+               </ul>
+           </li> 
+           <li>
+               Status:
+               <ul>
+                   <li>Is <code>statusRule<span style="color:blue">RULENAME</span></code> property set?</li>
+                   <li>If not, does rule have a default status? </li>
+                   <li>Given either condition above, set status</li>
+               </ul>
+           </li> 
+           <li>
+               Action:
+               <ul>
+                   <li>this.sendAction('<code>on<span style="color:blue">RULENAME</span></code>', this);</li>
+               </ul>
+           </li>
+       </ul>
+       
+       Of course, the fact that an rule-specific action is fired means that a container can listen into whatever they want and 
+       gain full access to the control when it is triggered.
+       
+       <note>
+           <strong>Note</strong>: RULENAME is the capitalised name of the rule. So if you have a rule defined as 'fooBar' then the event
+           that is triggered is 'onFooBar'.
+       </note>
+   </desc>
+</div>
+
+<h4>Rule Parameters</h4>
+<div class="row">
+    <desc>
+        Rules when triggered have access to all properties of the component (as well as the event itself). In many cases the 
+        existing "state" of the component is enough to effectively determine whether or how the rule should trigger. In other cases, 
+        the rule may provide the ability to effectively pass in a parameter. This parameter passing is done using naming convention ...
+        so in the case of the <code>lengthWarn</code> rule on a <strong>text-input</strong>
+    </desc>
+</div>
+
+
+<h4>User Rule Binding</h4>
 <div class="row">
     <desc>
        A rule is defined by:
@@ -37,17 +146,16 @@
    </desc>
 </div>
 
-
 <h4>Example(s)</h4>
 
 <div class="configuration col-xs-12">
     <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
     <div class="config-section col-xs-11">
-        <span class="col-xs-6">Choose Style:            
-            {{ui-button-radio choices='bootstrap,flat' selected=myStyle}}<br/>
+        <span class="col-xs-6">Animation:            
+            {{ui-button-radio choices='none,tada,swing,pulse' selected=animation}}<br/>
         </span>
-        <span class="col-xs-6">Choose Alignment:
-            {{ui-button-radio choices='left,center,right' selected=myAlignment}}<br/>
+        <span class="col-xs-6">Sound:
+            {{ui-button-radio choices='none,click,error' selected=sound}}<br/>
         </span>
     </div>
 </div>
@@ -57,42 +165,48 @@
 <div class='examples col-xs-12'>
     <div class="row">
         <div class="widget col-xs-3">
-            Success
-            {{text-input status='success' placeholder='success' textAlign=myAlignment style=myStyle}} 
+            <strong>Maximum Number Enforced</strong><br/>
+            <desc>default animation of "bounce"</desc>
+            {{number-input placeholder='max 10' min=1 max=10 rules='numeric,max' animateRuleMax=_animation}} 
         </div>
         <div class="handlebars col-xs-9">
+            <note><strong>Note:</strong> if animation is chosen above, it should override default</note>
             <br/>
-            <code> \{{text-input status='success' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}}</code>  
+            <code> \{{number-input placeholder='max 10' max=10 rules='max,numeric'}}</code>  
         </div>
     </div>    
     <div class="row">
         <div class="widget col-xs-3">
-            Info
-            {{text-input status='info' placeholder='info'  textAlign=myAlignment style=myStyle}} 
+            <strong>String Length Warning</strong> <br/>
+            <desc>warn at {{warn}} length,<br/>
+                  error state after {{error}} length</desc>
+            {{text-input rules='lengthWarn' length=error ruleParamsLengthWarn=warn placeholder='length' animateRuleLengthWarn=_animate}} 
         </div>
         <div class="handlebars col-xs-9">
             <br/>
-            <code> \{{text-input status='info' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+            {{number-input width='90px' size='tiny' value=error placeholder='error' textAlign='center' tooltip='error threashold'}} 
+            {{number-input width='90px' size='tiny' value=warn placeholder='warn' textAlign='center'  tooltip='warning threashold'}} <br/>
+            <p>&nbsp;<br/></p>
+            <code> \{{text-input rules='lengthWarn' length={{error}} ruleParamsLengthWarn={{warn}} placeholder='Length'}} </code>  
         </div>
     </div>
     <div class="row">
         <div class="widget col-xs-3">
-            Warning
-            {{text-input status='warning' placeholder='warning' textAlign=myAlignment style=myStyle}} 
+            <strong>Length Warning and Block</strong> <br/>
+            <desc>
+                block input at {{lengthMax}} length,<br/>
+                warn state at {{warn}} length,<br/>
+                error state after {{error}} length</desc>
+            {{text-input rules='lengthWarn,lengthLimit' length=maxLength ruleParamsLengthWarn=lengthParamsJson placeholder='length'}} 
         </div>
         <div class="handlebars col-xs-9">
             <br/>
-            <code> \{{text-input status='warning' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+            {{number-input width='90px' size='tiny' value=maxLength placeholder='max length' textAlign='center' tooltip='max length'}} 
+            {{number-input width='90px' size='tiny' value=error placeholder='error' textAlign='center' tooltip='error threashold'}} 
+            {{number-input width='90px' size='tiny' value=warn placeholder='warn' textAlign='center'  tooltip='warning threashold'}} <br/>
+            <note>Note: lengthWarn given explicit params, lengthLimit picks up HTML 'length' param<br/></note>
+            <code> \{{text-input rules='lengthWarn,lengthLimit' length={{maxLength}} ruleParamsLengthWarn='{"warning": {{warn}}, "error": {{error}} }' placeholder='Length'}} </code>  
         </div>
     </div>
-    <div class="row">
-        <div class="widget col-xs-3">
-            Error
-            {{text-input status='error' placeholder='error'  textAlign=myAlignment style=myStyle}} 
-        </div>
-        <div class="handlebars col-xs-9">
-            <br/>
-            <code> \{{text-input status='error' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
-        </div>
-    </div>
+
 </div>

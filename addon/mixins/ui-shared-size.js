@@ -6,6 +6,11 @@ var SizingSupport =  Ember.Mixin.create({
   attributeBindings: ['length:size'],
 
   length: null,
+  _lengthObserver: Ember.observer('length', function() {
+    if(this.get('length') === '') {
+      this.set('length', null);
+    }
+  }),
   size: 'default',
   _sizeClass: Ember.computed('size','style', function() {
     let bootstrapMap = {
