@@ -106,8 +106,15 @@ input.ui-input.status-error {
     border-left-width: 5px;
     border-left-color: #d9534f;
 }
-/* SQUARE */
-input.ui-input.square {
-    height: calc(width);
+
+/* NUMERIC SPINNERS */
+input.ui-number-input.hide-spinners {
+  -moz-appearance: textfield; 
 }
+input.ui-number-input.hide-spinners::-webkit-inner-spin-button,
+input.ui-number-input.hide-spinners::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; 
+}
+
 

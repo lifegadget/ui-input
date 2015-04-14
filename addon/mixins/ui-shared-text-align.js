@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
+var TextAlignmentSupport = Ember.Mixin.create({
   
   classNameBindings: ['_textAlignClass'],
   textAlign: 'left',
@@ -11,3 +11,7 @@ export default Ember.Mixin.create({
   })
   
 });
+
+
+TextAlignmentSupport[Ember.NAME_KEY] = 'Text Alignment';
+export default TextAlignmentSupport; 

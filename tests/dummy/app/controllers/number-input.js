@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
 
   queryParams: [
     'size','width','height','min','max',
-    'animateRuleMin','animateRuleMax','animateRuleMinStretch','animateRuleMaxStretch', 
+    'animateRuleMinMax','animateRuleMinMaxStretch', 'animateRuleStepUpDown',
     'color', 'textAlign', 'textColor','backgroundColor','borderColor','outlineColor'
   ],
 
@@ -19,9 +19,7 @@ export default Ember.Controller.extend({
   backgroundColor: null,
   borderColor: null,
   outlineColor: null,
-  animateRuleMin: 'tada',
-  animateRuleMax: 'tada',
-  animateRuleMinStretch: 'rubberBand',
-  animateRuleMaxStretch: 'rubberBand',
-  
+  animateRuleMinMax: 'tada',
+  animateRuleMinMaxStretch: 'rubberBand',
+  animateRuleStepUpDown: 'bounce'
 });

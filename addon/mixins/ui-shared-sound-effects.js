@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/*jshint unused:false*/
 
 var SoundEffectSupport = Ember.Mixin.create({
   classNameBindings: ['_animateClass'],
@@ -6,7 +7,7 @@ var SoundEffectSupport = Ember.Mixin.create({
   sound: null,
   _soundPlayer: Ember.observer('sound', function() {
     let sound = this.get('sound');
-    if(animate) {
+    if(sound) {
       // this._processAnimation(animate);
     }
   }),
@@ -28,5 +29,5 @@ var SoundEffectSupport = Ember.Mixin.create({
   soundSubmit: null
 });
 
-SoundEffectSupport[Ember.NAME_KEY] = 'sound-effects';
+SoundEffectSupport[Ember.NAME_KEY] = 'Sound Effects';
 export default SoundEffectSupport; 

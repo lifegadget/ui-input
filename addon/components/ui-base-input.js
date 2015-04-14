@@ -1,8 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/ui-base-input';
 
-import InputStatusMixin from '../mixins/input-status';
-import InputCorrectionMixin from '../mixins/input-correction';
+import UiRulesMixin from '../mixins/ui-shared-rules';
 import UiEventListenerMixin from '../mixins/ui-event-listener';
 import UiStylingMixin from '../mixins/ui-shared-styling';
 import UiSizeMixin from '../mixins/ui-shared-size';
@@ -12,13 +11,8 @@ import UiColorMixin from '../mixins/ui-shared-color';
 import UiTextAlignMixin from '../mixins/ui-shared-text-align';
 import UiSoundEffectsMixin from '../mixins/ui-shared-sound-effects';
 
-
-var isEmpty = Ember.isEmpty;
-var typeOf = Ember.typeOf;
-
 export default Ember.TextField.extend(
-  InputStatusMixin, 
-  InputCorrectionMixin, 
+  UiRulesMixin, 
   UiEventListenerMixin, 
   UiStylingMixin, 
   UiSizeMixin, 
@@ -34,6 +28,7 @@ export default Ember.TextField.extend(
 	attributeBindings: ['type','size','pattern','visualStyleStyle:style'],
 	pattern: null,
 	type: 'text',
+  emptyIsNull: false, // an empty value is either an empty string or null
     
 	// EVENT HANDLING
   // mouse
@@ -54,8 +49,9 @@ export default Ember.TextField.extend(
     this.processEvents('focusIn');
   },
 	focusOut: function(evt) {
-    this.processEvents('focusOut');
-		return this.processCorrections('focusOut',evt);
+    let eventType = 'focusOut';
+    this.processEvents(eventType);
+		return this.processRules('focusOut',eventType, evt);
 	},
   change: function() {
     this.processEvents('change');
@@ -65,7 +61,9 @@ export default Ember.TextField.extend(
   },
   // keyboard
 	keyDown: function(evt) {
-		return this.processCorrections('keyDown',evt);
+    let eventType = 'keyDown';
+    this.processEvents(eventType);
+    return this.processRules(eventType, evt);
 	},
   
   processEvents: function(event) {
@@ -79,41 +77,6 @@ export default Ember.TextField.extend(
       this.set('sound',sound);
     }
   },
-
-  // emphasize: function(animationType) {
-  //   // this.set('animationClass', animationType);
-  //   var self = this;
-  //   if (!isEmpty(animationType)) {
-  //     this.$().addClass(`animated ${animationType}`).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-  //       self.$().removeClass(`${animationType} animated`);
-  //     });
-  //   }
-  // },
-
-	// VISUAL STYLE
-  // visualStyle: null,
-  // visualStyleClass: Ember.computed('visualStyle', function() { // class adjustments
-  //   var style = this.get('visualStyle') || '';
-  //   if (style.indexOf('square') > -1) {
-  //     if(!this.get('align')) {
-  //       this.set('align', 'center');
-  //     }
-  //     return style;
-  //   } else {
-  //     return null;
-  //   }
-  // }),
-  // // direct style adjustments
-  // visualStyleStyle: Ember.computed('visualStyle','_componentWidth',function() {
-  //   var style = this.get('visualStyle') || '';
-  //   if (style.indexOf('square') > -1) {
-  //     var height = Number(this.get('_componentWidth')) - 30;
-  //     var fontSize = height / 35;
-  //     return `height: ${height}px; font-size: {$fontSize}em;`;
-  //   } else {
-  //     return null;
-  //   }
-  // }),
   
 	// MESSAGE QUEUEING
 	messageQueue: [],

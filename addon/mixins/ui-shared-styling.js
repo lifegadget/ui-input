@@ -21,8 +21,21 @@ var StyleSupport = Ember.Mixin.create({
     let { width, height, textColor, backgroundColor, borderColor, outlineColor } = this.getProperties('width', 'height', 'textColor','backgroundColor','borderColor','outlineColor');
     let style = '';
     style = width ? style + `width:${width};` : style;
-    if(height === 'auto' || height === 'width') {
-      height = this.$().innerWidth() + 'px';
+    if(height === 'width') {
+      // since this can happen during initialization BEFORE the jquery selector is in place
+      // we have to push this to the next run loop
+      try {
+        height = this.$().innerWidth() + 'px';
+        console.log('height set: ' + height);
+      } catch (e) {
+        console.log('bonkers!');
+        height = null;
+        Ember.run.schedule('afterRender', this, function() {
+          console.log('trying it again!');
+          this.propertyWillChange('height');
+          this.propertyDidChange('height');
+        });
+      }
     }
     style = height ? style + `height:${height};` : style;
     if(width || height) {

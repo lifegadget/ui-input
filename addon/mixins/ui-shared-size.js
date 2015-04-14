@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
+var SizingSupport =  Ember.Mixin.create({
   
   classNameBindings: ['_sizeClass','length:size'],
   attributeBindings: ['length:size'],
@@ -35,7 +35,8 @@ export default Ember.Mixin.create({
   _propertyRemapping: Ember.on('init', function() {
     Ember.A(this.get('attributeBindings')).removeObject('size');
     Ember.A(this.get('attributeBindings')).removeObject('width');
-  }),
-  
-  
+  })  
 });
+
+SizingSupport[Ember.NAME_KEY] = 'Sizing Support';
+export default SizingSupport; 

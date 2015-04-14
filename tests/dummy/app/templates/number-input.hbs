@@ -26,13 +26,19 @@
             <li><code>min</code> - checks the value is not less than the min value stated, sets to min if it is</li>
             <li><code>max</code> - checks the value is not greater than the max value, sets to max if it is</li>
             <li>
-                <code>stretchMin</code> - 
+                <code>minStretch</code> - 
                 if value less than min, min is decreased (visual animation cue typical)
                 {{icon-info tooltip='setting the <br/><em>animateRuleStretchMin</em><br/> property will give you an animation effect; by default it defaults to a rubberBand effect.' tooltipPlacement='top'}}
             </li>
-            <li><code>stretchMax</code> - 
+            <li><code>maxStretch</code> - 
                 if value exceeds max, max is increased (visual animation cue typical)
                 {{icon-info tooltip='setting the <br/><em>animateRuleStretchMax</em><br/> property will give you an animation effect; by default it defaults to a rubberBand effect.' tooltipPlacement='top'}}
+            </li>
+            <li><code>stepUp</code> - 
+                if the value isn't a multiple of the step property, moves UP to to the next multiple
+            </li>
+            <li><code>stepDown</code> - 
+                if the value isn't a multiple of the step property, moves UP to to the next multiple.
             </li>
         </ul>        
     </desc>
@@ -43,7 +49,6 @@
         to your users what you were doing but hey ... not my business.
     </desc>
 </div>
-
 
 <h4>Example</h4>
 <div class="row">
@@ -58,7 +63,11 @@
     <table class="row">
         <tr class="col-xs-12">
             <td class="col-xs-3">
-        
+                <!-- <strong>Rules Engaged</strong>
+                <hr/>
+                {{#each rules as |rule|}}
+                    {{rule}}<br/>
+                {{/each}} -->
             </td>
             <td class="col-xs-6 text-center align-middle">
                 {{number-input 
@@ -78,8 +87,17 @@
                     animateMouseClick=animateMouseClick
                     animateSubmit=animateSubmit
                     animateChange=animateChange
+                    animateRuleMin=animateRuleMinMax
+                    animateRuleMax=animateRuleMinMax
+                    animateRuleMinStretch=animateRuleMinMaxStretch
+                    animateRuleMaxStretch=animateRuleMinMaxStretch
+                    animateRuleStepUp=animateRuleStepUpDown
+                    animateRuleStepDown=animateRuleStepUpDown
                     showSpinners=showSpinners
                     rules=rules
+                    min=min
+                    max=max
+                    step=step
                 }}            
             </td>
             <td class="col-xs-3">
@@ -98,7 +116,7 @@
             Step: {{number-input value=step size='small' width='60px'}} &nbsp;&nbsp;
             Show Spinners: {{ui-toggle-button value=showSpinners on='Yes' off="No" offIcon='circle-o' onIcon='dot-circle-o'}}
             <p></p>
-            Rules: {{ui-button-radio size='small' choices='numeric,integer,min,max,minStretch,maxStretch' selected=rules}}
+            Rules: {{ui-button-radio size='small' choices='numeric,integer,min,max,minStretch,maxStretch,stepUp,stepDown' selected=rules}}
             <p></p>
             <hr/>
             Size: {{ui-button-radio size='small' choices='tiny,small,default,large,huge' selected=size}}
@@ -116,24 +134,22 @@
             <p></p>
             Color (using style props):
             <p></p>
-            Text: {{text-input width='50px' size='tiny' value=textColor}} &nbsp;
-            Back: {{text-input width='50px' size='tiny' value=backgroundColor}} &nbsp;
-            Border: {{text-input width='50px' size='tiny' value=borderColor}} &nbsp;
-            Outline: {{text-input width='50px' size='tiny' value=outlineColor}} &nbsp;
+            Text: {{text-input width='85px' size='tiny' style='flat' textAlign='center' value=textColor}} &nbsp;
+            Back: {{text-input width='85px' size='tiny' style='flat' textAlign='center' value=backgroundColor}} &nbsp;
+            Border: {{text-input width='85px' size='tiny' style='flat' textAlign='center' value=borderColor}} &nbsp;
+            Outline: {{text-input width='85px' size='tiny' style='flat' textAlign='center' value=outlineColor}} &nbsp;
             
             
         </span>
         <span class="col-xs-3 text-right">
             <strong>Animation Rule Events</strong>
             <hr/>
-            min:
-            {{text-input width='42%' size='tiny' value=animateRuleMin}}<br/>
-            max:
-            {{text-input width='42%' size='tiny' value=animateRuleMax}}<br/>
-            minStretch:
-            {{text-input width='42%' size='tiny' value=animateRuleMinStretch}}<br/>
-            maxStretch:
-            {{text-input width='42%' size='tiny' value=animateRuleMaxStretch}}<br/>
+            min/max:
+            {{text-input width='42%' size='tiny' value=animateRuleMinMax}}<br/>
+            stretch:
+            {{text-input width='42%' size='tiny' value=animateRuleMinMaxStretch}}<br/>
+            step up/down:
+            {{text-input width='42%' size='tiny' value=animateRuleStepUpDown}}<br/>
             <p>&nbsp;<br/></p>
             <strong>Animation Other Events</strong>
             <hr/>

@@ -126,6 +126,12 @@ desc ul li ul {
     padding-bottom: .25em;
 }
 
+desc img {
+    display: block;
+    padding: .5em;
+    max-width: 90%;
+}
+
 
 .back-navigation {
     position: fixed;
@@ -163,11 +169,17 @@ desc ul li ul {
     border-bottom: 1px solid #E8E8E8;
     border-right: 1px solid #E8E8E8;
     border-radius: 5px;
+    min-height: 190px;
 }
 .examples .row {
     vertical-align: middle;
-    height: 100%;
+    width:100%;
 }
+
+.examples table {
+    min-height: 190px;
+}
+
 .examples .handlebars {
     font-family: monospace;
 }

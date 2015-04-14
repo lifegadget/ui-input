@@ -49,5 +49,5 @@ var AnimationSupport = Ember.Mixin.create({
   animateSubmit: null
 });
 
-AnimationSupport[Ember.NAME_KEY] = 'animation-support';
+AnimationSupport[Ember.NAME_KEY] = 'Animation Support';
 export default AnimationSupport; 

@@ -1,7 +1,98 @@
-<h3>Shared Principle::<code>thingy</code></h3>
-<div class="back-link">{{#link-to 'application'}}&lt;-- return to index{{/link-to}} </div>
+<h3>Shared Principle::<code>rules</code></h3>
+
+<h4>Overview</h4>
 <div class="row">
-    <p class="descriptive col-xs-12 col-sm-8 col-lg-6">
-        desc
-    </p>        
+    <desc>
+       Rules allow the control to take on business logic and react to it in an appropriate manner. The diagram below shows the basic
+       structure of both <em>rule libraries</em> and <em>rule definitions</em>:       
+       <img src="images/rules.png"> 
+   </desc>
+</div>
+<h4>Rule Library</h4>
+<div class="row">
+    <desc>
+       The library is a set of "possible" rules which you can associate to a component. The library is defined at three levels:
+       
+       <ul>
+           <li><strong>Global</strong> - available to ALL components. Defined in mixins/</li>
+           <li><strong>Type</strong> - available to a particular type (e.g., text, numeric, password, etc.)</li>
+           <li><strong>User</strong> - user defined rules</li>
+       </ul>
+   </desc>
+   <desc>
+       You can understand what rules are available to the various components by navigating to their individual section. 
+       If you want to add a rule to a component then you just need to define a Rule Definition and then bind it to 
+   </desc>
+</div>
+<h4>Rule Definition</h4>
+<div class="row">
+    <desc>
+       A rule is defined by:
+       
+       <ul>
+           <li><strong>Events</strong> - what user events (e.g., focusIn, mouseDown, change, etc.) does this rule evalation on?</li>
+           <li>Type - available to a particular type (e.g., text, numeric, password, etc.)</li>
+           <li>User - user defined rules</li>
+       </ul>
+   </desc>
+</div>
+
+
+<h4>Example(s)</h4>
+
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-6">Choose Style:            
+            {{ui-button-radio choices='bootstrap,flat' selected=myStyle}}<br/>
+        </span>
+        <span class="col-xs-6">Choose Alignment:
+            {{ui-button-radio choices='left,center,right' selected=myAlignment}}<br/>
+        </span>
+    </div>
+</div>
+<br/>
+<hr/>
+
+<div class='examples col-xs-12'>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Success
+            {{text-input status='success' placeholder='success' textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input status='success' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}}</code>  
+        </div>
+    </div>    
+    <div class="row">
+        <div class="widget col-xs-3">
+            Info
+            {{text-input status='info' placeholder='info'  textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input status='info' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Warning
+            {{text-input status='warning' placeholder='warning' textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input status='warning' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="widget col-xs-3">
+            Error
+            {{text-input status='error' placeholder='error'  textAlign=myAlignment style=myStyle}} 
+        </div>
+        <div class="handlebars col-xs-9">
+            <br/>
+            <code> \{{text-input status='error' placeholder='size matters' textAlign='{{myAlignment}}' style='{{myStyle}}'}} </code>  
+        </div>
+    </div>
 </div>

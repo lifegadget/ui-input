@@ -1,10 +1,11 @@
-import Ember from 'ember';
-import layout from '../templates/components/number-input';
+// import Ember from 'ember';
+import layout from '../templates/components/text-input';
 import BaseInput from '../components/ui-base-input';
+import SharedTextRules from '../mixins/ui-shared-rules-text';
 
-export default BaseInput.extend({
+export default BaseInput.extend(SharedTextRules,{
   layout: layout,
   classNames: ['text-input'],
-  type: 'text'
-  
+  type: 'text',
+  emptyIsNull: false
 });
