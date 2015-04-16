@@ -3,17 +3,21 @@ var typeOf = Ember.typeOf;
 
 var RulesSupport = Ember.Mixin.create({
   rules: [], // the rules configured for a specific instance (often overridden with default types by subclasses of base-input)
+  defaultRules: [], // meant to be used by subclasses to set default rules which won't collide with container setting rules property
   _rules: Ember.computed('rules', function() {
     let rules = this.get('rules');
+    if(rules === null || rules === false) {
+      rules=[];
+    }
     if(typeOf(rules) === 'string') {
       rules = rules.split(',');
     }
     if(typeOf(rules) !== 'array') {
       console.warn('%s had invalid rules assigned to it: %o', this.get('elementId'), rules);
-      return [];
-    } else {
-      return rules;
-    }
+      rules = [];
+    } 
+    
+    return rules.concat(this.get('defaultRules'));
   }),
   /**
    * Builds a master list of all rules that are AVAILABLE to a given Input class
@@ -37,12 +41,13 @@ var RulesSupport = Ember.Mixin.create({
     options = options || {};
     let rules = Ember.A(this.get('_rules'));
     let library = this.get('_rulesLibrary');
+    let events, defaults;
     // iterate over each rule    
     rules.forEach( (rule) => {
       let ruleDefinition = library.get(rule);
       try {
-        var events = new Set(ruleDefinition.events); // ensure its a set (allows it to be defined as array)
-        var defaults = new Map(ruleDefinition.defaults); // ensure its a map (allows it to be defined as array or arrays too)        
+        events = new Set(ruleDefinition.events); // ensure its a set (allows it to be defined as array)
+        defaults = new Map(ruleDefinition.defaults); // ensure its a map (allows it to be defined as array or arrays too)        
       } catch (e) {
         console.warn('There was a problem with %s processing rule %s. Couldn\'t set either events or defaults: %o', this.get('elementId'), rule, ruleDefinition);
         return false;
@@ -59,7 +64,7 @@ var RulesSupport = Ember.Mixin.create({
           if(defaults.has(action) && Ember.A([null,'undefined']).contains(typeOf(this.get(actionRuleVariable)))) {
             this.set(actionRuleVariable, defaults.get(action));
           }          
-        })
+        });
         // parse parameters
         let params = this.get(`ruleParams${ruleName}`) || {};
         if(typeOf(params) === 'string') {
@@ -104,7 +109,7 @@ var RulesSupport = Ember.Mixin.create({
        } 
       
        return true;
-     }; // end eventType conditional
+     } // end eventType conditional
    }); // end rules loop
  },
   

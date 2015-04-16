@@ -45,12 +45,11 @@ var SharedTextRules = Ember.Mixin.create({
             trigger: false,
             cancel: false,
             status: false // we'll do this within the rule
-          }
+          };
           let value = context.get('value');
           let valueLength = value.length;
           let keyCode = event.keyCode;
           let controlKeys = context.get('_KEYBOARD.controlKeys');
-          let keyCombos = context.get('_KEYBOARD.keyCombos');
            // anticipate incoming keystroke effect on length
           if (Ember.A([46,8]).contains(keyCode)) {
             valueLength = valueLength - 1; // backspace, delete key
@@ -99,7 +98,6 @@ var SharedTextRules = Ember.Mixin.create({
           let debounceTimeout = eventType === 'keyDown' ? 500 : 50;
           let severity = eventType === 'keyDown' ? 'warning' : 'error';
           let keyCode = event.keyCode;
-          let controlKeys = context.get('_KEYBOARD.controlKeys');
           if(keyCode === 9) {
             return { trigger: false, cancel: false }; // ignore tab key 
           }

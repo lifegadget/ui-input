@@ -34,6 +34,7 @@
     "ember-try": "0.0.4",
     "ui-bs-button-choice": "0.0.10",
     "ui-button": "0.0.10",
+    "ui-code-highlight": "0.0.3",
     "ui-icon": "0.0.8"
   },
   "keywords": [

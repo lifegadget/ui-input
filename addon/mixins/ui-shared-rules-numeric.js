@@ -1,3 +1,4 @@
+/*jshint unused:false*/
 import Ember from 'ember';
 
 var SharedNumericRules = Ember.Mixin.create({
@@ -198,7 +199,7 @@ var SharedNumericRules = Ember.Mixin.create({
                 animate: true,
                 sound: true,
                 message: [`Value must be a multiple of ${step}, upjusted value from ${value} to ${context.get('value')}.`, {expiry: 2000, type: 'warning'}]
-              }
+              };
               context.set('value', value + (step - modulus));
             }
           }
@@ -223,7 +224,7 @@ var SharedNumericRules = Ember.Mixin.create({
             result = {
               animate: true,
               sound: true,
-            }
+            };
             // Can not step DOWN if that violates min amount
             if(min && (value - modulus) < min) {
               result.message = [`Value must be a multiple of ${step} while maintaining a minimum of ${min}; upjusted value from ${value} to ${context.get('value')}.`, {expiry: 2000, type: 'warning'}];

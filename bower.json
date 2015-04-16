@@ -14,6 +14,8 @@
     "qunit": "~1.17.1",
     "bootstrap": "~3.3.4",
     "fontawesome": "~4.3.0",
-    "animate.css": "~3.2.6"
-  }
+    "animate.css": "~3.2.6",
+    "highlightjs": "~8.5.0"
+  },
+  "devDependencies": {}
 }
