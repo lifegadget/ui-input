@@ -8,6 +8,14 @@ export default BaseInput.extend(SharedSecurityRules,{
   layout: layout,
   type: 'password',
   emptyIsNull: true,
+  showPassword: false,
+  _showPassword: Ember.on('init', Ember.observer('showPassword', function() {
+    if(this.get('showPassword')) {
+      this.set('type', 'text');
+    } else {
+      this.set('type', 'password');
+    }
+  })),
   _rulesTypeLibrary: Ember.computed.alias('_securityRulesLibrary'),
   // done so that container can bind to variable without erasing its default state
   // TODO: investigate why the oneWay binding wasn't working
