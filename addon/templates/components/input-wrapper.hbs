@@ -1,0 +1,13 @@
+{{#if hasPrefix}}
+    {{#input-addon}}
+        <i class="{{_prefixIcon}}"></i>
+        {{prefixText}}
+    {{/input-addon}}
+{{/if}}
+{{yield}}
+{{#if hasPostfix}}
+    {{#input-addon}}
+        {{postfixText}}
+        <i class="{{_postfixIcon}}"></i>
+    {{/input-addon}}   
+{{/if}}

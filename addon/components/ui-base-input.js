@@ -32,42 +32,39 @@ export default Ember.TextField.extend(
     
 	// EVENT HANDLING
   // mouse
-  mouseEnter: function() {
-    this.processEvents('mouseEnter');
+  mouseEnter: function(evt) {
+    return this.processEvents('mouseEnter',evt);
   },
-  mouseDown: function() {
-    this.processEvents('mouseDown');
+  mouseDown: function(evt) {
+    return this.processEvents('mouseDown',evt);
   },
-  mouseUp: function() {
-    this.processEvents('mouseUp');
+  mouseUp: function(evt) {
+    return this.processEvents('mouseUp',evt);
   },
-  mouseLeave: function() {
-    this.processEvents('mouseLeave');
+  mouseLeave: function(evt) {
+    return this.processEvents('mouseLeave',evt);
   },
   // form
-  focusIn: function() {
-    this.processEvents('focusIn');
+  focusIn: function(evt) {
+    return this.processEvents('focusIn',evt);
   },
 	focusOut: function(evt) {
-    let eventType = 'focusOut';
-    this.processEvents(eventType);
-		return this.processRules('focusOut',eventType, evt);
+    return this.processEvents('focusOut', evt);
 	},
-  change: function() {
-    this.processEvents('change');
+  change: function(evt) {
+    return this.processEvents('change', evt);
   },
-  submit: function() {
-    this.processEvents('submit');
+  submit: function(evt) {
+    return this.processEvents('submit', evt);
   },
   // keyboard
 	keyDown: function(evt) {
     let eventType = 'keyDown';
-    this.processEvents(eventType);
-    return this.processRules(eventType, evt);
+    return this.processEvents(eventType, evt);
 	},
   
-  processEvents: function(event) {
-    let eventProp = Ember.String.capitalize(event);
+  processEvents: function(eventType, evt) {
+    let eventProp = Ember.String.capitalize(eventType, evt);
     let animate = this.get(`animate${eventProp}`);
     let sound = this.get(`sound${eventProp}`);
     if(animate) {
@@ -76,6 +73,7 @@ export default Ember.TextField.extend(
     if(sound) {
       this.set('sound',sound);
     }
+    return this.processRules(eventType,evt);
   },
   
   nullOrStringObserver: Ember.on('init', Ember.computed('value', function() {

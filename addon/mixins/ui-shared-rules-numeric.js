@@ -3,7 +3,6 @@ import Ember from 'ember';
 
 var SharedNumericRules = Ember.Mixin.create({
   _rulesTypeLibrary: [
-    // Numeric 
     [ 
       'numeric', 
       {
@@ -41,7 +40,6 @@ var SharedNumericRules = Ember.Mixin.create({
         } // end rule()
       } 
     ],
-    // Integer 
     [ 
       'integer',
       {
@@ -88,16 +86,17 @@ var SharedNumericRules = Ember.Mixin.create({
       'min',
       {
         events: ['focusOut'],
-        defaultAnimation: 'tada',
-        defaultSound: null,
+        defaults: new Map([
+          [ 'animate', 'pulse' ]
+        ]),
         rule: function(context, eventType, event) {
           let min = Number(context.get('min'));
           let value = Number(context.get('value'));
           let result = {};
+          console.log('processing min rule');
           if(min !== null && value < min) {
             context.set('value',min);
-            result.animate = true;
-            result.sound = true;
+            result.trigger = true;
             result.message = [`Minimum value of ${context.get('min')} was surpassed, resetting to minimum.`, {expiry: 2000, type: 'warning'}];
             return result;
           } else {
@@ -134,20 +133,20 @@ var SharedNumericRules = Ember.Mixin.create({
       'minStretch',
       {
         events: ['focusOut'],
-        defaultAnimation: 'rubberBand',
-        defaultSound: null,
+        defaults: new Map([
+          [ 'animate', 'rubberBand' ]
+        ]),
         rule: function(context, eventType, event) {
           let result = {};
           let min = Number(context.get('min'));
           let value = Number(context.get('value'));
           if(min !== null && value < min) {
-            result.animate = true;
-            result.sound = true;
+            result.trigger = true;
             result.message = [`Minimum was exceeded, new minimum set from ${value} to ${min}`, {expiry: 2000, type: 'warning'}];
             context.set('min',value);
             return result;
           } else {
-            return result;
+            return false;
           }
 
         } // end rule()
@@ -157,20 +156,20 @@ var SharedNumericRules = Ember.Mixin.create({
       'maxStretch',
       {
         events: ['focusOut'],
-        defaultAnimation: 'rubberBand',
-        defaultSound: null,
+        defaults: new Map([
+          [ 'animate', 'rubberBand' ]
+        ]),
         rule: function(context, eventType, event) {
           let result = {};
           let max = Number(context.get('max'));
           let value = Number(context.get('value'));
           if(max !== null && value > max) {
-            result.animate = true;
-            result.sound = true;
+            result.trigger = true;
             result.message = [`Maximum was exceeded, new maximum changed from ${value} to ${max}`, {expiry: 2000, type: 'warning'}];
             context.set('max',value);
             return result;
           } else {
-            return result;
+            return false;
           }
 
         } // end rule()
@@ -180,9 +179,10 @@ var SharedNumericRules = Ember.Mixin.create({
       'stepUp',
       {
         events: ['focusOut'],
-        defaultAnimation: 'bounce',
-        defaultSound: null,
-        rule: function(context, eventType, event) {
+        defaults: new Map([
+          [ 'animate', 'bounce' ]
+        ]),
+        rule: function(context, eventType, event, params) {
           let result = {};
           var step = Number(context.get('step'));
           var value = Number(context.get('value')) || 0;
@@ -196,8 +196,7 @@ var SharedNumericRules = Ember.Mixin.create({
             } else {
               // Step up
               result = {
-                animate: true,
-                sound: true,
+                trigger: true,
                 message: [`Value must be a multiple of ${step}, upjusted value from ${value} to ${context.get('value')}.`, {expiry: 2000, type: 'warning'}]
               };
               context.set('value', value + (step - modulus));
@@ -212,8 +211,9 @@ var SharedNumericRules = Ember.Mixin.create({
       'stepDown',
       {
         events: ['focusOut'],
-        defaultAnimation: 'bounce',
-        defaultSound: null,
+        defaults: new Map([
+          [ 'animate', 'bounce' ]
+        ]),
         rule: function(context, eventType, event) {
           let result = {};
           var step = Number(context.get('step'));
@@ -221,10 +221,7 @@ var SharedNumericRules = Ember.Mixin.create({
           var min = Number(context.get('min'));
           var modulus = value % step;
           if(step !== null && modulus !== 0) {
-            result = {
-              animate: true,
-              sound: true,
-            };
+            result.trigger= true;
             // Can not step DOWN if that violates min amount
             if(min && (value - modulus) < min) {
               result.message = [`Value must be a multiple of ${step} while maintaining a minimum of ${min}; upjusted value from ${value} to ${context.get('value')}.`, {expiry: 2000, type: 'warning'}];

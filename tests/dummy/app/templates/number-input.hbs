@@ -61,19 +61,15 @@
 
 <div class="examples">
     <table class="row">
-        <tr class="col-xs-12">
-            <td class="col-xs-3">
-                <!-- <strong>Rules Engaged</strong>
-                <hr/>
-                {{#each rules as |rule|}}
-                    {{rule}}<br/>
-                {{/each}} -->
-            </td>
-            <td class="col-xs-6 text-center align-middle">
+        <tr>
+            <td class="col-xs-7 text-center align-middle">
                 {{number-input 
                     size=size 
                     width=width 
                     height=height
+                    min=min
+                    max=max
+                    step=step
                     textAlign=textAlign 
                     placeholder='###' 
                     style=style
@@ -95,13 +91,44 @@
                     animateRuleStepDown=animateRuleStepUpDown
                     showSpinners=showSpinners
                     rules=rules
-                    min=min
-                    max=max
-                    step=step
                 }}            
             </td>
-            <td class="col-xs-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repreh
+            <td class="col-xs-5">
+                {{#code-block language="handlebars" poll=500}}
+\{{number-input 
+    {{#if size}}size='{{size}}' 
+    {{/if}}{{#if width}}width='{{width}}' 
+    {{/if}}{{#if height}}height='{{height}}'
+    {{/if}}{{#if min}}min={{min}}
+    {{/if}}{{#if max}}max={{max}}
+    {{/if}}{{#if step}}step={{step}}
+    {{/if}}{{#if length}}length={{length}}    
+    {{/if}}{{#if textAlign}}textAlign='{{textAlign}}'
+    {{/if}}{{#if placeholder}}placeholder='password-input' 
+    {{/if}}{{#if style}}style='{{style}}'
+    {{/if}}{{#if color}}color='{{color}}'
+    {{/if}}{{#if textColor}}textColor='{{textColor}}'
+    {{/if}}{{#if backgroundColor}}backgroundColor={{backgroundColor}}
+    {{/if}}{{#if borderColor}}borderColor='{{borderColor}}'
+    {{/if}}{{#if outlineColor}}outlineColor='{{outlineColor}}'
+    {{/if}}{{#if animateRuleMinMax}}animateRuleMin={{animateRuleMinMax}}
+    {{/if}}{{#if animateRuleMinMax}}animateRuleMax={{animateRuleMinMax}}
+    {{/if}}{{#if animateRuleMinStretch}}animateRuleMinStretch={{animateRuleMinMaxStretch}}
+    {{/if}}{{#if animateRuleMaxStretch}}animateRuleMaxStretch={{animateRuleMinMaxStretch}}
+    {{/if}}{{#if animateRuleStepUp}}animateRuleStepUp={{animateRuleStepUpDown}}
+    {{/if}}{{#if animateRuleStepDown}}animateRuleStepDown={{animateRuleStepUpDown}}
+    {{/if}}{{#if animateFocusIn}}animateFocusIn='{{animateFocusIn}}'
+    {{/if}}{{#if animateMouseEnter}}animateMouseEnter='{{animateMouseEnter}}'
+    {{/if}}{{#if animateMouseClick}}animateMouseClick='{{animateMouseClick}}'
+    {{/if}}{{#if animateSubmit}}animateSubmit='{{animateSubmit}}'
+    {{/if}}{{#if animateChange}}animateChange='{{animateChange}}'
+    {{/if}}{{#if animateRuleLengthLimit}}animateRuleLengthLimit='{{animateRuleLength}}'
+    {{/if}}{{#if animateRuleLengthWarn}}animateRuleLengthWarn='{{animateRuleLength}}'
+    {{/if}}{{#if rules}}rules={{rules}}
+    {{/if}}
+}}   
+                {{/code-block}}         
+
             </td>
         </tr>
     </table>

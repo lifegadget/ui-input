@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 var SharedTextRules = Ember.Mixin.create({
   
-  _rulesTypeLibrary: [
+  _rulesTextLibrary: [
     // Length Limit 
     [ 
       'lengthLimit', 
@@ -83,38 +83,6 @@ var SharedTextRules = Ember.Mixin.create({
           }
 
           return result;
-        } // end rule()
-      } 
-    ],
-    // Invalid Email
-    [ 
-      'invalidEmail', 
-      {
-        events: ['focusOut','keyDown'],
-        rule: function(context, eventType, event) {
-          let result = false;
-          let emailAddress = context.get('value');
-          let valid = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
-          let debounceTimeout = eventType === 'keyDown' ? 500 : 50;
-          let severity = eventType === 'keyDown' ? 'warning' : 'error';
-          let keyCode = event.keyCode;
-          if(keyCode === 9) {
-            return { trigger: false, cancel: false }; // ignore tab key 
-          }
-          if (!valid.test(emailAddress)) {
-            Ember.run.debounce(this, () => {
-              console.log('email problem from %s', eventType);
-              context.set('status', severity);                
-            }, debounceTimeout);
-            result = {
-              trigger: true,
-              cancel: false
-            };
-          } else {
-            console.log('email solved from %s', eventType);
-            context.set('status', 'default');
-          }
-          return result;                      
         } // end rule()
       } 
     ]

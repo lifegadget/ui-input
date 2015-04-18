@@ -43,10 +43,8 @@
 <div class="examples">
     <table class="row">
         <tr>
-            <td class="col-xs-3">
-                {{! FILL IN }}
-            </td>
-            <td class="col-xs-6 text-center align-middle">
+
+            <td class="col-xs-7 text-center align-middle">
                 {{text-input 
                     size=size 
                     width=width 
@@ -70,6 +68,32 @@
                     length=length
                 }}            
             </td>
+            <td class="col-xs-5">
+                {{#code-block language="handlebars" poll=200}}
+\{{text-input 
+    {{#if size}}size='{{size}}' 
+    {{/if}}{{#if width}}width='{{width}}' 
+    {{/if}}{{#if height}}height='{{height}}'
+    {{/if}}{{#if textAlign}}textAlign='{{textAlign}}'
+    {{/if}}{{#if placeholder}}placeholder='password-input' 
+    {{/if}}{{#if style}}style='{{style}}'
+    {{/if}}{{#if color}}color='{{color}}'
+    {{/if}}{{#if textColor}}textColor='{{textColor}}'
+    {{/if}}{{#if backgroundColor}}backgroundColor={{backgroundColor}}
+    {{/if}}{{#if borderColor}}borderColor='{{borderColor}}'
+    {{/if}}{{#if outlineColor}}outlineColor='{{outlineColor}}'
+    {{/if}}{{#if animateFocusIn}}animateFocusIn='{{animateFocusIn}}'
+    {{/if}}{{#if animateMouseEnter}}animateMouseEnter='{{animateMouseEnter}}'
+    {{/if}}{{#if animateMouseClick}}animateMouseClick='{{animateMouseClick}}'
+    {{/if}}{{#if animateSubmit}}animateSubmit='{{animateSubmit}}'
+    {{/if}}{{#if animateChange}}animateChange='{{animateChange}}'
+    {{/if}}{{#if animateRuleLengthLimit}}animateRuleLengthLimit='{{animateRuleLength}}'
+    {{/if}}{{#if animateRuleLengthWarn}}animateRuleLengthWarn='{{animateRuleLength}}'
+    {{/if}}{{#if length}}length={{length}}
+    {{/if}}{{#if rules}}rules={{rules}}{{/if}}
+}}
+                {{/code-block}}
+            </td>
             <td class="col-xs-3">
                 &nbsp;
             </td>
@@ -83,7 +107,7 @@
         <span class="col-xs-9">
             Length: {{number-input value=length size='small' width='60px'}} &nbsp;&nbsp; * translates into HTML's "{{#link-to 'shared-size'}}size{{/link-to}}"
             <p></p>
-            Rules: {{ui-button-radio size='small' choices='lengthLimit,lengthWarn,invalidEmail' selected=rules}}
+            Rules: {{ui-button-radio size='small' choices='lengthLimit,lengthWarn' selected=rules}}
             <p></p>
             <hr/>
             Size: {{ui-button-radio size='small' choices='tiny,small,default,large,huge' selected=size}}

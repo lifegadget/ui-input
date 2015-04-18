@@ -53,6 +53,8 @@ var RulesSupport = Ember.Mixin.create({
         return false;
       }
       if (events.has(eventType)) {
+        console.log('processing rule %s: %o', rule, ruleDefinition);
+        
         if (!ruleDefinition.rule || typeOf(ruleDefinition.rule) !== 'function') {
           return;
         }

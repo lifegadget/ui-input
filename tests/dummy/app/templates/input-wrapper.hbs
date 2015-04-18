@@ -1,7 +1,199 @@
-<h3>input-wrapper</h3>
-<div class="back-link">{{#link-to 'application'}}&lt;-- return to index{{/link-to}} </div>
+<h3>Component::<code>input-wrapper</code></h3>
+
+<h4>Overview</h4>
 <div class="row">
-    <p class="descriptive col-xs-12 col-sm-8 col-lg-6">
-        Wraps the other input controls with useful visual cruft.
-    </p>        
+    <desc>
+        The <code>input-wrapper</code> component is a 1:1 companion to atomic components such as the <em>text-input</em>, <em>number-input</em>, 
+        etc. Whereas the atomic components represent the HTML <strong>input</strong> element solely, the <code>input-wrapper</code> is the surrounding
+        HTML which provides the next level of ornamentation including:
+        
+        <ul>
+            <li>prefix and postfix input addons</li>
+            <li>label services</li>
+            <li>additional error/status visualisation</li>
+        </ul>
+    </desc>
+    <desc>
+        While this component, like its atomic relatives, does not depend on Twitter Bootstrap, the design philosophy does borrow from it where ever 
+        possible.
+    </desc>
 </div>
+
+<h4>Prefix and Postfix</h4>
+<div class="row">
+    <desc>
+        
+        <img src="images/pre-and-postfix.png" width="474" height="68" alt="Pre And Postfix">
+        
+        If you look at the Bootstrap documentation under the heading of "Input Groups" you'll see the general patterns which we're referring to here.
+        In essense this area of functionality is about putting sensibly styled information <em>before</em> and <em>after</em> the HTML input control. 
+        What resides in these pre and postfix areas can be any of the following:
+        
+        <ul>
+            <li>Text and/or Icon</li>
+            <li>A checkbox toggle switch</li>
+            <li>A radio choice selector</li>
+            <li>A dropdown choice</li>
+        </ul>
+        
+        Considering the first option -- text and/or icon -- is probably the simplist, we'll cover that first. 
+    </desc>
+</div>
+
+<h5>Text/Icon Ornamentation</h5>
+<div class="row">
+    <div class="col-xs-6">
+{{#code-block lang='hbs'}}
+\{{#input-wrapper}}
+    \{{#input-addon}}
+        <i class="fa fa-phone"></i>
+    \{{/input-addon}}
+    \{{text-input}}
+    \{{#input-addon}}.00\{{/input-addon}}
+\{{/input-wrapper}}
+{{/code-block}}            
+    </div>
+    <div class="col-xs-6">
+{{#code-block lang='hbs'}}
+\{{#input-wrapper prefixIcon='bell' postfixText='.00'}}
+    \{{text-input}}
+\{{/input-wrapper}}
+{{/code-block}}            
+    </div>
+</div>
+    
+
+<div class="row">
+    <desc>
+        As the block component examples illustrate, there is an explicit sequence of:
+        <ul>
+            <li>prefix, then ...</li>
+            <li>input, then ...</li>
+            <li>postfix</li>
+        </ul>
+        The inline style masks the sequence but the resulting output regardess of "style" (aka, bootstrap, flat, etc.) will 
+        always follow this pattern. This also means that you can always take full control over the styling of your prefix and postfix 
+        areas with whatever you like if you use the <em>block</em> style approach.
+    </desc>
+    <desc>
+        The inline style, however, is both more compact -- and for situations where you're following normal design patterns -- allows 
+        the component to do more for you. The next few sections will discuss primarily the approach of using the inline style with only 
+        brief callouts to block style where appropriate.
+    </desc>
+    
+</div>    
+
+<div class="examples">
+    <table style="width:100%">
+        <tr>
+            <td class="col-xs-12 col-sm-4 text-center align-middle">
+                {{#input-wrapper 
+                    prefixText=prefixText prefixIcon=prefixIcon postfixText=postfixText postfixIcon=postfixIcon iconFamily=iconFamily
+                    size=size
+                }}
+                    {{text-input placeholder='text-input' size=size}}
+                {{/input-wrapper}}
+            </td>
+            <td class="hidden-xs col-sm-8">
+                {{#code-block language="handlebars" poll=500}}
+\{{#input-wrapper iconFamily='{{iconFamily}}' {{#if prefixText}}prefixText='{{prefixText}}'{{/if}}{{#if postfixText}}postfixText='{{postfixText}}'{{/if}}{{#if postfixIcon}}postfixIcon='{{postfixIcon}}'{{/if}} }}
+    \{{text-input placeholder='text-input'}}
+}}   
+                {{/code-block}}         
+            </td>
+        </tr>
+    </table>
+</div>
+<p></p>
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <div class="row">
+            <div class="col-xs-4">
+                Prefix Text: {{text-input width='140px' size='small' value=prefixText}}<br/>
+                Prefix Icon: {{text-input width='140px' size='small' value=prefixIcon}}                
+            </div>
+            <div class="col-xs-4">
+                Postfix Text: {{text-input width='140px' size='small' value=postfixText}}<br/>
+                Postfix Icon: {{text-input width='140px' size='small' value=postfixIcon}}                
+            </div>
+            <div class="col-xs-4">
+                Icon Family:<br/>
+                {{ui-bs-button-choice choices=iconFamilies selected=iconFamily size='small' stretch=true}}<br/>
+                Size:<br/>
+                {{ui-bs-button-choice choices=sizes selected=size size='small' stretch=true}}
+            </div>
+        </div>
+        <note>
+            <strong>Note:</strong> 
+            this test application has <em>both</em> Glyphicons and FontAwesome icon fonts loaded and that's why you can switch. In most 
+            cases you will only load one of these and in these situations it is recommended that you just set the <code>iconFamily</code>
+            property in the <code>environment.js</code> file.
+        </note>
+        
+    </div>
+</div>
+<div class="row">
+</div>    
+
+
+<h5>Checkbox Ornamentation</h5>
+<desc>
+    <div class="row">
+        <div class="col-xs-7">
+            The inline representation of a checkbox can be seen to the right. It is represented in its most compact form
+            (aka, a checkbox but no label for the checkbox). This actually makes sense a lot of times but if you do want 
+            to add a label that is possible with the <code>prefix</code> property demonstrated earlier. Everything discussed here can also be done 
+            for the <em>postfix</em> real estate simply by changing the "pre" to "post" in property names.
+        </div>
+        <div class="col-xs-5">
+    {{#code-block lang='hbs'}}
+    \{{#input-wrapper prefixCheckbox=checkbox}}
+        \{{text-input}}
+    \{{/input-wrapper}}
+    {{/code-block}}                                    
+        </div>
+    </div>
+    Up to this point the checkbox has seemed no more complex in nature than the text/icon ornamentation discusssed earlier but
+    there is an additional complication/functionality that shows up in this ornamentation:
+    
+    <ul><li>
+        There are two data properties which visually (and very likely <em>functionally</em>) are connected in some fashion
+    </li></ul>
+    In many situations the 
+    checkbox is meant to toggle the relevancy of the INPUT control. For this reason there is a handy inline feature which 
+    connects these two together in a simple fashion ... when the checkbox is checked, the input is enabled; when the checkbox is unchecked, the input is disabled. 
+    This is achieved by setting the <code>checkboxEnables</code> property to true. 
+</desc>
+<desc>
+    <note>
+        <strong>Note:</strong> 
+        any feature like the <code>checkboxEnables</code> which depends on interaction between the wrapper and the input elements requires that they are
+        connected ... for more on that refer to the "linking" section below
+    </note>
+</desc>
+
+<h5>Radio Ornamentation</h5>
+<desc>
+    This is (or <em>will be</em>) very similar to the checkbox ornamentation but is slightly more complicated in that state management spans -- in some ways 
+    at least -- across input elements. For this reason and because it seems a less useful control in general, it has not been prioritized. Please feel free to submit
+    a PR to get it into the mix if you're missing this functionality.
+</desc>
+
+<h5>Dropdown Ornamentation</h5>
+<desc>
+    This is definately a cool pre/postfix addon but not included in this release. Again very happy to include it in a PR if you've got the time.
+</desc>
+
+
+<h4>Example</h4>
+<div class="row">
+    <desc>
+        Have fun playing around with the email input control. The variables listed are not a complete list but should give you enough to get a sense
+        for the component:
+    </desc>        
+</div>
+
+
+
+

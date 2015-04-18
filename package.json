@@ -33,8 +33,8 @@
     "ember-export-application-global": "^1.0.2",
     "ember-try": "0.0.4",
     "ui-bs-button-choice": "0.0.10",
-    "ui-button": "0.0.10",
-    "ui-code-highlight": "0.0.4",
+    "ui-button": "0.0.12",
+    "ui-code-highlight": "0.0.5",
     "ui-icon": "0.0.8"
   },
   "keywords": [

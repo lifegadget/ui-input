@@ -7,5 +7,6 @@ export default BaseInput.extend(SharedTextRules,{
   layout: layout,
   classNames: ['text-input'],
   type: 'text',
-  emptyIsNull: false
+  emptyIsNull: false,
+  _rulesTypeLibrary: Ember.computed.alias('_rulesTextLibrary')
 });

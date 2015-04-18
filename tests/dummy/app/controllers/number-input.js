@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
   ],
 
   size: 'huge',
-  width: null,
+  width: '50%',
   height: null,
   min: 0,
   max: 10,
