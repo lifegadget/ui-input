@@ -1,0 +1,74 @@
+<h3>Component::helper::<code>input-feedback</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <desc>
+       The <code>input-feedback</code> component ... TBD
+   </desc>
+</div>
+
+<h4>Example(s)</h4>
+
+<examples>
+            <widget>
+            {{#input-wrapper size='large'}}
+                {{input-addon 
+                    style=style
+                    text=text
+                    icon=icon
+                    checkbox=checkbox
+                    radio=radio
+                    button=button
+                    value=value
+                    iconFirst=iconFirst
+                    iconFamily=iconFamily
+                }}
+                {{text-input placeholder='input-control'  style=style}} 
+            {{/input-wrapper}}
+            <p>&nbsp;</p>
+            {{#if checkbox}}Checkbox value: {{value}}{{/if}}
+            </widget>
+            <sourcecode>
+                {{#code-block language="handlebars" poll=100}}
+\{{#input-wrapper size='large'}}
+    \{{input-addon 
+        {{#if text}}text='{{text}}' 
+        {{/if}}{{#if icon}}icon='{{icon}}' 
+        {{/if}}{{#if checkbox}}checkbox={{checkbox}} 
+        {{/if}}{{#if radio}}radio={{radio}} 
+        {{/if}}{{#if button}}button={{button}}
+        {{/if}}{{#if iconFirst}}iconFirst={{iconFirst}} 
+        {{/if}}{{#if iconFirst}}iconFamily={{iconFamily}} 
+        {{/if}}style='{{style}}'
+    }}
+    \{{text-input}}
+\{{\input-wrapper}}   
+                {{/code-block}}         
+            </sourcecode>
+</examples>
+
+<configuration>
+    <icon>{{icon-cog size="2x"}}</icon>
+    <config>
+        <columns>
+            <column>
+                Style:            
+                {{ui-button-radio choices='bootstrap,flat' selected=style}}<br/>
+                iconFirst:            
+                {{ui-toggle-button value=iconFirst}}<br/>
+                iconFamily:            
+                {{ui-button-radio selected=iconFamily choices='fa,glyphicon'}}
+            </column>
+            <column>
+                Text: {{text-input placeholder='text' width='150px' value=text}}<br/>
+                Icon: {{text-input placeholder='icon' width='150px' value=icon}}<br/>
+            </column>
+            <column>
+                {{ui-toggle-button value=checkbox}} Checkbox <br/>
+                {{ui-toggle-button value=radio}} Radio <br/>
+                {{ui-toggle-button value=button}} Button <br/>
+            </column>                    
+        </columns>
+    </config>
+</configuration>
+<p>&nbsp;</p>
