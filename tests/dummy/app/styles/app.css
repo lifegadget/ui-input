@@ -152,6 +152,7 @@ desc img {
     color: darkgrey;
 }
 
+configuration,
 .configuration {
     border-left: 10px solid #C4C4C4;
     border-top: 1px solid #C4C4C4;
@@ -163,7 +164,54 @@ desc img {
     padding-top: 1em;
     margin-bottom: 1em;
 }
+configuration {
+    width: 100%;
+    float:left;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+configuration icon {
+    width: 100px;
+    padding-left: 15px;
+}
+configuration config {
+    -webkit-flex-grow: 3;
+    -moz-flex-grow: 3;
+    -ms-flex-grow: 3;
+    -o-flex-grow: 3;
+    flex-grow: 3;
+}
+configuration config columns {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+configuration config column {
+    -webkit-flex-grow: 3;
+    -moz-flex-grow: 3;
+    -ms-flex-grow: 3;
+    -o-flex-grow: 3;
+    flex-grow: 3; 
+    
+    min-width: 300px;
+}
+config column br {
+    font-size: x-large;
+    padding-bottom: 15px;
+}
 
+examples,
 .examples {
     border-left: 10px solid #F6F6F6;
     border-top: 1px solid #E8E8E8;
@@ -172,15 +220,75 @@ desc img {
     border-radius: 5px;
     min-height: 190px;
 }
+examples,
 .examples .row {
     vertical-align: middle;
     width:100%;
 }
 
+examples,
 .examples table {
-    min-height: 190px;
+    min-height: 50px;
 }
 
+examples,
 .examples .handlebars {
     font-family: monospace;
 }
+
+examples {
+    width: 100%;
+    float: left;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    vertical-align: middle;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+examples widget:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+examples widget {
+    width: 33%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-height: 150px;
+    float: none;
+}
+@media (max-width: 767px) {
+    examples widget {
+        width: 100%;        
+    }
+}
+
+
+examples sourcecode {
+    -webkit-flex-grow: 3;
+    -moz-flex-grow: 3;
+    -ms-flex-grow: 3;
+    -o-flex-grow: 3;
+    flex-grow: 3;
+    padding:0;
+    margin-bottom:0;
+} 
+@media (max-width: 767px) {
+    examples sourcecode {
+        display: none !important;        
+    }
+}
+
+
+examples sourcecode pre.ui-code-highlight {
+    margin-bottom: 0;
+}
+
+

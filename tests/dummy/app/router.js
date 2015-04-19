@@ -15,6 +15,9 @@ export default Router.map(function() {
 
   this.route('input-wrapper');
   this.route('form-wrapper');
+
+  // HELPERS / INLINE
+  this.route('input-addon');
   
   // SHARED
   this.route('shared-style');
@@ -25,6 +28,7 @@ export default Router.map(function() {
   this.route('shared-status');
   this.route('shared-animation');
   this.route('shared-sound');
+  this.route('shared-vibration');
   this.route('shared-events');
   this.route('shared-textAlign');
 });

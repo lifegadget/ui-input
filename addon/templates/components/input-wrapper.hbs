@@ -1,13 +1,7 @@
 {{#if hasPrefix}}
-    {{#input-addon}}
-        <i class="{{_prefixIcon}}"></i>
-        {{prefixText}}
-    {{/input-addon}}
+    {{input-addon icon=prefixIcon text=prefixText iconFamily=iconFamily checkbox=prefixCheckbox value=prefixValue}}
 {{/if}}
 {{yield}}
 {{#if hasPostfix}}
-    {{#input-addon}}
-        {{postfixText}}
-        <i class="{{_postfixIcon}}"></i>
-    {{/input-addon}}   
+    {{input-addon icon=postfixIcon text=postfixText iconFirst=false iconFamily=iconFamily checkbox=postfixCheckbox value=postfixValue}}
 {{/if}}

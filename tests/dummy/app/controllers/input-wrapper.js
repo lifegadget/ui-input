@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   postfixText: '.00',
   prefixIcon: 'phone',
   postfixIcon: null,
+  prefixCheckbox: true,
   size: 'large',
   iconFamilies: [
 		{id: 'fa', name: 'Font Awesome', sidecar: 'foo'},
@@ -19,6 +20,11 @@ export default Ember.Controller.extend({
 		{id: null, name: 'default'},
 		{id: 'large', name: 'large'},
 		{id: 'huge', name: 'huge'}
+  ],
+  prefixCheckboxValues: [
+		{id: true, name: 'true'},
+		{id: false, name: 'false'},
+		{id: null, name: 'null'}  
   ]
 
 });

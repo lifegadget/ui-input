@@ -1,0 +1,66 @@
+<h3>Shared Effect::<code>vibrations</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <desc>
+       When we think of user feedback we typically think of <em>animation</em> and maybe <em>sound</em> but <em>vibrations</em>? Well we think its time
+       to let vibrations into your heart and use them as a subtle way of nudging the user to understand their input better. 
+   </desc>
+   <desc>
+       This leverages the Vibration API available in some devices and will gracefully be ignored if not present in the device being used. The API itself is
+       incredibly simple: <a href="http://www.w3.org/TR/vibration/">Vibration API</a>. Of course you won't need to know this, vibration will be treated the same as 
+       animation and sound effects ... just set the <code>vibration</code> property and the device will vibrate. If you want to attach a vibration to an 
+       event just add a property with the event name followed by <strong>Vibrate</strong>.
+   </desc>
+</div>
+
+<h4>Example(s)</h4>
+<desc>
+    Obviously you'll need to do your testing on a device that supports vibrations but assuming you have already identified this clear 
+    dependency ... enjoy your testing.
+</desc>
+
+
+<examples>
+    <widget>
+        {{text-input size='large' length=length placeholder='text-field' rules='lengthLimit'}}<br/>
+        {{number-input size='large' max=max placeholder='number-field'}}
+    </widget>
+    <sourcecode>
+{{#code-block language="handlebars" poll=100}}
+\{{text-input {{#if length}}length={{length}} {{/if}}rules='lengthLimit' size='large'}}
+
+
+
+\{{number-input {{#if max}}max={{max}} {{/if}}size='large'}}
+{{/code-block}}
+    </sourcecode>
+</examples>
+
+<configuration>
+    <icon>{{icon-cog size="2x"}}</icon>
+    <config>
+        <columns>
+            <column class="col-xs-12 col-sm-6">
+                <strong>TEXT FIELD</strong><br/>
+                length: {{number-input placeholder='max length' width='150px' value=length}}<br/>
+                rules: [ 'lengthLimit' ]<br/>
+                <note>
+                    <strong>Note:</strong> 
+                    the <strong>lengthLimit</strong> rule has a default vibration associated with it so no need to set a property
+                </note>
+            </column>
+            <column class="col-xs-12 col-sm-6">
+                <strong>NUMERIC FIELD</strong><br/>
+                max: {{number-input placeholder='max value' width='150px' value=max}}<br/>
+                rules: [ 'maxStretch' ]<br/>
+                rulesMaxStretchVibrate: {{text-input placeholder='vibration signal' width='150px' value=signal}}<br/>
+                <note>
+                    <strong>Note:</strong> 
+                    since the <strong>maxStretch</strong> rule doesn't have a default vibration then we'll need to set one. you put in a single 
+                    numeric value or an CSV set of values (no spaces).
+                </note>
+            </column>                    
+        </columns>
+    </config>
+</configuration>

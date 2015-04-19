@@ -7,9 +7,11 @@ var SharedTextRules = Ember.Mixin.create({
     [ 
       'lengthLimit', 
       {
+        defaults: new Set([
+          [ 'vibrate', [250,1000] ]
+        ]),
         events: ['keyDown'],
         rule: function(context, eventType, event) {
-          let result = { animate: false, sound: false, event: false };
           let valueLength = context.value.length;
           let limit = context.length;
           let keyCode = event.keyCode;
@@ -22,16 +24,9 @@ var SharedTextRules = Ember.Mixin.create({
           }
 
           if(limit && valueLength > limit) {
-            result = {
-              event: true,
-              animate: true,
-              sound: true,
-            };
-            if(!controlKeys.contains(keyCode)) {
-              result.cancel = true;
-            }
+            return {trigger: true, cancel: true};
           }
-          return result;
+          return false;
         } // end rule()
       } 
     ],

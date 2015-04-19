@@ -39,7 +39,7 @@ var RulesSupport = Ember.Mixin.create({
    */
   processRules: function(eventType, evt, options) {
     options = options || {};
-    let rules = Ember.A(this.get('_rules'));
+    let rules = Ember.A(this.get('_rules')); 
     let library = this.get('_rulesLibrary');
     let events, defaults;
     // iterate over each rule    
@@ -53,14 +53,12 @@ var RulesSupport = Ember.Mixin.create({
         return false;
       }
       if (events.has(eventType)) {
-        console.log('processing rule %s: %o', rule, ruleDefinition);
-        
         if (!ruleDefinition.rule || typeOf(ruleDefinition.rule) !== 'function') {
           return;
         }
         let ruleName = Ember.String.capitalize(rule);
         // set defaults if appropriate
-        let actionTypes = new Set(['animate','sound','status']);
+        let actionTypes = new Set(['animate','sound','status','vibrate']);
         actionTypes.forEach( (action) => {
           let actionRuleVariable = `${action}Rule${ruleName}`;
           if(defaults.has(action) && Ember.A([null,'undefined']).contains(typeOf(this.get(actionRuleVariable)))) {
