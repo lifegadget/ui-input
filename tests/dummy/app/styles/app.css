@@ -291,4 +291,23 @@ examples sourcecode pre.ui-code-highlight {
     margin-bottom: 0;
 }
 
+indent {
+    display: table;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+indent:after {
+    display: table;
+    content: ' ';
+    clear:both;
+}
 
+centered {
+    display:block;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}

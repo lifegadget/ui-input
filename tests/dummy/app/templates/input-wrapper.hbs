@@ -203,24 +203,25 @@
 </div>
 <p></p>
 
-<div class="configuration col-xs-12">
-    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
-    <div class="config-section col-xs-11">
-        <div class="row">
-            <div class="col-xs-3">
-                 disableNotChecked <br/>
-                {{ui-toggle-button value=disableNotChecked}} 
-            </div>
-            <div class="col-xs-3">
-                Prefix Text: {{text-input width='140px' size='small' value=checkLabel}}
-            </div>
-            <div class="col-xs-6">
-                Size:
-                {{ui-bs-button-choice choices=sizes selected=size size='small' stretch=true}}
-            </div>
-        </div>
-    </div>
-</div>
+<configuration>
+    <icon>{{icon-cog size="2x"}}</icon>
+    <config>
+        <columns>
+                <column>
+                    disableNotChecked<br/>
+                    {{ui-toggle-button value=disableNotChecked}} 
+                </column>
+                <column >
+                    Prefix Text:<br/>
+                    {{text-input width='140px' size='small' value=checkLabel}}
+                </column>
+                <column >
+                    Size:<br/>
+                    {{ui-bs-button-choice choices=sizes selected=size size='small' stretch=true}}
+                </column>          
+        </columns>
+    </config>
+</configuration>
 
 
 <h5>Radio Ornamentation</h5>
@@ -241,12 +242,30 @@
 </desc>
 
 
-<h4>Example</h4>
+<h4>Labels</h4>
 <div class="row">
     <desc>
-        Have fun playing around with the email input control. The variables listed are not a complete list but should give you enough to get a sense
-        for the component:
-    </desc>        
+        A "label" has a 1:1 relationship with an input field, or maybe a better way of thinking about it is it has a 1:1 relationship to an 
+        input-group where an "input-group" is the input control and any/all addons which were added. If you look at an HTML example from Bootstrap's 
+        site you'll find this example amoung the many:
+        
+        <indent>
+        {{#code-block lang='html'}}
+<div class="form-group has-success has-feedback">
+  <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
+  <div class="input-group">
+    <span class="input-group-addon">@</span>
+    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+  </div>
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+</div>
+        {{/code-block}}
+        </indent>
+        
+        This provides a useful view into the structure.
+    </desc>
+    
 </div>
 
 
