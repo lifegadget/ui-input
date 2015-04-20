@@ -44,7 +44,9 @@ export default Ember.Component.extend(SharedSizeMixin, {
     let feedback = this.get('feedback');
     return status && feedback ? true : false;
   })),
-  hasScreenReader: false,
+  hasScreenReader: Ember.on('init', Ember.computed('sr', function() {
+    return this.get('sr') ? true : false;
+  })),
   
   // State Interactions
   // (aka, prefix/postfix interactions with the INPUT component)

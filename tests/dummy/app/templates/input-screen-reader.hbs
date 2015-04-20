@@ -3,48 +3,51 @@
 <h4>Overview</h4>
 <div class="row">
     <desc>
-       The <code>input-screen-reader</code> component ... TBD
+       The <code>input-screen-reader</code> component allows for context text to be placed into the page while remaining invisible to 
+       normal browsers in order to assist screen reader devices. 
    </desc>
 </div>
 
 <h4>Example(s)</h4>
 
 <examples>
-            <widget>
-            {{#input-wrapper size='large'}}
-                {{input-addon 
-                    style=style
-                    text=text
-                    icon=icon
-                    checkbox=checkbox
-                    radio=radio
-                    button=button
-                    value=value
-                    iconFirst=iconFirst
-                    iconFamily=iconFamily
-                }}
-                {{text-input placeholder='input-control'  style=style}} 
-            {{/input-wrapper}}
-            <p>&nbsp;</p>
-            {{#if checkbox}}Checkbox value: {{value}}{{/if}}
-            </widget>
-            <sourcecode>
-                {{#code-block language="handlebars" poll=100}}
-\{{#input-wrapper size='large'}}
-    \{{input-addon 
-        {{#if text}}text='{{text}}' 
-        {{/if}}{{#if icon}}icon='{{icon}}' 
-        {{/if}}{{#if checkbox}}checkbox={{checkbox}} 
-        {{/if}}{{#if radio}}radio={{radio}} 
-        {{/if}}{{#if button}}button={{button}}
-        {{/if}}{{#if iconFirst}}iconFirst={{iconFirst}} 
-        {{/if}}{{#if iconFirst}}iconFamily={{iconFamily}} 
-        {{/if}}style='{{style}}'
-    }}
-    \{{text-input}}
-\{{\input-wrapper}}   
-                {{/code-block}}         
-            </sourcecode>
+    <widget>
+        {{#input-wrapper class='inline-example' size='large' prefixIcon='eye' sr=sr}}
+            {{text-input placeholder='input-control' }} 
+        {{/input-wrapper}}
+    </widget>
+    <sourcecode>
+        {{#code-block language="handlebars" poll=100}}
+\{{! INLINE EXAMPLE }}
+\{{#input-wrapper size='large' prefixIcon='eye' sr='{{sr}}'}}
+    \{{text-input placeholder='input-control' }} 
+\{{/input-wrapper}}
+        {{/code-block}}         
+    </sourcecode>
+</examples>
+
+<examples>
+    <widget>
+        {{#input-wrapper class='block-example' size='large' as |wrapper|}}
+            {{#input-group containedBy=wrapper}}
+                {{input-addon icon="eye"}}
+                {{text-input placeholder='input-control'}} 
+            {{/input-group}}
+            {{#input-screen-reader}}{{sr}}{{/input-screen-reader}}
+        {{/input-wrapper}}
+    </widget>
+    <sourcecode>
+        {{#code-block language="handlebars" poll=100}}
+\{{! BLOCK EXAMPLE }}
+\{{#input-wrapper class='block-example' size='large' as |wrapper|}}
+    \{{#input-group containedBy=wrapper}}
+        \{{input-addon icon="eye"}}
+        \{{text-input placeholder='input-control'}} 
+    \{{/input-group}}
+    \{{#input-screen-reader}}{{sr}}\{{/input-screen-reader}}
+\{{/input-wrapper}}
+        {{/code-block}}         
+    </sourcecode>
 </examples>
 
 <configuration>
@@ -52,23 +55,27 @@
     <config>
         <columns>
             <column>
-                Style:            
-                {{ui-button-radio choices='bootstrap,flat' selected=style}}<br/>
-                iconFirst:            
-                {{ui-toggle-button value=iconFirst}}<br/>
-                iconFamily:            
-                {{ui-button-radio selected=iconFamily choices='fa,glyphicon'}}
+                Screen Reader Text:            
+                {{text-input width='80%' value=sr}}<br/>
             </column>
-            <column>
-                Text: {{text-input placeholder='text' width='150px' value=text}}<br/>
-                Icon: {{text-input placeholder='icon' width='150px' value=icon}}<br/>
-            </column>
-            <column>
-                {{ui-toggle-button value=checkbox}} Checkbox <br/>
-                {{ui-toggle-button value=radio}} Radio <br/>
-                {{ui-toggle-button value=button}} Button <br/>
-            </column>                    
         </columns>
     </config>
 </configuration>
 <p>&nbsp;</p>
+<examples>
+    <widget>
+        The HTML source for the <strong>inline</strong> example is as seen on the right.
+    </widget>
+    <sourcecode>
+        {{dom-reference ref='.inline-example' poll=300}}
+    </sourcecode>
+</examples>
+
+<examples>
+    <widget>
+        The HTML source for the <strong>block</strong> example is as seen on the right.
+    </widget>
+    <sourcecode>
+        {{dom-reference ref='.block-example' poll=300}}
+    </sourcecode>
+</examples>
