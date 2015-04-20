@@ -117,4 +117,9 @@ input.ui-number-input.hide-spinners::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+/* INPUT WRAPPER */
+.ui-input.wrapper {
+    position: relative;
+}
+
 

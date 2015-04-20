@@ -1,15 +1,30 @@
 import Ember from 'ember';
 import layout from '../templates/components/input-wrapper';
 import SharedSizeMixin from '../mixins/ui-shared-size';
-import SharedIconMixin from '../mixins/ui-shared-icons';
-// import config from '../config/environment';
 
 export default Ember.Component.extend(SharedSizeMixin, {
   layout: layout,
-  classNames: ['ui-input', 'input-group'],
+  classNames: ['ui-input', 'wrapper'],
+  classNameBindings: ['_status'],
+  status: null,
+  _status: Ember.on('init', Ember.computed('status', function() {
+    let status = this.get('status');
+    return status ? `has-${status}` : null;
+  })),
+  groupInputClass: Ember.on('init', Ember.computed('_sizeClass', 'status', function() {
+    let staticClasses = [ 'input-group' ];
+    let dynamicClasses = [ this.get('_sizeClass') ];
+    let status = this.get('status');
+    if (status) {
+      dynamicClasses.push(`has-${status}`);
+    }
+
+    return staticClasses.concat(dynamicClasses).join(' ');
+  })),
   
   style: 'bootstrap',
   
+  // SECTIONAL FLAGS
   hasPrefix: Ember.on('didInsertElement', Ember.computed('prefixIcon','prefixText', 'prefixCheckbox', function() {
     let { prefixIcon, prefixText, prefixCheckbox } = this.getProperties('prefixIcon','prefixText', 'prefixCheckbox');
     return prefixIcon || prefixText || prefixCheckbox ? true : false;
@@ -18,6 +33,14 @@ export default Ember.Component.extend(SharedSizeMixin, {
     let { postfixIcon, postfixText } = this.getProperties('postfixIcon','postfixText');
     return postfixIcon || postfixText ? true : false;
   })),
+  hasAddons: Ember.computed.or('hasPrefix','hasPostfix'),
+  feedback: false,
+  hasFeedback: Ember.on('init',Ember.computed('status','feedback',function() {
+    let status = this.get('status');
+    let feedback = this.get('feedback');
+    return status && feedback ? true : false;
+  })),
+  hasScreenReader: false,
   
   // State Interactions
   // (aka, prefix/postfix interactions with the INPUT component)

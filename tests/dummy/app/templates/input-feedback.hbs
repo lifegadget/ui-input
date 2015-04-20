@@ -1,50 +1,85 @@
 <h3>Component::helper::<code>input-feedback</code></h3>
 
 <h4>Overview</h4>
-<div class="row">
-    <desc>
-       The <code>input-feedback</code> component ... TBD
-   </desc>
-</div>
+<desc>
+   The <code>input-feedback</code> component is optionally contained by the <code>input-wrapper</code> component and provides a way 
+   to visually paint a status icon onto the input control. 
+</desc>
+<h4>TODO's</h4>
+<desc>
+    <ul>
+        <li>only the "default" size seems to format correctly (have fixed small and large now).</li>
+        <li>like other group elements, tiny and huge are not defined</li>
+        <li>the right side has lost its border-radius</li>
+        <li>positioning of feedback is not reacting to whether a postfix addon is displayed</li>
+        <li>flat styling has not been done at all</li>
+        <li>need to dynamically add the postfix when configuration is turned on in the inline example</li>
+    </ul>
+</desc>
 
 <h4>Example(s)</h4>
 
+{{! BLOCK EXAMPLE }}
 <examples>
-            <widget>
-            {{#input-wrapper size='large'}}
-                {{input-addon 
-                    style=style
-                    text=text
-                    icon=icon
-                    checkbox=checkbox
-                    radio=radio
-                    button=button
-                    value=value
-                    iconFirst=iconFirst
-                    iconFamily=iconFamily
-                }}
-                {{text-input placeholder='input-control'  style=style}} 
-            {{/input-wrapper}}
-            <p>&nbsp;</p>
-            {{#if checkbox}}Checkbox value: {{value}}{{/if}}
-            </widget>
-            <sourcecode>
-                {{#code-block language="handlebars" poll=100}}
-\{{#input-wrapper size='large'}}
-    \{{input-addon 
-        {{#if text}}text='{{text}}' 
-        {{/if}}{{#if icon}}icon='{{icon}}' 
-        {{/if}}{{#if checkbox}}checkbox={{checkbox}} 
-        {{/if}}{{#if radio}}radio={{radio}} 
-        {{/if}}{{#if button}}button={{button}}
-        {{/if}}{{#if iconFirst}}iconFirst={{iconFirst}} 
-        {{/if}}{{#if iconFirst}}iconFamily={{iconFamily}} 
-        {{/if}}style='{{style}}'
-    }}
-    \{{text-input}}
+    <widget>
+        <heading>Full block style</heading>
+        {{#input-wrapper 
+            size=size 
+            status=groupStatus 
+            style=style 
+        }}
+            {{#input-group class='input-group-lg'}}
+                {{input-addon text='$'}}
+                {{text-input placeholder='input-control' style=style status=status}}
+                {{#if showPostfix}}
+                    {{input-addon text='.00'}}            
+                {{/if}} 
+            {{/input-group}}
+            {{input-feedback status=feedbackStatus iconFamily=iconFamily}}
+        {{/input-wrapper}}
+        <p>&nbsp;</p>
+        {{#if checkbox}}Checkbox value: {{value}}{{/if}}
+    </widget>
+    <sourcecode>
+        {{#code-block language="handlebars" poll=100}}
+\{{#input-wrapper size='large'{{#if groupStatus}} status='{{groupStatus}}'{{/if}} style='{{style}}'}}
+    \{{#input-group class='input-group-lg'}}
+        \{{input-addon text='$'}}
+        \{{text-input placeholder='input-control'}}{{#if showPostfix}}
+        \{{input-addon text='.00'}}{{/if}}
+    \{{/input-group}}
+    \{{input-feedback status='{{feedbackStatus}}' iconFamily='{{iconFamily}}'}}
 \{{\input-wrapper}}   
-                {{/code-block}}         
-            </sourcecode>
+        {{/code-block}}         
+    </sourcecode>
+</examples>
+
+{{! MORE INLINE EXAMPLE }}
+<examples>
+    <widget>
+        <heading>Inlined by input-wrapper</heading>
+        {{#input-wrapper 
+            size=size 
+            status=groupStatus 
+            style=style 
+            feedback=true
+            prefixText='$'
+        }}
+            {{text-input placeholder='input-control' style=style}}
+        {{/input-wrapper}}
+        <p>&nbsp;</p>
+        {{#if checkbox}}Checkbox value: {{value}}{{/if}}
+    </widget>
+    <sourcecode>
+        {{#code-block language="handlebars" poll=100}}
+\{{#input-wrapper size='{{size}}' style='{{style}}' iconFamily='{{iconFamily}}'
+        status='{{groupStatus}}' 
+        prefixText='$'
+}}
+        \{{text-input placeholder='input-control' style='{{style}}'}}
+\{{/input-wrapper}}
+        {{/code-block}}         
+    </sourcecode>
 </examples>
 
 <configuration>
@@ -52,23 +87,31 @@
     <config>
         <columns>
             <column>
-                Style:            
-                {{ui-button-radio choices='bootstrap,flat' selected=style}}<br/>
-                iconFirst:            
-                {{ui-toggle-button value=iconFirst}}<br/>
-                iconFamily:            
-                {{ui-button-radio selected=iconFamily choices='fa,glyphicon'}}
+                Feedback Status: <br/>
+                {{ui-button-radio choices=groupStatuses selected=feedbackStatus size='small'}}<br/>
+                Group Status: <br/>
+                {{ui-button-radio choices=groupStatuses selected=groupStatus size='small'}}
             </column>
             <column>
-                Text: {{text-input placeholder='text' width='150px' value=text}}<br/>
-                Icon: {{text-input placeholder='icon' width='150px' value=icon}}<br/>
+                Size:<br/>
+                {{ui-bs-button-choice choices=sizes selected=size size='small' stretch=true}}<br/>
+                Show Postfix Addon:<br/>
+                {{ui-toggle-button value=showPostfix size='small'}}
             </column>
             <column>
-                {{ui-toggle-button value=checkbox}} Checkbox <br/>
-                {{ui-toggle-button value=radio}} Radio <br/>
-                {{ui-toggle-button value=button}} Button <br/>
-            </column>                    
+                Style Family:<br/>        
+                {{ui-button-radio choices='bootstrap,flat' selected=style size='small' stretch=true}}<br/>
+                Icon Family:<br/>
+                {{ui-bs-button-choice choices=iconFamilies selected=iconFamily size='small' stretch=true}}<br/>                
+            </column>
         </columns>
     </config>
 </configuration>
 <p>&nbsp;</p>
+<note>
+   <strong>Note:</strong> 
+   the "feedback status" and "group status" would typically be synchronized but for this demo we've  seperated them as independent variables
+   in the block style example; this flexibility (even if potentially not that desirable) is not an option in the inline style.
+</note>
+
+

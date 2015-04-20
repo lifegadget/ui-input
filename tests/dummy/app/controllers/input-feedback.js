@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  queryParams: [ 'prefixText', 'postfixText', 'prefixIcon', 'postfixIcon' ],
+  queryParams: [ 'groupStatus', 'feedbackStatus', 'size', 'style' ],
 
   prefixText: '',
   postfixText: '.00',
@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
   postfixIcon: null,
   prefixCheckbox: true,
   size: 'large',
+  style: 'bootstrap',
   iconFamilies: [
 		{id: 'fa', name: 'Font Awesome', sidecar: 'foo'},
 		{id: 'glyphicon', name: 'Glyphicons', sidecar: 'bar'}
@@ -21,17 +22,13 @@ export default Ember.Controller.extend({
 		{id: 'large', name: 'large'},
 		{id: 'huge', name: 'huge'}
   ],
-  prefixCheckboxValues: [
-		{id: true, name: 'true'},
-		{id: false, name: 'false'},
-		{id: null, name: 'null'}  
-  ],
   groupStatuses: [
 		{id: null, name: 'None'},
 		{id: 'error', name: 'Error'},
 		{id: 'warning', name: 'Warning'},
 		{id: 'success', name: 'Success'}
-  ],
-  
+  ] ,
+  groupStatus: 'error',
+  feedbackStatus: 'error'
 
 });

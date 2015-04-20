@@ -5,13 +5,17 @@ var IconSupport = Ember.Mixin.create({
   _iconClass: Ember.on('didInsertElement', Ember.computed('icon','iconFamily', function() {
     let icon = this.get('icon');
     let iconFamily = this.get('iconFamily');
+    
+    return this.getIconClass(icon,iconFamily);
+  })),
+  getIconClass: function(icon, iconFamily) {
     let fixedWithClassMap = {
       fa: 'fw',
       glyphicon: ''
     };
     let fixedWith = this.get('_iconFixedWidth') ? fixedWithClassMap[iconFamily] : '';
     return icon ? `${iconFamily} ${fixedWith} ${iconFamily}-${icon}` : '';
-  })),
+  },
   
   // all icon types must come from a icon family like Glyphicons or Font Awesome
   iconFamily: 'fa',

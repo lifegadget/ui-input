@@ -1,7 +1,19 @@
-{{#if hasPrefix}}
-    {{input-addon icon=prefixIcon text=prefixText iconFamily=iconFamily checkbox=prefixCheckbox value=prefixValue}}
+{{#if hasAddons}}
+    {{#input-group class=groupInputClass}}
+        {{#if hasPrefix}}
+            {{input-addon icon=prefixIcon text=prefixText iconFamily=iconFamily checkbox=prefixCheckbox value=prefixValue}}
+        {{/if}}
+        {{yield}}
+        {{#if hasPostfix}}
+            {{input-addon icon=postfixIcon text=postfixText iconFirst=false iconFamily=iconFamily checkbox=postfixCheckbox value=postfixValue}}
+        {{/if}}
+    {{/input-group}}
+{{else}}
+    {{yield}}    
 {{/if}}
-{{yield}}
-{{#if hasPostfix}}
+{{#if hasFeedback}}
+    {{input-feedback status=status iconFamily=iconFamily}}
+{{/if}}
+{{#if hasScreenReader}}
     {{input-addon icon=postfixIcon text=postfixText iconFirst=false iconFamily=iconFamily checkbox=postfixCheckbox value=postfixValue}}
 {{/if}}

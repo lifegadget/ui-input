@@ -33,3 +33,14 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
+/* Form Control Size */
+.ui-input.wrapper.input-group-sm .form-control-feedback {
+    font-size: 14px;
+    top: -2px;
+    right: 0px;
+}
+.ui-input.wrapper.input-group-lg .form-control-feedback {
+    font-size: 18px;
+    top: 6px;
+    right: 2px;
+}

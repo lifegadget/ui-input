@@ -8,9 +8,9 @@
         HTML which provides the next level of ornamentation including:
         
         <ul>
+            <li>Group status visualisation</li>
             <li>prefix and postfix input addons</li>
             <li>label services</li>
-            <li>additional error/status visualisation</li>
         </ul>
     </desc>
     <desc>
@@ -18,6 +18,57 @@
         possible.
     </desc>
 </div>
+<h4>Group Status</h4>
+<desc>
+    The status of a input-wrapper component gives an overall statement about the state of the input component. Valid states are:
+    <ul>
+        <li>success</li>
+        <li>warning</li>
+        <li>error</li>
+    </ul>
+    Each of these states is represented in CSS as a class with the following name: <code><em>has-</em>[state]</code>. Give it a try below:
+</desc>
+
+<examples>
+    <widget>
+    {{#input-wrapper size=size status=groupStatus style=style}}
+        {{input-addon text='$'}}
+        {{text-input placeholder='input-control'  style=style}} 
+        {{input-addon text='.00'}}
+    {{/input-wrapper}}
+    <p>&nbsp;</p>
+    {{#if checkbox}}Checkbox value: {{value}}{{/if}}
+    </widget>
+    <sourcecode>
+        {{#code-block language="handlebars" poll=100}}
+\{{#input-wrapper size='large'{{#if groupStatus}} status='{{groupStatus}}'{{/if}} style='{{style}}'}}
+    \{{input-addon text='$'}}
+    \{{text-input placeholder='input-control'}}
+    \{{input-addon text='.00'}}
+\{{\input-wrapper}}   
+        {{/code-block}}         
+    </sourcecode>
+</examples>
+
+<configuration>
+    <icon>{{icon-cog size="2x"}}</icon>
+    <config>
+        <columns>
+            <column>
+                Status: <br/>
+                {{ui-button-radio choices=groupStatuses selected=groupStatus size='small'}}
+            </column>
+            <column>
+                Size:<br/>
+                {{ui-bs-button-choice choices=sizes selected=size size='small' stretch=true}}
+            </column>
+            <column>
+                Style:<br/>        
+                {{ui-button-radio choices='bootstrap,flat' selected=style size='small'}}
+            </column>
+        </columns>
+    </config>
+</configuration>
 
 <h4>Prefix and Postfix</h4>
 <div class="row">
