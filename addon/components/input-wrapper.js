@@ -5,7 +5,7 @@ import SharedSizeMixin from '../mixins/ui-shared-size';
 export default Ember.Component.extend(SharedSizeMixin, {
   layout: layout,
   classNames: ['ui-input', 'wrapper'],
-  classNameBindings: ['_status'],
+  classNameBindings: ['_status','hasPrefix:includes-prefix','hasPostfix:includes-postfix'],
   wrapper: Ember.computed.alias('this'),
   status: null,
   _status: Ember.on('init', Ember.computed('status', function() {

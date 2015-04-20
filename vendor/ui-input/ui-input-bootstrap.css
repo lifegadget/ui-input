@@ -33,7 +33,7 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-/* Form Control Size */
+/* Feedback Form Control Size */
 .ui-input.wrapper.input-group-sm .form-control-feedback {
     font-size: 14px;
     top: -2px;

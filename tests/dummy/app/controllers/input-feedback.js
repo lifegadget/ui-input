@@ -29,6 +29,10 @@ export default Ember.Controller.extend({
 		{id: 'success', name: 'Success'}
   ] ,
   groupStatus: 'error',
-  feedbackStatus: 'error'
+  feedbackStatus: 'error',
+  showPostfixText: Ember.on('didInsertElement', Ember.computed('showPostfix', function() {
+    return this.get('showPostfix') ? '.00' : null;
+  })),
+  inlineFeedback: true
 
 });

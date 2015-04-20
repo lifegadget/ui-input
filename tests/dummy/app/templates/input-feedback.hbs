@@ -64,7 +64,8 @@
             size=size 
             status=groupStatus 
             style=style 
-            feedback=true
+            feedback=inlineFeedback
+            postfixText=showPostfixText
             prefixText='$'
         }}
             {{text-input placeholder='input-control' style=style}}
@@ -75,7 +76,7 @@
     <sourcecode>
         {{#code-block language="handlebars" poll=100}}
 \{{#input-wrapper size='{{size}}' style='{{style}}' iconFamily='{{iconFamily}}'
-        status='{{groupStatus}}' 
+        status='{{groupStatus}}'{{#if inlineFeedback}} feedback={{inlineFeedback}}{{/if}}
         prefixText='$'
 }}
         \{{text-input placeholder='input-control' style='{{style}}'}}
@@ -97,8 +98,16 @@
             <column>
                 Size:<br/>
                 {{ui-bs-button-choice choices=sizes selected=size size='small' stretch=true}}<br/>
-                Show Postfix Addon:<br/>
-                {{ui-toggle-button value=showPostfix size='small'}}
+                <div class="row">
+                    <div class="col-xs-6">
+                        Postfix Addon:<br/>
+                        {{ui-toggle-button value=showPostfix size='small'}}                        
+                    </div>
+                    <div class="col-xs-6">
+                        Inline Feedback:<br/>
+                        {{ui-toggle-button value=inlineFeedback size='small'}}                        
+                    </div>
+                </div>
             </column>
             <column>
                 Style Family:<br/>        

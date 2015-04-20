@@ -27,20 +27,25 @@ var SizingSupport =  Ember.Mixin.create({
   })),
   _sizeClass: Ember.computed('size','style', function() {
     let groupy = this.get('tagName') === 'input' ? '' : '-group';
-    let bootstrapMap = {
-      tiny: `input${groupy}-xs`,
-      small: `input${groupy}-sm`,
+    let sizeMap = {
+      tiny: 'xs',
+      xs: 'xs',
+      small: 'sm',
+      sm: 'sm',
       normal: null,
       default: null,
-      large: `input${groupy}-lg`,
-      huge: `input${groupy}-hg`
+      large: 'lg',
+      lg: 'lg',
+      huge: 'hg',
+      hg: 'hg'
     };
-    let { size,style } = this.getProperties('size','style');
-    if(style === 'bootstrap') {
-      return bootstrapMap[size];
+    let size = this.get('size');
+    if(!size) {
+      return '';
     } else {
-      return `input${groupy}-${size}`;
+      size = sizeMap[size];
     }
+    return `input${groupy}-${size}`;
   }),
   width: null,
   _widthStyle: Ember.computed('width', function() {

@@ -1,5 +1,5 @@
 {{#if hasAddons}}
-    {{#input-group class=groupInputClass}}
+    {{#input-group containedBy=this}}
         {{#if hasPrefix}}
             {{input-addon icon=prefixIcon text=prefixText iconFamily=iconFamily checkbox=prefixCheckbox value=prefixValue}}
         {{/if}}
@@ -12,8 +12,8 @@
     {{yield this}}    
 {{/if}}
 {{#if hasFeedback}}
-    {{input-feedback status=status iconFamily=iconFamily}}
+    {{input-feedback containedBy=this}}
 {{/if}}
 {{#if hasScreenReader}}
-    {{input-addon icon=postfixIcon text=postfixText iconFirst=false iconFamily=iconFamily checkbox=postfixCheckbox value=postfixValue}}
+    {{input-screen-reader sr=sr}}
 {{/if}}

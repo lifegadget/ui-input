@@ -121,5 +121,7 @@ input.ui-number-input.hide-spinners::-webkit-outer-spin-button {
 .ui-input.wrapper {
     position: relative;
 }
-
-
+/* POSTFIX OFFSET FOR FEEDBACK */
+.ui-input.wrapper.has-error.includes-postfix .form-control-feedback {
+    right: 45px;
+}

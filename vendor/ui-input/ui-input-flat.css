@@ -12,32 +12,32 @@ input.ui-input.flat:focus {
     border-radius: 3px;
 }
 
-input.ui-input.flat.input-tiny {
+input.ui-input.flat.input-xs {
     height: 16px;
     font-size: 11px;
     padding: 3px 2px;
     line-height: 1.2;
 }
 
-input.ui-input.flat.input-small {
+input.ui-input.flat.input-sm {
     height: 20px;
     font-size: 12px;
     padding: 3px 4px;
 }
 
-input.ui-input.flat.input-default {
+input.ui-input.flat {
     height: 26px;
     font-size: 16px;
     padding: 4px 4px;
 }
 
-input.ui-input.flat.input-large {
+input.ui-input.flat.input-lg {
     height: 32px;
     font-size: 22px;
     padding: 6px 6px;
 }
 
-input.ui-input.flat.input-huge {
+input.ui-input.flat.input-hg {
     height: 38px;
     font-size: 26px;
     padding: 6px 6px;
