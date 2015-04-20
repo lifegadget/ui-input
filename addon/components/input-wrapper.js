@@ -6,6 +6,7 @@ export default Ember.Component.extend(SharedSizeMixin, {
   layout: layout,
   classNames: ['ui-input', 'wrapper'],
   classNameBindings: ['_status'],
+  wrapper: Ember.computed.alias('this'),
   status: null,
   _status: Ember.on('init', Ember.computed('status', function() {
     let status = this.get('status');
@@ -23,6 +24,9 @@ export default Ember.Component.extend(SharedSizeMixin, {
   })),
   
   style: 'bootstrap',
+  register: function() {
+    console.log('registration');
+  },
   
   // SECTIONAL FLAGS
   hasPrefix: Ember.on('didInsertElement', Ember.computed('prefixIcon','prefixText', 'prefixCheckbox', function() {

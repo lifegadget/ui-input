@@ -27,28 +27,30 @@
             size=size 
             status=groupStatus 
             style=style 
+            iconFamily=iconFamily
+            as |wrapper|
         }}
-            {{#input-group class='input-group-lg'}}
-                {{input-addon text='$'}}
+            {{#input-group containedBy=wrapper iconFamily=iconFamily as |inputGroup|}}
+                {{input-addon text='$' containedBy=inputGroup}}
                 {{text-input placeholder='input-control' style=style status=status}}
                 {{#if showPostfix}}
                     {{input-addon text='.00'}}            
                 {{/if}} 
             {{/input-group}}
-            {{input-feedback status=feedbackStatus iconFamily=iconFamily}}
+            {{input-feedback status=feedbackStatus containedBy=wrapper}}
         {{/input-wrapper}}
         <p>&nbsp;</p>
         {{#if checkbox}}Checkbox value: {{value}}{{/if}}
     </widget>
     <sourcecode>
         {{#code-block language="handlebars" poll=100}}
-\{{#input-wrapper size='large'{{#if groupStatus}} status='{{groupStatus}}'{{/if}} style='{{style}}'}}
-    \{{#input-group class='input-group-lg'}}
+\{{#input-wrapper size='large'{{#if groupStatus}} status='{{groupStatus}}'{{/if}} style='{{style}}' as |wrapper|}}
+    \{{#input-group containedBy=wrapper}}
         \{{input-addon text='$'}}
         \{{text-input placeholder='input-control'}}{{#if showPostfix}}
         \{{input-addon text='.00'}}{{/if}}
     \{{/input-group}}
-    \{{input-feedback status='{{feedbackStatus}}' iconFamily='{{iconFamily}}'}}
+    \{{input-feedback status='{{feedbackStatus}}' containedBy=wrapper}}
 \{{\input-wrapper}}   
         {{/code-block}}         
     </sourcecode>

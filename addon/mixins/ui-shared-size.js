@@ -12,6 +12,19 @@ var SizingSupport =  Ember.Mixin.create({
     }
   }),
   size: 'default',
+  /**
+   * If there is a parent container with size info (containedBy.size) then bring it across to this dependant node
+   */
+  _sizeFromContainer: Ember.on('didInsertElement', Ember.observer('size','containedBy', 'containedBy.size', function() {
+    let { size, containedBy } = this.getProperties('size','containedBy');
+    try {
+      if(containedBy && Ember.typeOf(containedBy) === 'instance') {
+        this.set('size', containedBy.size);
+      }
+    } catch (e) {
+      console.log('%s: failed attempt to attach to container\'s size', this.get('elementId'));
+    }
+  })),
   _sizeClass: Ember.computed('size','style', function() {
     let groupy = this.get('tagName') === 'input' ? '' : '-group';
     let bootstrapMap = {
