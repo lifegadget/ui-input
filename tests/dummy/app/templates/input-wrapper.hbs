@@ -31,20 +31,24 @@
 
 <examples>
     <widget>
-    {{#input-wrapper size=size status=groupStatus style=style}}
-        {{input-addon text='$'}}
-        {{text-input placeholder='input-control'  style=style}} 
-        {{input-addon text='.00'}}
-    {{/input-wrapper}}
-    <p>&nbsp;</p>
-    {{#if checkbox}}Checkbox value: {{value}}{{/if}}
+        {{#input-wrapper size=size status=groupStatus style=style as |wrapper|}}
+            {{#input-group containedBy=wrapper}}
+                {{input-addon text='$'}}
+                {{text-input placeholder='input-control'  style=style}} 
+                {{input-addon text='.00'}}
+            {{/input-group}}
+        {{/input-wrapper}}
+        <p>&nbsp;</p>
+        {{#if checkbox}}Checkbox value: {{value}}{{/if}}
     </widget>
     <sourcecode>
         {{#code-block language="handlebars" poll=100}}
-\{{#input-wrapper size='large'{{#if groupStatus}} status='{{groupStatus}}'{{/if}} style='{{style}}'}}
-    \{{input-addon text='$'}}
-    \{{text-input placeholder='input-control'}}
-    \{{input-addon text='.00'}}
+\{{#input-wrapper size='large'{{#if groupStatus}} status='{{groupStatus}}'{{/if}} style='{{style}}' as |wrapper|}}
+    \{{input-group containedBy=wrapper}}
+        \{{input-addon text='$'}}
+        \{{text-input placeholder='input-control'}}
+        \{{input-addon text='.00'}}
+    \{{/input-group}}
 \{{\input-wrapper}}   
         {{/code-block}}         
     </sourcecode>
