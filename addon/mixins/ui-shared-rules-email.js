@@ -1,3 +1,4 @@
+/*jshint unused:false*/
 import Ember from 'ember';
 
 var SharedEmailRules = Ember.Mixin.create({

@@ -1,6 +1,5 @@
 import Ember from 'ember';
 var typeOf = Ember.typeOf;
-
 var RulesSupport = Ember.Mixin.create({
   rules: [], // the rules configured for a specific instance (often overridden with default types by subclasses of base-input)
   defaultRules: [], // meant to be used by subclasses to set default rules which won't collide with container setting rules property

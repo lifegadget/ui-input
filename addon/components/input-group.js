@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/input-group';
-import SharedIconMixin from '../mixins/ui-shared-icons';
+// import SharedIconMixin from '../mixins/ui-shared-icons';
 import SharedSizeMixin from '../mixins/ui-shared-size';
 
 

@@ -23,7 +23,7 @@ var IconSupport = Ember.Mixin.create({
    * If there is a parent container with size info (containedBy.size) then bring it across to this dependant node
    */
   _iconFamilyFromContainer: Ember.on('didInsertElement', Ember.observer('iconFamily','containedBy', 'containedBy.iconFamily', function() {
-    let { iconFamily, containedBy } = this.getProperties('iconFamily','containedBy');
+    let containedBy = this.get('containedBy');
     try {
       if(containedBy && Ember.typeOf(containedBy) === 'instance' && Ember.typeOf(containedBy.iconFamily) !== 'undefined') {
         this.set('iconFamily', containedBy.iconFamily);

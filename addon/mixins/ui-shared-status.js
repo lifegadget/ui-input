@@ -9,7 +9,7 @@ export default Ember.Mixin.create({
    * If there is a parent container with size info (containedBy.size) then bring it across to this dependant node
    */
   _statusFromContainer: Ember.on('didInsertElement', Ember.observer('status','containedBy', 'containedBy.status', function() {
-    let { status, containedBy } = this.getProperties('status','containedBy');
+    let containedBy  = this.get('containedBy');
     try {
       if(containedBy && Ember.typeOf(containedBy) === 'instance') {
         this.set('status', containedBy.status);

@@ -16,7 +16,7 @@ var SizingSupport =  Ember.Mixin.create({
    * If there is a parent container with size info (containedBy.size) then bring it across to this dependant node
    */
   _sizeFromContainer: Ember.on('didInsertElement', Ember.observer('size','containedBy', 'containedBy.size', function() {
-    let { size, containedBy } = this.getProperties('size','containedBy');
+    let containedBy = this.get('containedBy');
     try {
       if(containedBy && Ember.typeOf(containedBy) === 'instance') {
         this.set('size', containedBy.size);

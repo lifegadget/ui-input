@@ -1,4 +1,4 @@
-// import Ember from 'ember';
+import Ember from 'ember';
 import layout from '../templates/components/text-input';
 import BaseInput from '../components/ui-base-input';
 import SharedTextRules from '../mixins/ui-shared-rules-text';
