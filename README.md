@@ -18,7 +18,7 @@
 ## Usage ##
 For more details on the syntax check out the interactive demo:
 
-> [ui-input demo and examples](http://current.development.ui-button.divshot.io)
+> [ui-input demo and examples](http://development.ui-input.divshot.io)
 
 ![ ](docs/images/screen-shot.png)
 
