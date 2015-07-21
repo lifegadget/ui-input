@@ -6,15 +6,15 @@ input.input-inliner {
 }
 input.input-inliner.input-tiny, input.input-inliner.input-xs {
     margin-top: 1px;
-    margin-bottom: 1px;    
+    margin-bottom: 1px;
 }
 input.input-inliner.input-large, input.input-inliner.input-lg {
     margin-top: 4px;
-    margin-bottom: 4px;    
+    margin-bottom: 4px;
 }
 input.input-inliner.input-huge, input.input-inliner.input-hg {
     margin-top: 5px;
-    margin-bottom: 5px;    
+    margin-bottom: 5px;
 }
 
 /* TEXT ALIGNMENT */
@@ -109,18 +109,24 @@ input.ui-input.status-error {
 
 /* NUMERIC SPINNERS */
 input.ui-number-input.hide-spinners {
-  -moz-appearance: textfield; 
+  -moz-appearance: textfield;
 }
 input.ui-number-input.hide-spinners::-webkit-inner-spin-button,
 input.ui-number-input.hide-spinners::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  margin: 0; 
+  margin: 0;
 }
 
 /* INPUT WRAPPER */
 .ui-input.wrapper {
     position: relative;
 }
+.ui-input.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+  z-index: 2;
+  margin-left: inherit;
+  border-left-style: none;
+}
+
 /* POSTFIX OFFSET FOR FEEDBACK */
 .ui-input.wrapper.has-error.includes-postfix .form-control-feedback {
     right: 45px;

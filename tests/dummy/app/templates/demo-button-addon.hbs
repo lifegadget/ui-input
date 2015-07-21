@@ -3,72 +3,35 @@
 <h4>Overview</h4>
 <div class="row">
     <desc>
-       The <code>button-addon</code> component is a child of the <code>input-wrapper</code> component which is responsible for putting a button before or after the main input dialog.
-       <br/>
-       Like other <em>ui-input</em> components, the goal is to allow for <i>inline</i> or <i>block</i> syntax.
-
-       Inline properties include:
-       <ul>
-           <li><strong>style</strong>[string] - indicates a style family that will be used for the addon, default is 'bootstrap'</li>
-           <li><strong>text</strong>[string] - puts text/label into the component</li>
-           <li><strong>icon</strong>[string] - puts a font-based icon into the component</li>
-           <hr style="width:50%;text-align:left" />
-           <li><strong>value</strong>[mixed] binds to the value of the checkbox/radio/choice selector</li>
-       </ul>
-       Other minor properties of note are:
-       <ul>
-           <li><strong>iconFirst</strong>[boolean] - determines whether an icon is diplayed first (aka, to left) or last (aka, to right)</li>
-           <li>
-               <strong>iconFamily</strong>[string] - typically the iconFamily would be static and set by user's ENV configuration
-               but if you want to be explicit about it who are we to stop you ... go nuts (expected values: 'fa' or 'glyphicons')
-           </li>
-       </ul>
-       It is <em>not</em> expected that this component will be used externally to the <code>input-wrapper</code> and there are certain functions
-       like "sizing" which are actually controlled from the parent wrapper (by setting styles which impact this component) that are therefore not considered
-       in scope for this addon directly. This design decision is largely inherited from the way that Twitter Bootstrap works and what works for the
-       goose (usually) works for the gander.
+       The <code>button-addon</code> component is a child of the <code>input-wrapper</code> component which is responsible for putting a button before or after the main input dialog. Like other <em>ui-input</em> components, the goal is to allow for <i>inline</i> or <i>block</i> syntax. In the case where its used as a inline control the parameters are proxied to a <code>\{{ui-button}}</code> component.
    </desc>
 </div>
 
 <h4>Example(s)</h4>
 
+
+
 <examples>
-            <widget>
-            {{#input-wrapper size='large'}}
-                {{input-addon
-                    style=style
-                    text=text
-                    icon=icon
-                    checkbox=checkbox
-                    radio=radio
-                    button=button
-                    value=value
-                    iconFirst=iconFirst
-                    iconFamily=iconFamily
-                }}
-                {{text-input placeholder='input-control'  style=style}}
-            {{/input-wrapper}}
-            <p>&nbsp;</p>
-            {{#if checkbox}}Checkbox value: {{value}}{{/if}}
-            </widget>
-            <sourcecode>
-              BLOCK
-                {{#code-block language="handlebars" poll=100}}
-\{{#input-wrapper size='large'}}
-    \{{input-addon
-        {{#if text}}text='{{text}}'
-        {{/if}}{{#if icon}}icon='{{icon}}'
-        {{/if}}{{#if checkbox}}checkbox={{checkbox}}
-        {{/if}}{{#if radio}}radio={{radio}}
-        {{/if}}{{#if button}}button={{button}}
-        {{/if}}{{#if iconFirst}}iconFirst={{iconFirst}}
-        {{/if}}{{#if iconFirst}}iconFamily={{iconFamily}}
-        {{/if}}style='{{style}}'
-    }}
-    \{{text-input}}
+  <widget>
+    {{#input-wrapper size='large' as |wrapper|}}
+        {{text-input placeholder='input-control'  style=style}}
+        {{#button-addon}}
+          {{ui-button title='Submit' mood='success'}}
+        {{/button-addon}}
+    {{/input-wrapper}}
+    <p>&nbsp;</p>
+    {{#if checkbox}}Checkbox value: {{value}}{{/if}}
+  </widget>
+  <sourcecode>
+    INLINE SYNTAX
+    {{#code-block language="handlebars" poll=100}}
+\{{#input-wrapper size='large' as |wrapper|}}
+    \{{#button-addon}}
+      \{{ui-button mood='success' title='Submit'}}
+    \{{\button-addon}}
 \{{\input-wrapper}}
                 {{/code-block}}
-            </sourcecode>
+  </sourcecode>
 </examples>
 
 <configuration>
@@ -78,8 +41,6 @@
             <column>
                 Style:
                 {{ui-button-radio choices='bootstrap,flat' selected=style}}<br/>
-                iconFirst:
-                {{ui-toggle-button value=iconFirst}}<br/>
                 iconFamily:
                 {{ui-button-radio selected=iconFamily choices='fa,glyphicon'}}
             </column>
