@@ -18,7 +18,7 @@ export default Router.map(function() {
 
   // HELPERS / INLINE
   this.route('input-addon');
-  this.route('button-addon');
+  this.route('demo-button-addon');
   this.route('input-feedback');
   this.route('input-screen-reader');
 

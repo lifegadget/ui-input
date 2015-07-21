@@ -3,14 +3,15 @@
 <h4>Overview</h4>
 <div class="row">
     <desc>
-       The <code>button-addon</code> component is a helper component to the <code>input-wrapper</code> which builds prefix and postfix widgets. The difference between this and the <code>input-addon</code> is only that this addon is painted as an actionable button. The inline properties include:
+       The <code>button-addon</code> component is a child of the <code>input-wrapper</code> component which is responsible for putting a button before or after the main input dialog.
+       <br/>
+       Like other <em>ui-input</em> components, the goal is to allow for <i>inline</i> or <i>block</i> syntax.
+
+       Inline properties include:
        <ul>
            <li><strong>style</strong>[string] - indicates a style family that will be used for the addon, default is 'bootstrap'</li>
            <li><strong>text</strong>[string] - puts text/label into the component</li>
            <li><strong>icon</strong>[string] - puts a font-based icon into the component</li>
-           <li><strong>checkbox</strong>[boolean] - adds a checkbox to the component</li>
-           <li><strong>radio</strong>[boolean] -  adds a radio choice to the component</li>
-           <li><strong>button</strong>[boolean] adds a button to the component</li>
            <hr style="width:50%;text-align:left" />
            <li><strong>value</strong>[mixed] binds to the value of the checkbox/radio/choice selector</li>
        </ul>
@@ -51,6 +52,7 @@
             {{#if checkbox}}Checkbox value: {{value}}{{/if}}
             </widget>
             <sourcecode>
+              BLOCK
                 {{#code-block language="handlebars" poll=100}}
 \{{#input-wrapper size='large'}}
     \{{input-addon
