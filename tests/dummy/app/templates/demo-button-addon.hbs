@@ -1,0 +1,63 @@
+<h3>Component::<code>button-addon</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <desc>
+       The <code>button-addon</code> component is a child of the <code>input-wrapper</code> component which is responsible for putting a button before or after the main input dialog. Like other <em>ui-input</em> components, the goal is to allow for <i>inline</i> or <i>block</i> syntax. In the case where its used as a inline control the parameters are proxied to a <code>\{{ui-button}}</code> component.
+   </desc>
+</div>
+
+<h4>Example(s)</h4>
+
+
+
+<examples>
+  <widget>
+    {{#input-wrapper size='large' as |wrapper|}}
+        {{text-input placeholder='input-control'  style=style}}
+        {{#button-addon}}
+          {{ui-button title='Submit' mood='success'}}
+        {{/button-addon}}
+    {{/input-wrapper}}
+    <p>&nbsp;</p>
+    {{#if checkbox}}Checkbox value: {{value}}{{/if}}
+  </widget>
+  <sourcecode>
+    INLINE SYNTAX
+    {{#code-block language="handlebars" poll=100}}
+\{{#input-wrapper size='large' as |wrapper|}}
+    \{{#button-addon}}
+      \{{ui-button mood='success' title='Submit'}}
+    \{{\button-addon}}
+\{{\input-wrapper}}
+                {{/code-block}}
+  </sourcecode>
+</examples>
+
+<configuration>
+    <icon>{{icon-cog size="2x"}}</icon>
+    <config>
+        <columns>
+            <column>
+                Style:
+                {{ui-button-radio choices='bootstrap,flat' selected=style}}<br/>
+                iconFamily:
+                {{ui-button-radio selected=iconFamily choices='fa,glyphicon'}}
+            </column>
+            <column>
+                Text: {{text-input placeholder='text' width='150px' value=text}}<br/>
+                Icon: {{text-input placeholder='icon' width='150px' value=icon}}<br/>
+            </column>
+            <column>
+                {{ui-toggle-button value=checkbox}} Checkbox <br/>
+                {{ui-toggle-button value=radio}} Radio <br/>
+                {{ui-toggle-button value=button}} Button <br/>
+            </column>
+        </columns>
+    </config>
+</configuration>
+<p>&nbsp;</p>
+<note>
+    <strong>Note:</strong>
+    The implementations of <strong>radio</strong> and <strong>button</strong> ornamentations is not done yet
+</note>
