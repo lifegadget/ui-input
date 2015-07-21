@@ -4,9 +4,8 @@ import SharedSizeMixin from '../mixins/ui-shared-size';
 
 export default Ember.Component.extend(SharedSizeMixin, {
   layout: layout,
-  classNames: ['ui-input', 'wrapper'],
+  classNames: ['ui-input', 'wrapper', 'input-group'],
   classNameBindings: ['_status','hasPrefix:includes-prefix','hasPostfix:includes-postfix'],
-  wrapper: Ember.computed.alias('this'),
   status: null,
   _status: Ember.on('init', Ember.computed('status', function() {
     let status = this.get('status');
@@ -22,12 +21,12 @@ export default Ember.Component.extend(SharedSizeMixin, {
 
     return staticClasses.concat(dynamicClasses).join(' ');
   })),
-  
+
   style: 'bootstrap',
   register: function() {
     console.log('registration');
   },
-  
+
   // SECTIONAL FLAGS
   hasPrefix: Ember.on('didInsertElement', Ember.computed('prefixIcon','prefixText', 'prefixCheckbox', function() {
     let { prefixIcon, prefixText, prefixCheckbox } = this.getProperties('prefixIcon','prefixText', 'prefixCheckbox');
@@ -47,7 +46,7 @@ export default Ember.Component.extend(SharedSizeMixin, {
   hasScreenReader: Ember.on('init', Ember.computed('sr', function() {
     return this.get('sr') ? true : false;
   })),
-  
+
   // State Interactions
   // (aka, prefix/postfix interactions with the INPUT component)
   // ------------------
@@ -57,10 +56,10 @@ export default Ember.Component.extend(SharedSizeMixin, {
     let enabled  = prefixValue || postfixValue ? true : false;
     if (disableNotChecked) {
       if(enabled) {
-        this.$('input.ui-input').removeAttr('disabled');      
+        this.$('input.ui-input').removeAttr('disabled');
       } else {
-        this.$('input.ui-input').attr('disabled', 'disabled'); 
-      }      
+        this.$('input.ui-input').attr('disabled', 'disabled');
+      }
     } else {
       this.$('input.ui-input').removeAttr('disabled');
     }
