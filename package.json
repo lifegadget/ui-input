@@ -1,6 +1,6 @@
 {
   "name": "ui-input",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Input controls for ambitious Ember applications",
   "directories": {
     "doc": "doc",
@@ -41,6 +41,20 @@
   "keywords": [
     "ember-addon"
   ],
+  "files": [
+    "Brocfile.js",
+    "LICENSE.md",
+    "README.md",
+    "addon",
+    "app",
+    "bower.json",
+    "config",
+    "index.js",
+    "package.json",
+    "testem.json",
+    "vendor"
+  ],
+  "main": "index.js",
   "dependencies": {
     "ember-cli-babel": "^5.0.0",
     "ember-cli-htmlbars": "0.7.9",
