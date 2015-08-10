@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import UiSharedVibrationsMixin from '../../../mixins/ui-shared-vibrations';
+import UiSharedVibrationsMixin from 'ui-input/mixins/ui-shared-vibrations';
 import { module, test } from 'qunit';
 
 module('UiSharedVibrationsMixin');

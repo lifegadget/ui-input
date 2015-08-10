@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import UiSharedRulesTextMixin from '../../../mixins/ui-shared-rules-text';
+import UiSharedRulesTextMixin from 'ui-input/mixins/ui-shared-rules-text';
 import { module, test } from 'qunit';
 
 module('UiSharedRulesTextMixin');

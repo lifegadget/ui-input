@@ -28,11 +28,11 @@ export default Ember.Component.extend(SharedSizeMixin, {
   },
 
   // SECTIONAL FLAGS
-  hasPrefix: Ember.on('didInsertElement', Ember.computed('prefixIcon','prefixText', 'prefixCheckbox', function() {
+  hasPrefix: Ember.on('willRender', Ember.computed('prefixIcon','prefixText', 'prefixCheckbox', function() {
     let { prefixIcon, prefixText, prefixCheckbox } = this.getProperties('prefixIcon','prefixText', 'prefixCheckbox');
     return prefixIcon || prefixText || prefixCheckbox ? true : false;
   })),
-  hasPostfix: Ember.on('didInsertElement', Ember.computed('postfixIcon','postfixText', function() {
+  hasPostfix: Ember.on('willRender', Ember.computed('postfixIcon','postfixText', function() {
     let { postfixIcon, postfixText } = this.getProperties('postfixIcon','postfixText');
     return postfixIcon || postfixText ? true : false;
   })),
