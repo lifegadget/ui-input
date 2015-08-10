@@ -21,7 +21,6 @@
     "broccoli-asset-rev": "^2.0.2",
     "ember-cli": "^1.13.7",
     "ember-cli-app-version": "0.4.0",
-    "ember-cli-autoprefixer": "0.3.0",
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-dependency-checker": "^1.0.0",
     "ember-cli-ic-ajax": "0.2.1",
@@ -58,6 +57,7 @@
   "main": "index.js",
   "dependencies": {
     "ember-cli-babel": "^5.0.0",
+    "ember-cli-autoprefixer": "0.4.1",
     "ember-cli-htmlbars": "0.7.9",
     "ember-cli-htmlbars-inline-precompile": "^0.1.1",
     "merge": "^1.2.0"
