@@ -13,25 +13,25 @@ import UiTextAlignMixin from '../mixins/ui-shared-text-align';
 import UiSoundEffectsMixin from '../mixins/ui-shared-sound-effects';
 
 export default Ember.TextField.extend(
-  UiRulesMixin, 
-  UiEventListenerMixin, 
-  UiStylingMixin, 
-  UiSizeMixin, 
-  UiTextAlignMixin, 
+  UiRulesMixin,
+  UiEventListenerMixin,
+  UiStylingMixin,
+  UiSizeMixin,
+  UiTextAlignMixin,
   UiStatusMixin,
   UiAnimationMixin,
   UiVibrationMixin,
   UiSoundEffectsMixin,
   UiColorMixin, {
-    
+
   layout: layout,
 	classNames: ['ui-input'],
-	classNameBindings: ['statusClass','statusVisualize:visualize','square'],
-	attributeBindings: ['type','size','pattern','visualStyleStyle:style'],
+	classNameBindings: ['statusClass','statusVisualize:visualize','style','_formControl:form-control','_mood'],
+	attributeBindings: ['type','size','pattern','_style:style'],
 	pattern: null,
 	type: 'text',
   emptyIsNull: false, // an empty value is either an empty string or null
-    
+
 	// EVENT HANDLING
   // mouse
   mouseEnter: function(evt) {
@@ -64,7 +64,7 @@ export default Ember.TextField.extend(
     let eventType = 'keyDown';
     return this.processEvents(eventType, evt);
 	},
-  
+
   processEvents: function(eventType, evt) {
     let eventProp = Ember.String.capitalize(eventType, evt);
     let animate = this.get(`animate${eventProp}`);
@@ -77,18 +77,18 @@ export default Ember.TextField.extend(
     }
     return this.processRules(eventType,evt);
   },
-  
+
   nullOrStringObserver: Ember.on('init', Ember.computed('value', function() {
     let { value, emptyIsNull } = this.getProperties('value', 'emptyIsNull');
     if (emptyIsNull && value === '') {
       this.set('value', null);
     }
   })),
-  
+
 	// MESSAGE QUEUEING
 	messageQueue: [],
 	/**
-	 * Adds messages to queue. Queue items can be dismissed explictly or can timeout 
+	 * Adds messages to queue. Queue items can be dismissed explictly or can timeout
 	 * if an 'expiry' is placed on the queue.
 	 */
 	addMessageQueue: function(message,options) {
@@ -97,6 +97,6 @@ export default Ember.TextField.extend(
 		var expires = options.expiry ? now + options.expiry : null;
 		this.set('messageQueue', this.get('messageQueue').concat({timestamp: new Date(), message: message, expires: expires}));
 	}
-  
-  
+
+
 });

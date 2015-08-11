@@ -1,4 +1,4 @@
-<h3>Component::<code>text-input</code></h3>
+<h3>text-input <span class='side-note'>component</span></h3>
 
 <h4>Overview</h4>
 <div class="row">
@@ -71,20 +71,24 @@
   <widget>
     {{text-input
       placeholder='text-input'
-      textColor=textColor
+      color=color
       backgroundColor=backgroundColor
       borderColor=borderColor
       outlineColor=outlineColor
+      width=width
+      height=height
     }}
   </widget>
   <code>
     {{display-component
       componentName='text-input'
       placeholder='text-input'
-      textColor=textColor
+      color=color
       backgroundColor=backgroundColor
       borderColor=borderColor
       outlineColor=outlineColor
+      width=width
+      height=height
     }}
   </code>
   <description>
@@ -97,7 +101,7 @@
       <controls>
         <control>
           <span>text:</span>
-          <span>{{text-input style='flat' size='small' value=textColor}}</span>
+          <span>{{text-input style='flat' size='small' value=color}}</span>
           <span>backgrnd:</span>
           <span>{{text-input style='flat' size='small' value=backgroundColor}}</span>
         </control>
@@ -110,69 +114,20 @@
       </controls>
     </p>
     <p>
-      Another example is sizing ... <prop>size</prop> from above will suit many situations but sometimes you'll want to dig into <prop>height</prop> and <prop>width</prop> properties for greater control:
-    </p>
-  </description>
-</row>
-
-<h4>Animation</h4>
-<row>
-  <widget>
-    {{text-input
-      placeholder='text-input'
-      animateFocusIn=animateFocusIn
-      animateMouseEnter=animateMouseEnter
-      animateMouseClick=animateMouseClick
-      animateSubmit=animateSubmit
-      animateChange=animateChange
-      animateRuleLengthLimit=animateRuleLength
-      animateRuleLengthWarn=animateRuleLength
-    }}
-  </widget>
-  <code>
-    {{display-component
-      componentName='text-input'
-      placeholder='text-input'
-      animateFocusIn=animateFocusIn
-      animateMouseEnter=animateMouseEnter
-      animateMouseClick=animateMouseClick
-      animateSubmit=animateSubmit
-      animateChange=animateChange
-      animateRuleLengthLimit=animateRuleLength
-      animateRuleLengthWarn=animateRuleLength
-    }}
-  </code>
-  <description>
-    <p>
-      When certain user events take place you can visually alert people with animation. Animations use CSS to animate and borrow from the <b>animate.css</b> library.
-    </p>
-    <p>
-      Choose an animation from (tada, bounce, pulse, shake, etc.):
+      Another example is sizing ... <prop>size</prop> from above will suit many situations but sometimes you'll want to dig into <prop>width</prop> and <prop>height</prop> properties for greater control (note: trying setting height to 'square' or 'golden' to get a ratio):
 
       <controls>
         <control>
-          <span class='name'>focusIn:</span>
-          <span>{{text-input style='flat' size='small' value=animateFocusIn}}</span>
-          <span class='name'>focusOut:</span>
-          <span>{{text-input style='flat' size='small' value=animateFocusOut}}</span>
-        </control>
-        <control>
-          <span class='name'>mouseEnter:</span>
-          <span>{{text-input style='flat' size='small' value=animateMouseEnter}}</span>
-          <span class='name'>mouseClick:</span>
-          <span>{{text-input style='flat' size='small' value=animateMouseClick}}</span>
-        </control>
-        <control>
-          <span class='name'>submit:</span>
-          <span>{{text-input style='flat' size='small' value=animateSubmit}}</span>
-          <span class='name'>change:</span>
-          <span>{{text-input style='flat' size='small' value=animateChange}}</span>
+          <span>width:</span>
+          <span>{{text-input style='flat' size='small' value=width}}</span>
+          <span>height:</span>
+          <span>{{text-input style='flat' size='small' value=height}}</span>
         </control>
       </controls>
+
     </p>
   </description>
 </row>
-
 
 <h4>Rules</h4>
 <row>
@@ -233,6 +188,76 @@
           <span>{{text-input style='flat' size='small' value=animateRuleLengthLimit}}</span>
           <span class='name'>animate lengthWarn:</span>
           <span>{{text-input style='flat' size='small' value=animateRuleLengthWarn}}</span>
+        </control>
+      </controls>
+    </p>
+  </description>
+</row>
+
+<h4>Animation and Effects</h4>
+<row>
+  <widget>
+    {{text-input
+      placeholder='text-input'
+      animateFocusIn=animateFocusIn
+      animateMouseEnter=animateMouseEnter
+      animateMouseClick=animateMouseClick
+      animateSubmit=animateSubmit
+      animateChange=animateChange
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='text-input'
+      placeholder='text-input'
+      animateFocusIn=animateFocusIn
+      animateMouseEnter=animateMouseEnter
+      animateMouseClick=animateMouseClick
+      animateSubmit=animateSubmit
+      animateChange=animateChange
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+    }}
+  </code>
+  <description>
+    <p>
+      When certain user events take place you can visually alert people with animation. Animations use CSS to animate and borrow from the <b>animate.css</b> library.
+    </p>
+    <p>
+      Choose an animation from (tada, bounce, pulse, shake, etc.):
+
+      <controls>
+        <control>
+          <span class='name'>focusIn:</span>
+          <span>{{text-input style='flat' size='small' value=animateFocusIn}}</span>
+          <span class='name'>focusOut:</span>
+          <span>{{text-input style='flat' size='small' value=animateFocusOut}}</span>
+        </control>
+        <control>
+          <span class='name'>mouseEnter:</span>
+          <span>{{text-input style='flat' size='small' value=animateMouseEnter}}</span>
+          <span class='name'>mouseClick:</span>
+          <span>{{text-input style='flat' size='small' value=animateMouseClick}}</span>
+        </control>
+        <control>
+          <span class='name'>submit:</span>
+          <span>{{text-input style='flat' size='small' value=animateSubmit}}</span>
+          <span class='name'>change:</span>
+          <span>{{text-input style='flat' size='small' value=animateChange}}</span>
+        </control>
+      </controls>
+    </p>
+    <p>
+      Beyond animation, inputs can trigger sound effects or <a href="http://www.w3.org/TR/vibration/">vibrations</a>. Like in animation you just attach the sound or vibration to an event.
+
+      <controls>
+        <control>
+          <span class='name'>focusIn:</span>
+          <span>{{text-input style='flat' size='small' value=animateFocusIn}}</span>
+          <span class='name'>focusOut:</span>
+          <span>{{text-input style='flat' size='small' value=animateFocusOut}}</span>
         </control>
       </controls>
     </p>

@@ -26,7 +26,17 @@ h2 {
 	margin-top: .5rem;
 	margin-bottom: 3rem;
 }
+h3 {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 800;
+  font-size: 2em;
+}
 
+.side-note {
+  font-weight: 300;
+  font-family: cursive;
+  font-size: smaller;
+}
 
 row {
   display: flex;
@@ -58,6 +68,14 @@ control {
   align-items: baseline;
 }
 
+control.center {
+  justify-content: center;
+}
+control.center > * {
+  flex-grow: 0;
+}
+
+
 control > * {
   flex-grow: 1;
   flex-shrink: 1;
@@ -85,6 +103,7 @@ code {
 
 description {
   flex-basis: 350px;
+  flex-grow: 2;
 }
 
 
