@@ -23,18 +23,11 @@ export default Router.map(function() {
   this.route('input-screen-reader');
 
   // SHARED
-  this.route('shared-style');
-  this.route('shared-color');
-  this.route('shared-size');
-  this.route('shared-masks');
-  this.route('shared-width-height');
   this.route('shared-rules');
-  this.route('shared-status');
   this.route('shared-animation');
   this.route('shared-sound');
   this.route('shared-vibration');
   this.route('shared-events');
-  this.route('shared-textAlign');
 
   // OTHER
   this.route('configuration');

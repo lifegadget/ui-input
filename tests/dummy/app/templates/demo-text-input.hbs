@@ -3,7 +3,7 @@
 <h4>Overview</h4>
 <div class="row">
     <desc>
-        The <code>text-input</code> control is the simplist of the set of atomic input controls. Since it's primary function is capturing <em>string</em> values
+        The <prop>text-input</prop> control is the simplist of the set of atomic input controls. Since it's primary function is capturing <em>string</em> values
         it is worth noting that an input control left blank will be equal to an empty string not a <em>null</em> value (this is opposite to a numeric input).
         If you would prefer that an empty string is viewed as a <em>null</em> value then just set the <code>emptyIsNull</code> property to true.
 
@@ -92,7 +92,7 @@
       There are specific settings that can be dynamically controlled from the component which are then translated into the <b>style</b> property of the HTML.
     </p>
     <p>
-      Color is a good example of this:
+      <b>Color</b> is a good example of this. Mood styles (from above) may be enough sometimes but if you need greater control:
 
       <controls>
         <control>
@@ -108,6 +108,9 @@
           <span>{{text-input style='flat' size='small' value=outlineColor}}</span>
         </control>
       </controls>
+    </p>
+    <p>
+      Another example is sizing ... <prop>size</prop> from above will suit many situations but sometimes you'll want to dig into <prop>height</prop> and <prop>width</prop> properties for greater control:
     </p>
   </description>
 </row>

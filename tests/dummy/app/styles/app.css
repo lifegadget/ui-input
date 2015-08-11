@@ -10,6 +10,7 @@ h1 {
 }
 a {
 	text-decoration: none;
+  background: #FAFAFA;
 	font-weight: 500;
 	margin: auto 2px auto 2px;
 }
@@ -46,6 +47,7 @@ controls {
   display: flex;
   flex-direction: column;
   font-size: 12px;
+  margin: 10px 0 20px 0;
 }
 
 control {
@@ -53,6 +55,7 @@ control {
   flex: 1 1;
   margin: 10px 0 0 10px;
   display:flex;
+  align-items: baseline;
 }
 
 control > * {
@@ -63,6 +66,13 @@ control > * {
 
 control .name {
   flex-grow: 0;
+}
+
+prop {
+  background: #F5F5F5;
+  padding: 3px 5px 4px 5px;
+  border-radius: 5px;
+  color: #3F3F3F;
 }
 
 code {
