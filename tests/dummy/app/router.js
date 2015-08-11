@@ -6,9 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 export default Router.map(function() {
-  this.route('text-input');
-  this.route('number-input');
-  this.route('password-input');
+  this.route('demo-text-input');
+  this.route('demo-number-input');
+  this.route('demo-password-input');
   this.route('phone-input');
   this.route('email-input');
   this.route('number-array-input');
@@ -17,7 +17,7 @@ export default Router.map(function() {
   this.route('form-wrapper');
 
   // HELPERS / INLINE
-  this.route('input-addon');
+  this.route('demo-input-addon');
   this.route('demo-button-addon');
   this.route('input-feedback');
   this.route('input-screen-reader');

@@ -17,7 +17,7 @@ var StyleSupport = Ember.Mixin.create({
   width: null,
   height: null,
   // "_styles" maps directly back to the HTML style property
-  _styles: Ember.on('didInsertElement', Ember.computed('_styles', 'width', 'height', 'textColor','backgroundColor','borderColor','outlineColor', function() {
+  _styles: Ember.on('willRender', Ember.computed('_styles', 'width', 'height', 'textColor','backgroundColor','borderColor','outlineColor', function() {
     let { width, height, textColor, backgroundColor, borderColor, outlineColor } = this.getProperties('width', 'height', 'textColor','backgroundColor','borderColor','outlineColor');
     let style = '';
     style = width ? style + `width:${width};` : style;
@@ -28,10 +28,8 @@ var StyleSupport = Ember.Mixin.create({
         height = this.$().innerWidth() + 'px';
         console.log('height set: ' + height);
       } catch (e) {
-        console.log('bonkers!');
         height = null;
         Ember.run.schedule('afterRender', this, function() {
-          console.log('trying it again!');
           this.propertyWillChange('height');
           this.propertyDidChange('height');
         });

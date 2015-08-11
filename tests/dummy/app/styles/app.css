@@ -26,6 +26,75 @@ h2 {
 	margin-bottom: 3rem;
 }
 
+
+row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+row > * {
+  flex: 1 1;
+  margin: 15px 5px 5px 5px;
+}
+
+widget {
+  flex-basis: 200px;
+}
+
+controls {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+control {
+  height: auto;
+  flex: 1 1;
+  margin: 10px 0 0 10px;
+  display:flex;
+}
+
+control > * {
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 0 5px;
+}
+
+control .name {
+  flex-grow: 0;
+}
+
+code {
+  font-family: "Courier New", Courier, monospace;
+  line-spacing: 1rem;
+  flex-basis: 250px;
+  background-color: inherit;
+  color: #3F3F3F;
+}
+
+description {
+  flex-basis: 350px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .demo-table td {
 	padding-right: 1rem;
 	padding-top: .5rem;
@@ -36,24 +105,8 @@ h2 {
 	font-size: 16pt;
 }
 
-code {
-	font-family: "Courier New", Courier, monospace;
-	font-size: 9pt;
-	line-spacing: 1rem;
-	color: rgb(63, 63, 63);
-	background-color: rgb(235, 234, 234);
-}
 
-h3 code {
-    font-size: 3rem;
-}
-a code:hover {
-    background-color: #37AA26;
-}
-code:active {
-    color: white;
-    background-color: #15520B;
-}
+
 a:hover {
     text-decoration: none;
     cursor: pointer;
@@ -159,7 +212,7 @@ configuration,
     border-bottom: 1px solid #C4C4C4;
     border-right: 1px solid #C4C4C4;
     border-radius: 5px;
-    
+
     padding-bottom: 1em;
     padding-top: 1em;
     margin-bottom: 1em;
@@ -190,7 +243,7 @@ columns {
     display: -ms-flex;
     display: -o-flex;
     display: flex;
-    
+
     -webkit-flex-wrap: wrap;
     -moz-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
@@ -202,8 +255,8 @@ column {
     -moz-flex-grow: 3;
     -ms-flex-grow: 3;
     -o-flex-grow: 3;
-    flex-grow: 3; 
-    
+    flex-grow: 3;
+
     min-width: 300px;
 }
 column br {
@@ -267,7 +320,7 @@ examples widget {
 }
 @media (max-width: 767px) {
     examples widget {
-        width: 100%;        
+        width: 100%;
     }
 }
 
@@ -279,10 +332,10 @@ examples sourcecode {
     flex-grow: 3;
     padding:0;
     margin-bottom:0;
-} 
+}
 @media (max-width: 767px) {
     examples sourcecode {
-        display: none !important;        
+        display: none !important;
     }
 }
 
@@ -311,14 +364,7 @@ centered {
     text-align: center;
 }
 
-heading {
-    display:block;
-    font-weight: 800;
-    border: none;
-    text-align: center;
-    border-bottom: 1pt lightgrey dotted;
-    margin-bottom: 15px;
-}
+
 
 .components code {
     padding: 6px !important;

@@ -51,7 +51,7 @@ export default Ember.Component.extend(SharedSizeMixin, {
   // (aka, prefix/postfix interactions with the INPUT component)
   // ------------------
   disableNotChecked: false,
-  _disableNotChecked: Ember.on('didInsertElement', Ember.observer('disableNotChecked','prefixValue','postfixValue',function() {
+  _disableNotChecked: Ember.on('willRender', Ember.observer('disableNotChecked','prefixValue','postfixValue',function() {
     let { disableNotChecked, prefixValue, postfixValue } = this.getProperties('disableNotChecked','prefixValue','postfixValue');
     let enabled  = prefixValue || postfixValue ? true : false;
     if (disableNotChecked) {
@@ -61,7 +61,9 @@ export default Ember.Component.extend(SharedSizeMixin, {
         this.$('input.ui-input').attr('disabled', 'disabled');
       }
     } else {
-      this.$('input.ui-input').removeAttr('disabled');
+      if(this.$('input.ui-input')) {
+        this.$('input.ui-input').removeAttr('disabled');
+      }
     }
   }))
 });

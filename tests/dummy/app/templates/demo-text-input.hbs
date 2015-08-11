@@ -1,0 +1,240 @@
+<h3>Component::<code>text-input</code></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <desc>
+        The <code>text-input</code> control is the simplist of the set of atomic input controls. Since it's primary function is capturing <em>string</em> values
+        it is worth noting that an input control left blank will be equal to an empty string not a <em>null</em> value (this is opposite to a numeric input).
+        If you would prefer that an empty string is viewed as a <em>null</em> value then just set the <code>emptyIsNull</code> property to true.
+
+    </desc>
+</div>
+
+{{#demo-css}}
+<h4>Basic Usage</h4>
+<row>
+  <widget>
+    {{text-input
+      style=style
+      status=status
+      size=size
+      mood=mood
+      placeholder='text-input'
+      textAlign=textAlign
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='text-input'
+      style=style
+      status=status
+      size=size
+      mood=mood
+      placeholder='text-input'
+      textAlign=textAlign
+    }}
+  </code>
+  <description>
+    Basic usage includes setting properties such as:
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>mood:</span>
+        <span>{{radio-buttons buttons='default,primary,info,success,warning,error' value=mood size='tiny' defaultValue='default'}}</span>
+      </control>
+      <control>
+        <span class='name'>size:</span> <span>{{radio-buttons buttons='tiny,small,default,large,huge' value=size size='tiny' defaultValue='default'}}</span>
+      </control>
+      <control>
+        <span class='name'>text-align:</span> <span>{{radio-buttons buttons='left,center,right' value=textAlign size='tiny' defaultValue='default'}}</span>
+      </control>
+      <control>
+        <span class='name'>style:</span>
+        <span>
+          {{radio-buttons buttons='bootstrap,flat' value=style size='tiny' defaultValue='bootstrap'}}
+        </span>
+      </control>
+      <control>
+        <span class='name'>status:</span>
+        <span>
+          {{radio-buttons buttons='none:::null,info,success,warning,error' value=status size='tiny'}}
+        </span>
+      </control>
+    </controls>
+
+  </description>
+</row>
+
+
+<h4>Style Properties</h4>
+<row>
+  <widget>
+    {{text-input
+      placeholder='text-input'
+      textColor=textColor
+      backgroundColor=backgroundColor
+      borderColor=borderColor
+      outlineColor=outlineColor
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='text-input'
+      placeholder='text-input'
+      textColor=textColor
+      backgroundColor=backgroundColor
+      borderColor=borderColor
+      outlineColor=outlineColor
+    }}
+  </code>
+  <description>
+    <p>
+      There are specific settings that can be dynamically controlled from the component which are then translated into the <b>style</b> property of the HTML.
+    </p>
+    <p>
+      Color is a good example of this:
+
+      <controls>
+        <control>
+          <span>text:</span>
+          <span>{{text-input style='flat' size='small' value=textColor}}</span>
+          <span>backgrnd:</span>
+          <span>{{text-input style='flat' size='small' value=backgroundColor}}</span>
+        </control>
+        <control>
+          <span>border:</span>
+          <span>{{text-input style='flat' size='small' value=borderColor}}</span>
+          <span>outline:</span>
+          <span>{{text-input style='flat' size='small' value=outlineColor}}</span>
+        </control>
+      </controls>
+    </p>
+  </description>
+</row>
+
+<h4>Animation</h4>
+<row>
+  <widget>
+    {{text-input
+      placeholder='text-input'
+      animateFocusIn=animateFocusIn
+      animateMouseEnter=animateMouseEnter
+      animateMouseClick=animateMouseClick
+      animateSubmit=animateSubmit
+      animateChange=animateChange
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='text-input'
+      placeholder='text-input'
+      animateFocusIn=animateFocusIn
+      animateMouseEnter=animateMouseEnter
+      animateMouseClick=animateMouseClick
+      animateSubmit=animateSubmit
+      animateChange=animateChange
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+    }}
+  </code>
+  <description>
+    <p>
+      When certain user events take place you can visually alert people with animation. Animations use CSS to animate and borrow from the <b>animate.css</b> library.
+    </p>
+    <p>
+      Choose an animation from (tada, bounce, pulse, shake, etc.):
+
+      <controls>
+        <control>
+          <span class='name'>focusIn:</span>
+          <span>{{text-input style='flat' size='small' value=animateFocusIn}}</span>
+          <span class='name'>focusOut:</span>
+          <span>{{text-input style='flat' size='small' value=animateFocusOut}}</span>
+        </control>
+        <control>
+          <span class='name'>mouseEnter:</span>
+          <span>{{text-input style='flat' size='small' value=animateMouseEnter}}</span>
+          <span class='name'>mouseClick:</span>
+          <span>{{text-input style='flat' size='small' value=animateMouseClick}}</span>
+        </control>
+        <control>
+          <span class='name'>submit:</span>
+          <span>{{text-input style='flat' size='small' value=animateSubmit}}</span>
+          <span class='name'>change:</span>
+          <span>{{text-input style='flat' size='small' value=animateChange}}</span>
+        </control>
+      </controls>
+    </p>
+  </description>
+</row>
+
+
+<h4>Rules</h4>
+<row>
+  <widget>
+    {{text-input
+      placeholder='text-input'
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+      animateRuleInvalidEmail=animateRuleInvalidEmail
+      rules=rules
+      length=length
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='text-input'
+      placeholder='text-input'
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+      animateRuleInvalidEmail=animateRuleInvalidEmail
+      rules=rules
+      length=length
+    }}
+  </code>
+  <description>
+    <p>
+      Rules can be applied to enforce desired behaviour. The rules for a text input are:
+      <ul>
+        <li>
+          <code>lengthLimit</code> -
+          Limits input to an allowable length (set in component as 'length' but tranlated into HTML as 'size').
+        </li>
+        <li>
+          <code>lengthWarn</code> -
+          Warns visually when the suggested length has been exceeded but
+          does not prohibit further input. Instead is will trigger any animation, sound, or status change.
+        </li>
+        <li>
+          <code>invalidEmail</code> -
+          Triggers when input moves into an invalid representation of an email address (although ignores a null value).
+        </li>
+      </ul>
+    </p>
+    <p>
+      <controls>
+        <control>
+          <span class='name'>Rule:</span>
+          <span>{{radio-buttons buttons='none:::null,lengthLimit::lengthLimit,lengthWarn::lengthWarn,email::invalidEmail' value=rules size='small'}}</span>
+        </control>
+        <control>
+          <span class='name'>Length:</span>
+          <span>{{text-input style='flat' size='small' value=length}}</span>
+          <span class='name'>animate invalidEmail:</span>
+          <span>{{text-input style='flat' size='small' value=animateRuleInvalidEmail}}</span>
+        </control>
+        <control>
+          <span class='name'>animate lengthLimit:</span>
+          <span>{{text-input style='flat' size='small' value=animateRuleLengthLimit}}</span>
+          <span class='name'>animate lengthWarn:</span>
+          <span>{{text-input style='flat' size='small' value=animateRuleLengthWarn}}</span>
+        </control>
+      </controls>
+    </p>
+  </description>
+</row>
+
+{{/demo-css}}
+

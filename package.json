@@ -34,9 +34,10 @@
     "ember-export-application-global": "^1.0.3",
     "ember-try": "0.0.6",
     "ui-bs-button-choice": "0.0.10",
-    "ui-button": "0.0.12",
+    "ui-button": "0.5.0",
     "ui-code-highlight": "0.0.5",
-    "ui-icon": "0.0.8"
+    "ui-icon": "0.0.8",
+    "demo-helper": "0.0.1"
   },
   "keywords": [
     "ember-addon"
