@@ -7,12 +7,15 @@ export default Ember.Mixin.create({
   classNameBindings: ['_colorClass','_focusColorClass'],
 
   mood: null, // can be a "class", null, or an explicit style value
-  _mood: computed('mood','style', function() {
+  _mood: computed('mood','style','group.mood', function() {
     let validStyles = Ember.A([
       'default','success','primary','info','warning','error'
     ]);
-    let style = this.get('style');
-    let mood = this.get('mood');
+    let {mood,style} = this.getProperties('mood','style');
+    let groupMood = this.get('group.mood');
+    if(groupMood) {
+      mood = groupMood;
+    }
     let prefixed = mood === 'none' ? style : `input-${mood}`;
 
     if(validStyles.contains(mood)) {
@@ -41,7 +44,4 @@ export default Ember.Mixin.create({
   backgroundColor: null,
   borderColor: null,
   outlineColor: null,
-
-
-
 });

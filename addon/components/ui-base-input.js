@@ -2,22 +2,18 @@ import Ember from 'ember';
 import layout from '../templates/components/ui-base-input';
 
 import UiRulesMixin from '../mixins/ui-shared-rules';
-import UiEventListenerMixin from '../mixins/ui-event-listener';
 import UiStylingMixin from '../mixins/ui-shared-styling';
 import UiSizeMixin from '../mixins/ui-shared-size';
 import UiStatusMixin from '../mixins/ui-shared-status';
 import UiAnimationMixin from '../mixins/ui-shared-animation';
 import UiVibrationMixin from '../mixins/ui-shared-vibrations';
 import UiColorMixin from '../mixins/ui-shared-color';
-import UiTextAlignMixin from '../mixins/ui-shared-text-align';
 import UiSoundEffectsMixin from '../mixins/ui-shared-sound-effects';
 
 export default Ember.TextField.extend(
   UiRulesMixin,
-  UiEventListenerMixin,
   UiStylingMixin,
   UiSizeMixin,
-  UiTextAlignMixin,
   UiStatusMixin,
   UiAnimationMixin,
   UiVibrationMixin,
@@ -26,7 +22,7 @@ export default Ember.TextField.extend(
 
   layout: layout,
 	classNames: ['ui-input'],
-	classNameBindings: ['statusClass','statusVisualize:visualize','style','_formControl:form-control','_mood'],
+	classNameBindings: ['statusClass','statusVisualize:visualize','skin','_formControl:form-control','_mood'],
 	attributeBindings: ['type','size','pattern','_style:style'],
 	pattern: null,
 	type: 'text',

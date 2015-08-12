@@ -1,0 +1,298 @@
+{{#demo-css}}
+<h3>input-wrapper <span class='side-note'>component</span></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <desc>
+        The <code>input-wrapper</code> component is a 1:1 companion to atomic components such as the <em>text-input</em>, <em>number-input</em>,
+        etc. Whereas the atomic components represent the HTML <strong>input</strong> element solely, the <code>input-wrapper</code> is the surrounding
+        HTML which provides the next level of ornamentation including:
+
+        <ul>
+            <li>group status visualisation</li>
+            <li>prefix and postfix input addons</li>
+            <li>label services</li>
+        </ul>
+    </desc>
+    <desc>
+        While this component, like its atomic relatives, does not depend on Twitter Bootstrap, the design philosophy does borrow from it where ever
+        possible.
+    </desc>
+</div>
+
+<h4>Addons</h4>
+<row>
+  <widget>
+    {{#input-wrapper as |wrap|}}
+      {{input-addon icon='phone'}}
+      {{text-input group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' as='wrap'}}
+    {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+    {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    You can add an {{#link-to "demo-input-addon"}}<prop>input-addon</prop>{{/link-to}} in front or behind the input control and the formatting will work fluidly.
+  </description>
+</row>
+<row>
+  <widget>
+    {{#input-wrapper as |wrap|}}
+      {{text-input group=wrap}}
+      {{input-addon icon='phone'}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' as='wrap'}}
+      {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+      {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    Example of postfix addon.
+  </description>
+</row>
+<row>
+  <widget>
+    {{#input-wrapper as |wrap|}}
+      {{input-addon icon='phone' group=wrap}}
+      {{text-input group=wrap}}
+      {{button-addon title='submit' mood='success' group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' as='wrap'}}
+      {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+      {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+      {{display-component _indent=1 _dim=true componentName='button-addon' mood='success' title='submit' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    Example of both prefix and postfix addons. Also note, that we are using the {{#link-to 'demo-button-addon'}}<prop>button-addon</prop>{{/link-to}} as the postfix.
+  </description>
+</row>
+
+<h4>Proxying Input Properties</h4>
+<row>
+  <widget>
+    {{#input-wrapper
+      skin=skin
+      mood=mood
+     iconFamily=iconFamily2
+     textAlign=textAlign
+      as |wrap|
+    }}
+      {{input-addon icon='phone'}}
+      {{text-input group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' as='wrap'
+      skin=skin
+      mood=mood
+      iconFamily=iconFamily2
+      textAlign=textAlign
+    }}
+      {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+      {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    By connecting the <prop>group</prop> property to the block scope, the wrapper can proxy several of the input's controls:
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>mood:</span>
+        <span>{{radio-buttons buttons='default,primary,info,success,warning,error' value=mood size='tiny' defaultValue='default'}}</span>
+      </control>
+      <control>
+        <span class='name'>text-align:</span> <span>{{radio-buttons buttons='left,center,right' value=textAlign size='tiny' defaultValue='default'}}</span>
+      </control>
+      <control>
+        <span class='name'>skin:</span>
+        <span>
+          {{radio-buttons buttons='bootstrap,flat' value=skin size='tiny' defaultValue='bootstrap'}}
+        </span>
+      </control>
+      <control>
+        <span class='name'>icon-family:</span> <span>{{radio-buttons buttons='Glyphicons::glyphicon,FontAwesome::fa' value=iconFamily2 size='tiny' defaultValue='fa'}}</span>
+      </control>
+    </controls>
+    <p>
+      If the group properties are set, they will be passed down unless overridden by a local setting.
+    </p>
+
+  </description>
+</row>
+
+<h4>Group Properties</h4>
+<row>
+  <widget>
+    {{#input-wrapper
+      status=status
+      size=size
+      as |wrap|
+    }}
+      {{input-addon icon='phone'}}
+      {{text-input group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' as='wrap'
+      status=status
+      size=size
+      placeholder='text-input'
+    }}
+      {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+      {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    Group properties follow along with the Bootstrap convensions of setting classes at the wrap level and having the various components (input and addons) react to these classes.
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>size:</span> <span>{{radio-buttons buttons='tiny,small,default,large,huge' value=size size='tiny'}}</span>
+      </control>
+      <control>
+        <span class='name'>status:</span>
+        <span>
+          {{radio-buttons buttons='none:::null,success,warning,error' value=status size='tiny'}}
+        </span>
+      </control>
+    </controls>
+
+  </description>
+</row>
+
+{{/demo-css}}
+
+
+<h5>Checkbox Ornamentation</h5>
+<div class="row">
+    <desc>
+        In many regards a checkbox is no different than text and/or icons but with the exception that it actually has "state"
+        (aka, is the checkbox checked and what does that mean?). This one addition gives us two features/functions that are in addition to
+        what we showed in the text/icon examples:
+
+        <ul>
+            <li>
+                <strong>State</strong> - the property <code>prefixValue</code> and <code>postfixValue</code> will map to the two locational states
+                that the checkbox can reside. Once you've bound a variable to one of these properties the checkbox will immediately
+                appear at the appropriate pre/post location.
+            </li>
+            <li>
+                <strong>Disablement</strong> - a boolean property <code>disableNotChecked</code> that when set to <em>true</em> will
+                enable/disable the INPUT component based on the state of the checkbox
+            </li>
+        </ul>
+
+         Try out the examples below for more details:
+    </desc>
+</div>
+
+<div class="examples">
+    <table skin="width:100%">
+        <tr>
+            <td class="col-xs-12 col-sm-4 text-center align-middle">
+                {{#input-wrapper
+                    prefixCheckbox=true
+                    prefixValue=prefixValue
+                    size=size
+                    iconFamily=iconFamily
+                    prefixText=checkLabel
+                    disableNotChecked=disableNotChecked
+                }}
+                    {{text-input placeholder='text-input' size=size}}
+                {{/input-wrapper}}
+
+                {{#if prefixCheckbox}}
+                    checkbox value: {{prefixValue}}
+                {{/if}}
+            </td>
+            <td class="hidden-xs col-sm-8">
+                {{#code-block language="handlebars" poll=100}}
+\{{#input-wrapper
+    prefixCheckbox=true prefixValue={{prefixValue}} disableNotChecked={{disableNotChecked}} prefixText='{{checkLabel}}'
+    iconFamily='{{iconFamily}}' size='{{size}}'
+}}
+    \{{text-input placeholder='text-input'}}
+\{{\input-wrapper}}
+                {{/code-block}}
+            </td>
+        </tr>
+    </table>
+</div>
+<p></p>
+
+<configuration>
+    <icon>{{icon-cog size="2x"}}</icon>
+    <config>
+        <columns>
+                <column>
+                    disableNotChecked<br/>
+                    {{ui-toggle-button value=disableNotChecked}}
+                </column>
+                <column >
+                    Prefix Text:<br/>
+                    {{text-input width='140px' size='small' value=checkLabel}}
+                </column>
+                <column >
+                    Size:<br/>
+                    {{ui-bs-button-choice choices=sizes selected=size size='small' stretch=true}}
+                </column>
+        </columns>
+    </config>
+</configuration>
+
+
+<h5>Radio Ornamentation</h5>
+<desc>
+    This is (or <em>will be</em>) very similar to the checkbox ornamentation but is slightly more complicated in that state management spans -- in some ways
+    at least -- across input elements. For this reason and because it seems a less useful control in general, it has not been prioritized. Please feel free to submit
+    a PR to get it into the mix if you're missing this functionality.
+</desc>
+
+<h5>Dropdown Ornamentation</h5>
+<desc>
+    This is definately a cool pre/postfix addon but not included in this release. Again very happy to include it in a PR if you've got the time.
+</desc>
+
+<h5>Button Ornamentation</h5>
+<desc>
+    The button ornamentation is nice too but we're putting this on hold until we have time to port buttons into the framework as atomic units (equivalent to input elements) and then we'll add a "group button". If you want this now it should be easy enough to do with block-component techniques.
+</desc>
+
+
+<h4>Labels</h4>
+<div class="row">
+    <desc>
+        A "label" has a 1:1 relationship with an input field, or maybe a better way of thinking about it is it has a 1:1 relationship to an
+        input-group where an "input-group" is the input control and any/all addons which were added. If you look at an HTML example from Bootstrap's
+        site you'll find this example amoung the many:
+
+        <indent>
+        {{#code-block lang='html'}}
+<div class="form-group has-success has-feedback">
+  <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
+  <div class="input-group">
+    <span class="input-group-addon">@</span>
+    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+  </div>
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+</div>
+        {{/code-block}}
+        </indent>
+
+        This provides a useful view into the structure.
+    </desc>
+
+</div>
+
+
+
+

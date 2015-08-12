@@ -22,7 +22,7 @@ var AnimationSupport = Ember.Mixin.create({
     }
   }),
   animateEnter: null,
-  _enterAnimationObserver: Ember.on('didInsertElement', function() {
+  _enterAnimationObserver: Ember.on('didRender', function() {
     let animateEnter = this.get('animateEnter');
     if(animateEnter) {
       this._processAnimation(animateEnter);
@@ -50,4 +50,4 @@ var AnimationSupport = Ember.Mixin.create({
 });
 
 AnimationSupport[Ember.NAME_KEY] = 'Animation Support';
-export default AnimationSupport; 
+export default AnimationSupport;

@@ -13,7 +13,7 @@ export default Router.map(function() {
   this.route('email-input');
   this.route('number-array-input');
 
-  this.route('input-wrapper');
+  this.route('demo-input-wrapper');
   this.route('form-wrapper');
 
   // HELPERS / INLINE
