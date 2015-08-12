@@ -67,6 +67,11 @@ export default Ember.TextField.extend(
 
   processEvents: function(eventType, evt) {
     let eventProp = Ember.String.capitalize(eventType, evt);
+    if(eventType === 'change') {
+      this._sendAction('changed',this,evt);
+    } else {
+      this._sendAction('action',eventType,this,evt);
+    }
     let animate = this.get(`animate${eventProp}`);
     let sound = this.get(`sound${eventProp}`);
     if(animate) {
@@ -75,7 +80,21 @@ export default Ember.TextField.extend(
     if(sound) {
       this.set('sound',sound);
     }
+
     return this.processRules(eventType,evt);
+  },
+
+  /**
+   * sends action to containers or passes up the block chain
+   * @param  {mixed}    args     all paramenters, including action-type
+   * @return {void}
+   */
+  _sendAction(...args) {
+    if(this._container && this._container._sendAction) {
+      this._tellContainer('_sendAction',...args);
+    } else {
+      this.sendAction(...args);
+    }
   },
 
   nullOrStringObserver: Ember.on('init', Ember.computed('value', function() {

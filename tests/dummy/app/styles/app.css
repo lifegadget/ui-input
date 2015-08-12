@@ -26,103 +26,6 @@ h2 {
 	margin-top: .5rem;
 	margin-bottom: 3rem;
 }
-h3 {
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 800;
-  font-size: 2em;
-}
-
-.side-note {
-  font-weight: 300;
-  font-family: cursive;
-  font-size: smaller;
-}
-
-row {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-row > * {
-  flex: 1 1;
-  margin: 15px 5px 5px 5px;
-}
-
-widget {
-  flex-basis: 200px;
-}
-
-controls {
-  display: flex;
-  flex-direction: column;
-  font-size: 12px;
-  margin: 10px 0 20px 0;
-}
-
-control {
-  height: auto;
-  flex: 1 1;
-  margin: 10px 0 0 10px;
-  display:flex;
-  align-items: baseline;
-}
-
-control.center {
-  justify-content: center;
-}
-control.center > * {
-  flex-grow: 0;
-}
-
-
-control > * {
-  flex-grow: 1;
-  flex-shrink: 1;
-  margin: 0 5px;
-}
-
-control .name {
-  flex-grow: 0;
-}
-
-prop {
-  background: #F5F5F5;
-  padding: 3px 5px 4px 5px;
-  border-radius: 5px;
-  color: #3F3F3F;
-}
-
-code {
-  font-family: "Courier New", Courier, monospace;
-  line-spacing: 1rem;
-  flex-basis: 250px;
-  background-color: inherit;
-  color: #3F3F3F;
-}
-
-description {
-  flex-basis: 350px;
-  flex-grow: 2;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .demo-table td {
 	padding-right: 1rem;
@@ -393,8 +296,6 @@ centered {
     text-align: center;
 }
 
-
-
 .components code {
     padding: 6px !important;
 }
@@ -406,5 +307,15 @@ ul.components {
     line-height: 2em;
     list-style: none;
     text-align: center;
+}
+.flash-window {
+  position:fixed;
+  top: 25px;
+  left: 33%;
+  width: 33%;
+}
+.func-signature {
+  font-weight: 100;
+  font-style: italic;
 }
 

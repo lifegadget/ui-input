@@ -264,5 +264,46 @@
   </description>
 </row>
 
+<h4>Actions Up</h4>
+<row>
+  <widget>
+    {{text-input
+      placeholder='text-input'
+      changed='changed'
+      action='action'
+      error='error'
+      length=5
+      rules='lengthLimit'
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='text-input'
+      placeholder='text-input'
+      changed='changed'
+      action='action'
+      error='error'
+      length=5
+      rules='lengthLimit'
+    }}
+  </code>
+  <description>
+    <p>
+      While a user can create a two-way binding to <prop>value</prop> it is often desirable to rely on actions being passed back up to the container. This achieved with binding to one or more of the following actions:
+      <ul>
+        <li><b>action</b><span class="func-signature">(evt-type,obj,evt)</span> - user events</li>
+        <li><b>changed</b><span class="func-signature">(obj,evt)</span> - only broadcasts when the value has changed.</li>
+        <li><b>error</b><span class="func-signature">(code,obj,msg)</span> - when constraints are surpassed</li>
+      </ul>
+    </p>
+
+  </description>
+</row>
+<div class="flash-window">
+  {{#each flashMessages.queue as |flash|}}
+    {{flash-message flash=flash}}
+  {{/each}}
+</div>
+
 {{/demo-css}}
 

@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('ui-base-input', {
+moduleForComponent('ui-base-input', 'Unit | Component | ui-base-input', {
   // Specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });
