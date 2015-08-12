@@ -1,11 +1,13 @@
 import Ember from 'ember';
+const { keys, create } = Object; // jshint ignore:line
+const {computed, observer, $, A, run, on, typeOf, debug, defineProperty, get, set, inject, isEmpty} = Ember;  // jshint ignore:line
 
 export default Ember.Mixin.create({
 
   classNameBindings: ['_colorClass','_focusColorClass'],
 
   mood: null, // can be a "class", null, or an explicit style value
-  _moodClass: Ember.on('init', Ember.computed('mood','style', function() {
+  _mood: computed('mood','style', function() {
     let validStyles = Ember.A([
       'default','success','primary','info','warning','error'
     ]);
@@ -18,7 +20,7 @@ export default Ember.Mixin.create({
     }
 
     return null;
-  })),
+  }),
   focusColor: null, // can be a "class", null, or an explicit style value
   _focusColorClass: Ember.on('init', Ember.computed('focusColor','style', function() {
     let validStyles = Ember.A([

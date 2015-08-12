@@ -1,0 +1,491 @@
+{{#demo-css}}
+<h3>number-input <span class='side-note'>component</span></h3>
+
+<h4>Overview</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+        An input for numbers only. This control is meant to force a user to only put in numeric values and for mobile phones, if possible, to
+        only bring up a numeric keypad when the control is highlighted.
+    </p>
+    <desc>
+        Also, because we're dealing with the narrower scope of just numeric values, there are set of constraints that we can offer to this control
+        that might not make sense to a more general purpose. HTML constraints like <code>min</code>, <code>min</code>, and <code>step</code> are
+        not just observed but they can be enforced using "{{#link-to 'shared-rules'}}rules{{/link-to}}".
+    </desc>
+    <desc>
+        The out-of-the box rules provided to a <code>number-input</code> component are:
+        <ul>
+            <li>
+                <code>numeric</code> -
+                this rule is on by default and ensures that only numbers are allowed to be input by the keyboard
+            </li>
+            <li>
+                <code>integer</code> -
+                Enforces that only integer values are input. It enforces by blocking decimal place keyboard input and stripping out
+                non-integer content if cut-and-pasted in.
+            </li>
+            <li><code>min</code> - checks the value is not less than the min value stated, sets to min if it is</li>
+            <li><code>max</code> - checks the value is not greater than the max value, sets to max if it is</li>
+            <li>
+                <code>minStretch</code> -
+                if value less than min, min is decreased (visual animation cue typical)
+                {{icon-info tooltip='setting the <br/><em>animateRuleStretchMin</em><br/> property will give you an animation effect; by default it defaults to a rubberBand effect.' tooltipPlacement='top'}}
+            </li>
+            <li><code>maxStretch</code> -
+                if value exceeds max, max is increased (visual animation cue typical)
+                {{icon-info tooltip='setting the <br/><em>animateRuleStretchMax</em><br/> property will give you an animation effect; by default it defaults to a rubberBand effect.' tooltipPlacement='top'}}
+            </li>
+            <li><code>stepUp</code> -
+                if the value isn't a multiple of the step property, moves UP to to the next multiple
+            </li>
+            <li><code>stepDown</code> -
+                if the value isn't a multiple of the step property, moves UP to to the next multiple.
+            </li>
+        </ul>
+    </desc>
+    <desc>
+        The last thing that distinguishes a numeric control is that a lot of browsers have a tendency to put some ugly-ass "spinner controls"
+        into the control itself; this is presumably because they hate you. Well our love equals their hate and by default these will be disabled. If for some reason
+        you <em>wanted</em> to have those controls show up then you can enable them by setting the <code>showSpinners</code> to <em>true</em>. Good luck explaining
+        to your users what you were doing but hey ... not my business.
+    </desc>
+</div>
+
+{{#demo-css}}
+<h4>Basic Usage</h4>
+<row>
+  <widget>
+    {{number-input
+      style=style
+      status=status
+      size=size
+      mood=mood
+      placeholder='number-input'
+      textAlign=textAlign
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='number-input'
+      style=style
+      status=status
+      size=size
+      mood=mood
+      placeholder='number-input'
+      textAlign=textAlign
+    }}
+  </code>
+  <description>
+    Basic usage includes setting properties such as:
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>mood:</span>
+        <span>{{radio-buttons buttons='default,primary,info,success,warning,error' value=mood size='tiny' defaultValue='default'}}</span>
+      </control>
+      <control>
+        <span class='name'>size:</span> <span>{{radio-buttons buttons='tiny,small,default,large,huge' value=size size='tiny' defaultValue='default'}}</span>
+      </control>
+      <control>
+        <span class='name'>text-align:</span> <span>{{radio-buttons buttons='left,center,right' value=textAlign size='tiny' defaultValue='default'}}</span>
+      </control>
+      <control>
+        <span class='name'>style:</span>
+        <span>
+          {{radio-buttons buttons='bootstrap,flat' value=style size='tiny' defaultValue='bootstrap'}}
+        </span>
+      </control>
+      <control>
+        <span class='name'>status:</span>
+        <span>
+          {{radio-buttons buttons='none:::null,info,success,warning,error' value=status size='tiny'}}
+        </span>
+      </control>
+    </controls>
+
+  </description>
+</row>
+
+<h4>HTML Constraints</h4>
+<row>
+  <widget>
+    {{number-input
+      placeholder='number-input'
+      min=min
+      max=max
+      step=step
+      showSpinners=showSpinners
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='number-input'
+      placeholder='number-input'
+      min=min
+      max=max
+      step=step
+      showSpinners=showSpinners
+    }}
+  </code>
+  <description>
+    The component supports all the basic constraints that HTML provides:
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>min:</span>
+        <span>{{number-input value=min style='flat'}}</span>
+        <span class='name'>max:</span>
+        <span>{{number-input value=max style='flat'}}</span>
+        <span class='name'>step:</span>
+        <span>{{number-input value=step style='flat'}}</span>
+      </control>
+      <control>
+        <span class='name'>showSpinners:</span>
+        <span>{{ui-toggle-button on='true' off='false' value=showSpinners size='small'}}</span>
+      </control>
+    </controls>
+  </description>
+</row>
+
+
+<h4>Style Properties</h4>
+<row>
+  <widget>
+    {{number-input
+      placeholder='number-input'
+      color=color
+      backgroundColor=backgroundColor
+      borderColor=borderColor
+      outlineColor=outlineColor
+      width=width
+      height=height
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='number-input'
+      placeholder='number-input'
+      color=color
+      backgroundColor=backgroundColor
+      borderColor=borderColor
+      outlineColor=outlineColor
+      width=width
+      height=height
+    }}
+  </code>
+  <description>
+    <p>
+      There are specific settings that can be dynamically controlled from the component which are then translated into the <b>style</b> property of the HTML.
+    </p>
+    <p>
+      Color is a good example of this. Mood styles (from above) may be enough sometimes but if you need greater control:
+
+      <controls>
+        <control>
+          <span>text:</span>
+          <span>{{number-input style='flat' size='small' value=color}}</span>
+          <span>backgrnd:</span>
+          <span>{{number-input style='flat' size='small' value=backgroundColor}}</span>
+        </control>
+        <control>
+          <span>border:</span>
+          <span>{{number-input style='flat' size='small' value=borderColor}}</span>
+          <span>outline:</span>
+          <span>{{number-input style='flat' size='small' value=outlineColor}}</span>
+        </control>
+      </controls>
+    </p>
+    <p>
+      Another example is sizing ... <prop>size</prop> from above will suit many situations but sometimes you'll want to dig into <prop>width</prop> and <prop>height</prop> properties for greater control (note: trying setting height to 'square' or 'golden' to get a ratio):
+
+      <controls>
+        <control>
+          <span>width:</span>
+          <span>{{number-input style='flat' size='small' value=width}}</span>
+          <span>height:</span>
+          <span>{{number-input style='flat' size='small' value=height}}</span>
+        </control>
+      </controls>
+
+    </p>
+  </description>
+</row>
+
+<h4>Rules</h4>
+<row>
+  <widget>
+    {{number-input
+      placeholder='number-input'
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+      animateRuleInvalidEmail=animateRuleInvalidEmail
+      rules=rules
+      min=min2
+      max=max2
+      step=step2
+      length=length
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='number-input'
+      placeholder='number-input'
+      min=min2
+      max=max2
+      step=step2
+      animateRuleMin=animateRuleMin
+      animateRuleMax=animateRuleMax
+      rules=rules
+      length=length
+    }}
+  </code>
+  <description>
+    <p>
+      The various rules are described above, use this dynamic control to try them out:
+    </p>
+    <p>
+      <controls>
+        <control>
+          <span class='name'>min:</span>
+          <span>{{number-input style='flat' size='small' value=min2}}</span>
+          <span class='name'>max:</span>
+          <span>{{number-input style='flat' size='small' value=max2}}</span>
+          <span class='name'>step:</span>
+          <span>{{number-input style='flat' size='small' value=step2}}</span>
+        </control>
+        <control>
+          <span class='name'>animate min:</span>
+          <span>{{number-input style='flat' size='small' value=animateRuleMin}}</span>
+          <span class='name'>animate max:</span>
+          <span>{{number-input style='flat' size='small' value=animateRuleMax}}</span>
+        </control>
+      </controls>
+    </p>
+  </description>
+</row>
+<row>
+  <control class='center'>
+    <span class='name'>Rule</span>
+    <span>{{radio-buttons buttons='numeric,integer,min,max,minStretch::minStretch,maxStretch::maxStretch,stepUp::stepUp,stepDown::stepDown' value=rules size='small'}}</span>
+  </control>
+</row>
+
+<h4>Animation and Effects</h4>
+<row>
+  <widget>
+    {{number-input
+      placeholder='number-input'
+      animateFocusIn=animateFocusIn
+      animateMouseEnter=animateMouseEnter
+      animateMouseClick=animateMouseClick
+      animateSubmit=animateSubmit
+      animateChange=animateChange
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+    }}
+  </widget>
+  <code>
+    {{display-component
+      componentName='number-input'
+      placeholder='number-input'
+      animateFocusIn=animateFocusIn
+      animateMouseEnter=animateMouseEnter
+      animateMouseClick=animateMouseClick
+      animateSubmit=animateSubmit
+      animateChange=animateChange
+      animateRuleLengthLimit=animateRuleLength
+      animateRuleLengthWarn=animateRuleLength
+    }}
+  </code>
+  <description>
+    <p>
+      When certain user events take place you can visually alert people with animation. Animations use CSS to animate and borrow from the <b>animate.css</b> library.
+    </p>
+    <p>
+      Choose an animation from (tada, bounce, pulse, shake, etc.):
+
+      <controls>
+        <control>
+          <span class='name'>focusIn:</span>
+          <span>{{number-input style='flat' size='small' value=animateFocusIn}}</span>
+          <span class='name'>focusOut:</span>
+          <span>{{number-input style='flat' size='small' value=animateFocusOut}}</span>
+        </control>
+        <control>
+          <span class='name'>mouseEnter:</span>
+          <span>{{number-input style='flat' size='small' value=animateMouseEnter}}</span>
+          <span class='name'>mouseClick:</span>
+          <span>{{number-input style='flat' size='small' value=animateMouseClick}}</span>
+        </control>
+        <control>
+          <span class='name'>submit:</span>
+          <span>{{number-input style='flat' size='small' value=animateSubmit}}</span>
+          <span class='name'>change:</span>
+          <span>{{number-input style='flat' size='small' value=animateChange}}</span>
+        </control>
+      </controls>
+    </p>
+    <p>
+      Beyond animation, inputs can trigger sound effects or <a href="http://www.w3.org/TR/vibration/">vibrations</a>. Like in animation you just attach the sound or vibration to an event.
+
+      <controls>
+        <control>
+          <span class='name'>focusIn:</span>
+          <span>{{number-input style='flat' size='small' value=animateFocusIn}}</span>
+          <span class='name'>focusOut:</span>
+          <span>{{number-input style='flat' size='small' value=animateFocusOut}}</span>
+        </control>
+      </controls>
+    </p>
+  </description>
+</row>
+
+{{/demo-css}}
+
+<h4>Example</h4>
+<div class="row">
+    <p class="descriptive col-xs-12">
+        Have fun playing around with this numeric control. The variables listed are not a complete list but hopefully representative enough you can get
+        a strong feeling for this component.
+    </p>
+</div>
+
+
+<div class="examples">
+    <table class="row">
+        <tr>
+            <td class="col-xs-7 text-center align-middle">
+                {{number-input
+                    size=size
+                    width=width
+                    height=height
+                    min=min
+                    max=max
+                    step=step
+                    textAlign=textAlign
+                    placeholder='###'
+                    style=style
+                    color=color
+                    textColor=textColor
+                    backgroundColor=backgroundColor
+                    borderColor=borderColor
+                    outlineColor=outlineColor
+                    animateFocusIn=animateFocusIn
+                    animateMouseEnter=animateMouseEnter
+                    animateMouseClick=animateMouseClick
+                    animateSubmit=animateSubmit
+                    animateChange=animateChange
+                    animateRuleMin=animateRuleMinMax
+                    animateRuleMax=animateRuleMinMax
+                    animateRuleMinStretch=animateRuleMinMaxStretch
+                    animateRuleMaxStretch=animateRuleMinMaxStretch
+                    animateRuleStepUp=animateRuleStepUpDown
+                    animateRuleStepDown=animateRuleStepUpDown
+                    showSpinners=showSpinners
+                    rules=rules
+                }}
+            </td>
+            <td class="col-xs-5">
+                {{#code-block language="handlebars" poll=500}}
+\{{number-input
+    {{#if size}}size='{{size}}'
+    {{/if}}{{#if width}}width='{{width}}'
+    {{/if}}{{#if height}}height='{{height}}'
+    {{/if}}{{#if min}}min={{min}}
+    {{/if}}{{#if max}}max={{max}}
+    {{/if}}{{#if step}}step={{step}}
+    {{/if}}{{#if length}}length={{length}}
+    {{/if}}{{#if textAlign}}textAlign='{{textAlign}}'
+    {{/if}}{{#if placeholder}}placeholder='password-input'
+    {{/if}}{{#if style}}style='{{style}}'
+    {{/if}}{{#if color}}color='{{color}}'
+    {{/if}}{{#if textColor}}textColor='{{textColor}}'
+    {{/if}}{{#if backgroundColor}}backgroundColor={{backgroundColor}}
+    {{/if}}{{#if borderColor}}borderColor='{{borderColor}}'
+    {{/if}}{{#if outlineColor}}outlineColor='{{outlineColor}}'
+    {{/if}}{{#if animateRuleMinMax}}animateRuleMin={{animateRuleMinMax}}
+    {{/if}}{{#if animateRuleMinMax}}animateRuleMax={{animateRuleMinMax}}
+    {{/if}}{{#if animateRuleMinStretch}}animateRuleMinStretch={{animateRuleMinMaxStretch}}
+    {{/if}}{{#if animateRuleMaxStretch}}animateRuleMaxStretch={{animateRuleMinMaxStretch}}
+    {{/if}}{{#if animateRuleStepUp}}animateRuleStepUp={{animateRuleStepUpDown}}
+    {{/if}}{{#if animateRuleStepDown}}animateRuleStepDown={{animateRuleStepUpDown}}
+    {{/if}}{{#if animateFocusIn}}animateFocusIn='{{animateFocusIn}}'
+    {{/if}}{{#if animateMouseEnter}}animateMouseEnter='{{animateMouseEnter}}'
+    {{/if}}{{#if animateMouseClick}}animateMouseClick='{{animateMouseClick}}'
+    {{/if}}{{#if animateSubmit}}animateSubmit='{{animateSubmit}}'
+    {{/if}}{{#if animateChange}}animateChange='{{animateChange}}'
+    {{/if}}{{#if animateRuleLengthLimit}}animateRuleLengthLimit='{{animateRuleLength}}'
+    {{/if}}{{#if animateRuleLengthWarn}}animateRuleLengthWarn='{{animateRuleLength}}'
+    {{/if}}{{#if rules}}rules={{rules}}
+    {{/if}}
+}}
+                {{/code-block}}
+
+            </td>
+        </tr>
+    </table>
+</div>
+<p></p>
+<div class="configuration col-xs-12">
+    <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
+    <div class="config-section col-xs-11">
+        <span class="col-xs-9">
+            Min: {{number-input value=min size='small' width='60px'}} &nbsp;&nbsp;
+            Max: {{number-input value=max size='small' width='60px'}} &nbsp;&nbsp;
+            Step: {{number-input value=step size='small' width='60px'}} &nbsp;&nbsp;
+            Show Spinners: {{ui-toggle-button value=showSpinners on='Yes' off="No" offIcon='circle-o' onIcon='dot-circle-o'}}
+            <p></p>
+            Rules: {{ui-button-radio size='small' choices='numeric,integer,min,max,minStretch,maxStretch,stepUp,stepDown' selected=rules}}
+            <p></p>
+            <hr/>
+            Size: {{ui-button-radio size='small' choices='tiny,small,default,large,huge' selected=size}}
+            Width: {{number-input size='small' value=width width='60px'}}
+            Height: {{number-input size='small' value=height width='60px'}} <br/>
+            <p></p>
+            Style:
+            {{ui-button-radio size='small' choices='bootstrap,flat' selected=style}} &nbsp;&nbsp;
+            Text Alignment:
+            {{ui-button-radio size='small' choices='left,center,right' selected=textAlign}}
+            <p></p>
+            <hr/>
+            Color Class:
+            {{ui-button-radio size='small' choices='default,success,info,primary,warning,error' selected=color}}
+            <p></p>
+            Color (using style props):
+            <p></p>
+            Text: {{number-input width='85px' size='tiny' style='flat' textAlign='center' value=textColor}} &nbsp;
+            Back: {{number-input width='85px' size='tiny' style='flat' textAlign='center' value=backgroundColor}} &nbsp;
+            Border: {{number-input width='85px' size='tiny' style='flat' textAlign='center' value=borderColor}} &nbsp;
+            Outline: {{number-input width='85px' size='tiny' style='flat' textAlign='center' value=outlineColor}} &nbsp;
+
+
+        </span>
+        <span class="col-xs-3 text-right">
+            <strong>Animation Rule Events</strong>
+            <hr/>
+            min/max:
+            {{number-input width='42%' size='tiny' value=animateRuleMinMax}}<br/>
+            stretch:
+            {{number-input width='42%' size='tiny' value=animateRuleMinMaxStretch}}<br/>
+            step up/down:
+            {{number-input width='42%' size='tiny' value=animateRuleStepUpDown}}<br/>
+            <p>&nbsp;<br/></p>
+            <strong>Animation Other Events</strong>
+            <hr/>
+            focusIn:
+            {{number-input width='42%' size='tiny' value=animateFocusIn}}<br/>
+            mouseEnter:
+            {{number-input width='42%' size='tiny' value=animateMouseEnter}}<br/>
+            mouseClick:
+            {{number-input width='42%' size='tiny' value=animateMouseClick}}<br/>
+            submit:
+            {{number-input width='42%' size='tiny' value=animateSubmit}}<br/>
+            change:
+            {{number-input width='42%' size='tiny' value=animateChange}}<br/>
+
+        </span>
+    </div>
+</div>
+
+
+{{/demo-css}}
