@@ -3,7 +3,7 @@ const { keys, create } = Object; // jshint ignore:line
 const {computed, observer, $, A, run, on, typeOf, debug, defineProperty, get, set, inject, isEmpty} = Ember;  // jshint ignore:line
 const htmlSafe = Ember.String.htmlSafe;
 const dasherize = Ember.String.dasherize;
-const _styleProperties = ['maxWidth', 'width', 'minWidth','height','fontSize','fontFamily','fontWeight','fontStyle','color','backgroundColor','borderColor','outlineColor'];
+const _styleProperties = ['maxWidth', 'width', 'minWidth','height','fontSize','fontFamily','fontWeight','fontStyle','color','backgroundColor','borderColor','outlineColor','zIndex','opacity'];
 const _attributeUnbinding = ['style'];
 const GOLDEN_RATIO = 1.618;
 const ASPECT_RATIO = 1.3;
@@ -92,10 +92,18 @@ var StyleSupport = Ember.Mixin.create({
   _iconPrefix: Ember.computed('_iconFamily', function() {
     return this.get('_iconFamily') === 'fa' ? 'fa-' : 'glyphicon-';
   }),
-  // icon types are: prefix, postfix, status,
-  // note: the name "icon" is an alias for a prefix icon
-  icon: Ember.computed.alias('iconPrefix'),
-  prefixIcon: null,
+  icon: computed('group.prefixIcon', 'group.icon', 'group.postfixIcon', {
+    set(_,value) {
+      return value;
+    },
+    get() {
+      // const prefixIcon = this.get('group.prefixIcon');
+      // const postfixIcon = this.get('group.postfixIcon');
+      const groupIcon = this.get('group.icon');
+      // TODO: look into the best logic for this WRT to inline format
+      return groupIcon;
+    }
+  }),
   _iconClass: Ember.computed('_iconFamily','_iconPrefix','icon', function() {
     let { icon, _iconFamily, _iconPrefix } = this.getProperties('icon','_iconFamily','_iconPrefix');
     if(icon) {

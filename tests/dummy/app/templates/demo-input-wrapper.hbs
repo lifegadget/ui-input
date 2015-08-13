@@ -75,6 +75,84 @@
   </description>
 </row>
 
+<h4>Form Control Feedback</h4>
+<row>
+  <widget>
+    {{#input-wrapper as |wrap|}}
+      {{input-addon icon='phone'}}
+      {{form-control-feedback
+        status=fcStatus
+        colorize=colorize
+      }}
+      {{text-input group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' _dim=true as='wrap'}}
+    {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+    {{display-component _indent=1 _dim=false componentName='form-control-feedback'
+      status=fcStatus
+      colorize=colorize
+    }}
+    {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    You can set the form-control-feedback component locally with a status (which is tranlated into an icon). By default the status icon will be colorized but that can be switched off.
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>status:</span>
+        <span>{{radio-buttons buttons='none:::null,success,warning,error' value=fcStatus size='small' defaultValue='success'}}</span>
+      </control>
+      <control>
+        <span class='name'>colorize:</span>
+        <span>{{ui-toggle-button off='not colorized' on='colorized' value=colorize}}</span>
+      </control>
+    </controls>
+  </description>
+</row>
+<row>
+  <widget>
+    {{#input-wrapper
+      status=status2
+      as |wrap|
+    }}
+      {{input-addon icon='phone'}}
+      {{form-control-feedback
+        group=wrap
+        colorize=colorize2
+      }}
+      {{text-input group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' _dim=true
+      status=status2
+      as='wrap'}}
+    {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+    {{display-component _indent=1 _dim=false componentName='form-control-feedback'
+      group=':wrap'
+      colorize=colorize2
+    }}
+    {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    Alternatively you can set status at the wrapper level and attach the <prop>form-control-feedback</prop> to the group.
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>status:</span>
+        <span>{{radio-buttons buttons='none:::null,success,warning,error' value=status2 size='small' defaultValue='success'}}</span>
+      </control>
+    </controls>
+
+    Note, the <prop>colorize</prop> property is no longer effective in this mode because the wrapper setting the color for all contained components.
+  </description>
+</row>
+
+
 <h4>Proxying Input Properties</h4>
 <row>
   <widget>
@@ -129,6 +207,46 @@
 </row>
 
 <h4>Group Properties</h4>
+<row>
+  <widget>
+    {{#input-wrapper
+      status=status
+      size=size
+      as |wrap|
+    }}
+      {{input-addon icon='phone'}}
+      {{text-input group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' as='wrap'
+      status=status
+      size=size
+      placeholder='text-input'
+    }}
+      {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+      {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    Group properties follow along with the Bootstrap convensions of setting classes at the wrap level and having the various components (input and addons) react to these classes.
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>size:</span> <span>{{radio-buttons buttons='tiny,small,default,large,huge' value=size size='tiny'}}</span>
+      </control>
+      <control>
+        <span class='name'>status:</span>
+        <span>
+          {{radio-buttons buttons='none:::null,success,warning,error' value=status size='tiny'}}
+        </span>
+      </control>
+    </controls>
+
+  </description>
+</row>
+
+<h4>Labels</h4>
 <row>
   <widget>
     {{#input-wrapper

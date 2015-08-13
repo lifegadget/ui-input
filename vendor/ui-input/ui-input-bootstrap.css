@@ -17,7 +17,9 @@
     font-size: 22px;
     border-radius: 8px;
 }
-.ui-input.input-group-hg > .input-group-addon {
+.ui-input.input-group-hg > .input-group-addon,
+.ui-input.input-group-hg > .input-group-btn,
+.ui-input.input-group-hg > .form-control {
     height: 60px;
     padding: 14px 20px;
     font-size: 22px;
