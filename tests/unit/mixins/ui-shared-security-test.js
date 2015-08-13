@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import UiSharedSecurityMixin from '../../../mixins/ui-shared-security';
+import UiSharedSecurityMixin from 'ui-input/mixins/ui-shared-security';
 import { module, test } from 'qunit';
 
 module('UiSharedSecurityMixin');

@@ -2,36 +2,32 @@ import Ember from 'ember';
 import layout from '../templates/components/ui-base-input';
 
 import UiRulesMixin from '../mixins/ui-shared-rules';
-import UiEventListenerMixin from '../mixins/ui-event-listener';
 import UiStylingMixin from '../mixins/ui-shared-styling';
 import UiSizeMixin from '../mixins/ui-shared-size';
 import UiStatusMixin from '../mixins/ui-shared-status';
 import UiAnimationMixin from '../mixins/ui-shared-animation';
 import UiVibrationMixin from '../mixins/ui-shared-vibrations';
 import UiColorMixin from '../mixins/ui-shared-color';
-import UiTextAlignMixin from '../mixins/ui-shared-text-align';
 import UiSoundEffectsMixin from '../mixins/ui-shared-sound-effects';
 
 export default Ember.TextField.extend(
-  UiRulesMixin, 
-  UiEventListenerMixin, 
-  UiStylingMixin, 
-  UiSizeMixin, 
-  UiTextAlignMixin, 
+  UiRulesMixin,
+  UiStylingMixin,
+  UiSizeMixin,
   UiStatusMixin,
   UiAnimationMixin,
   UiVibrationMixin,
   UiSoundEffectsMixin,
   UiColorMixin, {
-    
+
   layout: layout,
 	classNames: ['ui-input'],
-	classNameBindings: ['statusClass','statusVisualize:visualize','square'],
-	attributeBindings: ['type','size','pattern','visualStyleStyle:style'],
+	classNameBindings: ['statusClass','statusVisualize:visualize','skin','_formControl:form-control','_mood'],
+	attributeBindings: ['type','size','pattern','_style:style'],
 	pattern: null,
 	type: 'text',
   emptyIsNull: false, // an empty value is either an empty string or null
-    
+
 	// EVENT HANDLING
   // mouse
   mouseEnter: function(evt) {
@@ -64,9 +60,14 @@ export default Ember.TextField.extend(
     let eventType = 'keyDown';
     return this.processEvents(eventType, evt);
 	},
-  
+
   processEvents: function(eventType, evt) {
     let eventProp = Ember.String.capitalize(eventType, evt);
+    if(eventType === 'change') {
+      this._sendAction('changed',this,evt);
+    } else {
+      this._sendAction('action',eventType,this,evt);
+    }
     let animate = this.get(`animate${eventProp}`);
     let sound = this.get(`sound${eventProp}`);
     if(animate) {
@@ -75,20 +76,34 @@ export default Ember.TextField.extend(
     if(sound) {
       this.set('sound',sound);
     }
+
     return this.processRules(eventType,evt);
   },
-  
+
+  /**
+   * sends action to containers or passes up the block chain
+   * @param  {mixed}    args     all paramenters, including action-type
+   * @return {void}
+   */
+  _sendAction(...args) {
+    if(this._container && this._container._sendAction) {
+      this._tellContainer('_sendAction',...args);
+    } else {
+      this.sendAction(...args);
+    }
+  },
+
   nullOrStringObserver: Ember.on('init', Ember.computed('value', function() {
     let { value, emptyIsNull } = this.getProperties('value', 'emptyIsNull');
     if (emptyIsNull && value === '') {
       this.set('value', null);
     }
   })),
-  
+
 	// MESSAGE QUEUEING
 	messageQueue: [],
 	/**
-	 * Adds messages to queue. Queue items can be dismissed explictly or can timeout 
+	 * Adds messages to queue. Queue items can be dismissed explictly or can timeout
 	 * if an 'expiry' is placed on the queue.
 	 */
 	addMessageQueue: function(message,options) {
@@ -97,6 +112,6 @@ export default Ember.TextField.extend(
 		var expires = options.expiry ? now + options.expiry : null;
 		this.set('messageQueue', this.get('messageQueue').concat({timestamp: new Date(), message: message, expires: expires}));
 	}
-  
-  
+
+
 });

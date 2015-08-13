@@ -3,8 +3,8 @@
 <h4>Overview</h4>
 <div class="row">
     <desc>
-       The <code>input-screen-reader</code> component allows for context text to be placed into the page while remaining invisible to 
-       normal browsers in order to assist screen reader devices. 
+       The <code>input-screen-reader</code> component allows for context text to be placed into the page while remaining invisible to
+       normal browsers in order to assist screen reader devices.
    </desc>
 </div>
 
@@ -13,16 +13,16 @@
 <examples>
     <widget>
         {{#input-wrapper class='inline-example' size='large' prefixIcon='eye' sr=sr}}
-            {{text-input placeholder='input-control' }} 
+            {{text-input placeholder='input-control' }}
         {{/input-wrapper}}
     </widget>
     <sourcecode>
         {{#code-block language="handlebars" poll=100}}
 \{{! INLINE EXAMPLE }}
 \{{#input-wrapper size='large' prefixIcon='eye' sr='{{sr}}'}}
-    \{{text-input placeholder='input-control' }} 
+    \{{text-input placeholder='input-control' }}
 \{{/input-wrapper}}
-        {{/code-block}}         
+        {{/code-block}}
     </sourcecode>
 </examples>
 
@@ -31,7 +31,7 @@
         {{#input-wrapper class='block-example' size='large' as |wrapper|}}
             {{#input-group containedBy=wrapper}}
                 {{input-addon icon="eye"}}
-                {{text-input placeholder='input-control'}} 
+                {{text-input placeholder='input-control'}}
             {{/input-group}}
             {{#input-screen-reader}}{{sr}}{{/input-screen-reader}}
         {{/input-wrapper}}
@@ -42,11 +42,11 @@
 \{{#input-wrapper class='block-example' size='large' as |wrapper|}}
     \{{#input-group containedBy=wrapper}}
         \{{input-addon icon="eye"}}
-        \{{text-input placeholder='input-control'}} 
+        \{{text-input placeholder='input-control'}}
     \{{/input-group}}
     \{{#input-screen-reader}}{{sr}}\{{/input-screen-reader}}
 \{{/input-wrapper}}
-        {{/code-block}}         
+        {{/code-block}}
     </sourcecode>
 </examples>
 
@@ -55,7 +55,7 @@
     <config>
         <columns>
             <column>
-                Screen Reader Text:            
+                Screen Reader Text:
                 {{text-input width='80%' value=sr}}<br/>
             </column>
         </columns>
@@ -67,7 +67,7 @@
         The HTML source for the <strong>inline</strong> example is as seen on the right.
     </widget>
     <sourcecode>
-        {{dom-reference ref='.inline-example' poll=300}}
+        {{!-- {{dom-reference ref='.inline-example' poll=300}} --}}
     </sourcecode>
 </examples>
 
@@ -76,6 +76,6 @@
         The HTML source for the <strong>block</strong> example is as seen on the right.
     </widget>
     <sourcecode>
-        {{dom-reference ref='.block-example' poll=300}}
-    </sourcecode>
+{{!--         {{dom-reference ref='.block-example' poll=300}}
+ --}}    </sourcecode>
 </examples>

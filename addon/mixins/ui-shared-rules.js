@@ -14,8 +14,8 @@ var RulesSupport = Ember.Mixin.create({
     if(typeOf(rules) !== 'array') {
       console.warn('%s had invalid rules assigned to it: %o', this.get('elementId'), rules);
       rules = [];
-    } 
-    
+    }
+
     return rules.concat(this.get('defaultRules'));
   }),
   /**
@@ -32,21 +32,21 @@ var RulesSupport = Ember.Mixin.create({
   libraryItems: Ember.computed('_rulesBaseLibrary','_rulesTypeLibrary', '_rulesUserLibrary', function() {
     return this.get('_rulesLibrary').keys();
   }),
-  
+
   /**
    * Processes the rules associated with a given event-type (e.g, mouseUp, focusIn, etc.)
    */
   processRules: function(eventType, evt, options) {
     options = options || {};
-    let rules = Ember.A(this.get('_rules')); 
+    let rules = Ember.A(this.get('_rules'));
     let library = this.get('_rulesLibrary');
     let events, defaults;
-    // iterate over each rule    
+    // iterate over each rule
     rules.forEach( (rule) => {
       let ruleDefinition = library.get(rule);
       try {
         events = new Set(ruleDefinition.events); // ensure its a set (allows it to be defined as array)
-        defaults = new Map(ruleDefinition.defaults); // ensure its a map (allows it to be defined as array or arrays too)        
+        defaults = new Map(ruleDefinition.defaults); // ensure its a map (allows it to be defined as array or arrays too)
       } catch (e) {
         console.warn('There was a problem with %s processing rule %s. Couldn\'t set either events or defaults: %o', this.get('elementId'), rule, ruleDefinition);
         return false;
@@ -62,7 +62,7 @@ var RulesSupport = Ember.Mixin.create({
           let actionRuleVariable = `${action}Rule${ruleName}`;
           if(defaults.has(action) && Ember.A([null,'undefined']).contains(typeOf(this.get(actionRuleVariable)))) {
             this.set(actionRuleVariable, defaults.get(action));
-          }          
+          }
         });
         // parse parameters
         let params = this.get(`ruleParams${ruleName}`) || {};
@@ -101,29 +101,30 @@ var RulesSupport = Ember.Mixin.create({
        if(result.message) {
          // TODO: implement
        }
-      
+
        if(result.cancel) {
          evt.preventDefault();
+         this._sendAction('error',ruleName,this,result.message);
          return false;
-       } 
-      
+       }
+
        return true;
      } // end eventType conditional
    }); // end rules loop
  },
-  
+
   /**
    * For now anyway, there are NO rules which are common to all Input Types
    */
   _rulesBaseLibrary: [],
-  
+
   // REFERENCE VARIABLES
   _KEYBOARD: {
     controlKeys: Ember.A([8,9,27,36,37,39,38,40,46]), // 8:delete, 9:tab, 27: escape, 36:home, 37:left, 39:right, 38:up, 40:down, 46: backspace
     numericKeys: Ember.A([48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,187,189]), // 48-57 are standard, 96-105 are numpad numeric keys, - and + symbols are 187/189
     modifierKeys: Ember.A([16,17,18]), // 16: shift, 17: cntrl, 18: alt
     decimalPlace: Ember.A([190]),
-    // allows checking of key combinations; by default just checks 
+    // allows checking of key combinations; by default just checks
     // for ctrl-A/cmd-A but options array allows setting what is allowed
     keyCombos: function(evt, options) {
       options = options || {};
@@ -141,13 +142,13 @@ var RulesSupport = Ember.Mixin.create({
           }
         }
       });
-			
+
       return isAcceptable;
     }
   },
-  
-  
+
+
 });
 
 RulesSupport[Ember.NAME_KEY] = 'Rules Support';
-export default RulesSupport; 
+export default RulesSupport;
