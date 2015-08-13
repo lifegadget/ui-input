@@ -104,7 +104,7 @@ var StyleSupport = Ember.Mixin.create({
       return groupIcon;
     }
   }),
-  _iconClass: Ember.computed('_iconFamily','_iconPrefix','icon', function() {
+  _iconClass: Ember.computed('_iconFamily','_iconPrefix','group.iconFamily','icon', function() {
     let { icon, _iconFamily, _iconPrefix } = this.getProperties('icon','_iconFamily','_iconPrefix');
     if(icon) {
       icon = `${_iconFamily} ${_iconPrefix}${icon}`;

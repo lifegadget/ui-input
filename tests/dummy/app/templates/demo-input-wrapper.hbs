@@ -75,82 +75,6 @@
   </description>
 </row>
 
-<h4>Form Control Feedback</h4>
-<row>
-  <widget>
-    {{#input-wrapper as |wrap|}}
-      {{input-addon icon='phone'}}
-      {{form-control-feedback
-        status=fcStatus
-        colorize=colorize
-      }}
-      {{text-input group=wrap}}
-    {{/input-wrapper}}
-  </widget>
-  <code>
-    {{#display-component componentName='input-wrapper' _dim=true as='wrap'}}
-    {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
-    {{display-component _indent=1 _dim=false componentName='form-control-feedback'
-      status=fcStatus
-      colorize=colorize
-    }}
-    {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
-    {{/display-component}}
-  </code>
-  <description>
-    You can set the form-control-feedback component locally with a status (which is tranlated into an icon). By default the status icon will be colorized but that can be switched off.
-    <br/>
-    <controls>
-      <control>
-        <span class='name'>status:</span>
-        <span>{{radio-buttons buttons='none:::null,success,warning,error' value=fcStatus size='small' defaultValue='success'}}</span>
-      </control>
-      <control>
-        <span class='name'>colorize:</span>
-        <span>{{ui-toggle-button off='not colorized' on='colorized' value=colorize}}</span>
-      </control>
-    </controls>
-  </description>
-</row>
-<row>
-  <widget>
-    {{#input-wrapper
-      status=status2
-      as |wrap|
-    }}
-      {{input-addon icon='phone'}}
-      {{form-control-feedback
-        group=wrap
-        colorize=colorize2
-      }}
-      {{text-input group=wrap}}
-    {{/input-wrapper}}
-  </widget>
-  <code>
-    {{#display-component componentName='input-wrapper' _dim=true
-      status=status2
-      as='wrap'}}
-    {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
-    {{display-component _indent=1 _dim=false componentName='form-control-feedback'
-      group=':wrap'
-      colorize=colorize2
-    }}
-    {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
-    {{/display-component}}
-  </code>
-  <description>
-    Alternatively you can set status at the wrapper level and attach the <prop>form-control-feedback</prop> to the group.
-    <br/>
-    <controls>
-      <control>
-        <span class='name'>status:</span>
-        <span>{{radio-buttons buttons='none:::null,success,warning,error' value=status2 size='small' defaultValue='success'}}</span>
-      </control>
-    </controls>
-
-    Note, the <prop>colorize</prop> property is no longer effective in this mode because the wrapper setting the color for all contained components.
-  </description>
-</row>
 
 
 <h4>Proxying Input Properties</h4>
@@ -245,6 +169,85 @@
 
   </description>
 </row>
+
+<h4>Form Control Feedback</h4>
+<row>
+  <widget>
+    {{#input-wrapper as |wrap|}}
+      {{input-addon icon='phone'}}
+      {{form-control-feedback
+        status=fcStatus
+        colorize=colorize
+      }}
+      {{text-input group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' _dim=true as='wrap'}}
+    {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+    {{display-component _indent=1 _dim=false componentName='form-control-feedback'
+      status=fcStatus
+      colorize=colorize
+    }}
+    {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    You can set the form-control-feedback component locally with a status (which is tranlated into an icon). By default the status icon will be colorized but that can be switched off.
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>status:</span>
+        <span>{{radio-buttons buttons='none:::null,success,warning,error' value=fcStatus size='small' defaultValue='success'}}</span>
+      </control>
+      <control>
+        <span class='name'>colorize:</span>
+        <span>{{ui-toggle-button off='not colorized' on='colorized' value=colorize}}</span>
+      </control>
+    </controls>
+  </description>
+</row>
+<row>
+  <widget>
+    {{#input-wrapper
+      status=status2
+      as |wrap|
+    }}
+      {{input-addon icon='phone'}}
+      {{form-control-feedback
+        group=wrap
+        colorize=colorize2
+      }}
+      {{text-input group=wrap}}
+    {{/input-wrapper}}
+  </widget>
+  <code>
+    {{#display-component componentName='input-wrapper' _dim=true
+      status=status2
+      as='wrap'}}
+    {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
+    {{display-component _indent=1 _dim=false componentName='form-control-feedback'
+      group=':wrap'
+      colorize=colorize2
+    }}
+    {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
+    {{/display-component}}
+  </code>
+  <description>
+    Alternatively you can set status at the wrapper level and attach the <prop>form-control-feedback</prop> to the group.
+    <br/>
+    <controls>
+      <control>
+        <span class='name'>status:</span>
+        <span>{{radio-buttons buttons='none:::null,success,warning,error' value=status2 size='small' defaultValue='success'}}</span>
+      </control>
+    </controls>
+
+    Note, the <prop>colorize</prop> property is no longer effective in this mode because the wrapper setting the color for all contained components.
+  </description>
+</row>
+
+
 
 <h4>Labels</h4>
 <row>
@@ -383,34 +386,5 @@
 <desc>
     The button ornamentation is nice too but we're putting this on hold until we have time to port buttons into the framework as atomic units (equivalent to input elements) and then we'll add a "group button". If you want this now it should be easy enough to do with block-component techniques.
 </desc>
-
-
-<h4>Labels</h4>
-<div class="row">
-    <desc>
-        A "label" has a 1:1 relationship with an input field, or maybe a better way of thinking about it is it has a 1:1 relationship to an
-        input-group where an "input-group" is the input control and any/all addons which were added. If you look at an HTML example from Bootstrap's
-        site you'll find this example amoung the many:
-
-        <indent>
-        {{#code-block lang='html'}}
-<div class="form-group has-success has-feedback">
-  <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
-  <div class="input-group">
-    <span class="input-group-addon">@</span>
-    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
-  </div>
-  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-</div>
-        {{/code-block}}
-        </indent>
-
-        This provides a useful view into the structure.
-    </desc>
-
-</div>
-
-
 
 
