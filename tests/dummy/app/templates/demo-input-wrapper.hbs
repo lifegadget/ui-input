@@ -247,48 +247,6 @@
   </description>
 </row>
 
-
-
-<h4>Labels</h4>
-<row>
-  <widget>
-    {{#input-wrapper
-      status=status
-      size=size
-      as |wrap|
-    }}
-      {{input-addon icon='phone'}}
-      {{text-input group=wrap}}
-    {{/input-wrapper}}
-  </widget>
-  <code>
-    {{#display-component componentName='input-wrapper' as='wrap'
-      status=status
-      size=size
-      placeholder='text-input'
-    }}
-      {{display-component _indent=1 _dim=true componentName='input-addon' icon='phone' group=':wrap'}}
-      {{display-component _indent=1 _dim=true componentName='text-input' group=':wrap'}}
-    {{/display-component}}
-  </code>
-  <description>
-    Group properties follow along with the Bootstrap convensions of setting classes at the wrap level and having the various components (input and addons) react to these classes.
-    <br/>
-    <controls>
-      <control>
-        <span class='name'>size:</span> <span>{{radio-buttons buttons='tiny,small,default,large,huge' value=size size='tiny'}}</span>
-      </control>
-      <control>
-        <span class='name'>status:</span>
-        <span>
-          {{radio-buttons buttons='none:::null,success,warning,error' value=status size='tiny'}}
-        </span>
-      </control>
-    </controls>
-
-  </description>
-</row>
-
 {{/demo-css}}
 
 
@@ -361,30 +319,7 @@
                     Prefix Text:<br/>
                     {{text-input width='140px' size='small' value=checkLabel}}
                 </column>
-                <column >
-                    Size:<br/>
-                    {{ui-bs-button-choice choices=sizes selected=size size='small' stretch=true}}
-                </column>
         </columns>
     </config>
 </configuration>
-
-
-<h5>Radio Ornamentation</h5>
-<desc>
-    This is (or <em>will be</em>) very similar to the checkbox ornamentation but is slightly more complicated in that state management spans -- in some ways
-    at least -- across input elements. For this reason and because it seems a less useful control in general, it has not been prioritized. Please feel free to submit
-    a PR to get it into the mix if you're missing this functionality.
-</desc>
-
-<h5>Dropdown Ornamentation</h5>
-<desc>
-    This is definately a cool pre/postfix addon but not included in this release. Again very happy to include it in a PR if you've got the time.
-</desc>
-
-<h5>Button Ornamentation</h5>
-<desc>
-    The button ornamentation is nice too but we're putting this on hold until we have time to port buttons into the framework as atomic units (equivalent to input elements) and then we'll add a "group button". If you want this now it should be easy enough to do with block-component techniques.
-</desc>
-
 
