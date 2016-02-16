@@ -1,4 +1,4 @@
-# ui-input ![ ](https://travis-ci.org/lifegadget/ui-input.svg) [![npm version](https://badge.fury.io/js/ui-input.svg)](http://badge.fury.io/js/ui-input)
+# ui-input ![ ](https://travis-ci.org/lifegadget/ui-input.svg) [![npm version](https://badge.fury.io/js/ui-input.svg)](http://badge.fury.io/js/ui-input) [![Code Climate](https://codeclimate.com/github/lifegadget/ui-input/badges/gpa.svg)
 > Input controls for ambitious Ember applications.
 
 ## Install ##

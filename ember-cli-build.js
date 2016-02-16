@@ -1,8 +1,8 @@
 /* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-addon');
+var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
+  var app = new EmberAddon(defaults, {
     // Add options here
   });
 
@@ -14,12 +14,12 @@ module.exports = function(defaults) {
   */
 
   app.import('bower_components/bootstrap/dist/css/bootstrap.css');
-  app.import('bower_components/bootstrap/dist/js/bootstrap.js');
-  app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot',{destDir: 'fonts', overwrite: true});
-  app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg',{destDir: 'fonts', overwrite: true});
-  app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf',{destDir: 'fonts', overwrite: true});
-  app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff',{destDir: 'fonts', overwrite: true});
-  app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff2',{destDir: 'fonts', overwrite: true});
+  // app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+  // app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot',{destDir: 'fonts', overwrite: true});
+  // app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg',{destDir: 'fonts', overwrite: true});
+  // app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf',{destDir: 'fonts', overwrite: true});
+  // app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff',{destDir: 'fonts', overwrite: true});
+  // app.import('bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff2',{destDir: 'fonts', overwrite: true});
 
 
   return app.toTree();
