@@ -1,3 +1,19 @@
+/* SIZES */
+.form-control.form-control-huge {
+  padding: .90rem 1.45rem;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  border-radius: 0.4rem;
+}
+.form-control.form-control-tiny {
+  padding: .20rem 0.65rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border-radius: 0.15rem;
+}
+
+
+
 /* INLINE STYLE */
 input.input-inliner {
     display: inline-block;
@@ -32,61 +48,61 @@ input.ui-input.text-align-right {
 input.ui-input.input-success {
     border-color: hsl(120, 39%, 54%) !important;
     color: hsl(120, 39%, 20%);
-    background-color: hsl(120, 39%, 90%);
+    background-color: hsl(120, 39%, 99%);
     outline-color: hsl(120, 39%, 90%);
 }
 input.ui-input.input-focused-success:focus {
     border-color: hsl(120, 39%, 54%);
     color: hsl(120, 39%, 20%);
-    background-color: hsl(120, 39%, 90%);
+    background-color: hsl(120, 39%, 99%);
     outline-color: hsl(120, 39%, 90%);
 }
 input.ui-input.input-primary {
     border-color: hsl(208, 56%, 46%) !important;
     color: hsl(208, 56%, 20%);
-    background-color: hsl(208, 56%, 90%);
+    /*background-color: hsl(208, 56%, 90%);*/
     outline-color: hsl(208, 56%, 90%);
 }
 input.ui-input.input-focused-primary:focus {
     border-color: hsl(208, 56%, 46%);
     color: hsl(208, 56%, 20%);
-    background-color: hsl(208, 56%, 90%);
+    background-color: hsl(208, 56%, 99%);
     outline-color: hsl(208, 56%, 90%);
 }
 input.ui-input.input-info {
     border-color: hsl(194, 66%, 61%) !important;
     color: hsl(194, 66%, 14%);
-    background-color: hsl(194, 66%, 90%);
+    background-color: hsl(194, 66%, 99%);
     outline-color: hsl(194, 66%, 90%);
 }
 input.ui-input.input-focused-info:focus {
     border-color: hsl(194, 66%, 61%);
     color: hsl(194, 66%, 14%);
-    background-color: hsl(194, 66%, 90%);
+    background-color: hsl(194, 66%, 99%);
     outline-color: hsl(194, 66%, 90%);
 }
 input.ui-input.input-warning {
     border-color: hsl(35, 84%, 62%) !important;
     color: hsl(35, 84%, 20%);
-    background-color: hsl(35, 84%, 90%);
+    background-color: hsl(35, 84%, 99%);
     outline-color: hsl(35, 84%, 90%);
 }
 input.ui-input.input-focused-warning:focus {
     border-color: hsl(35, 84%, 62%);
     color: hsl(35, 84%, 20%);
-    background-color: hsl(35, 84%, 90%);
+    background-color: hsl(35, 84%, 99%);
     outline-color: hsl(35, 84%, 90%);
 }
-input.ui-input.input-error {
+input.ui-input.input-danger {
     border-color: hsl(2, 64%, 58%) !important;
     color: hsl(2, 64%, 20%);
-    background-color: hsl(2, 64%, 90%);
+    background-color: hsl(2, 64%, 99%);
     outline-color: hsl(2, 64%, 90%);
 }
-input.ui-input.input-focused-error:focus {
+input.ui-input.input-focused-danger:focus {
     border-color: hsl(2, 64%, 58%) !important;
     color: hsl(2, 64%, 20%);
-    background-color: hsl(2, 64%, 90%);
+    background-color: hsl(2, 64%, 99%);
     outline-color: hsl(2, 64%, 90%);
 }
 /* ATOMIC STATUS */

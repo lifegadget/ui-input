@@ -1,14 +1,34 @@
-<div class="container">
-    <h1 id="title"><a href="https://github.com/lifegadget/ui-input">ui-input</a></h1>
-    <h2>Input controls for ambitious Ember applications</h2>
-
-    {{outlet}}
+<div class="flash-messages">
+  {{#each flashMessages.queue as |flash|}}
+    {{#flash-message flash=flash as |component flash|}}
+      {{#if flash.componentName}}
+        {{component flash.componentName content=flash.content}}
+      {{else}}
+        <h6>{{component.flashType}}</h6>
+        <p>{{flash.message}}</p>
+      {{/if}}
+    {{/flash-message}}
+  {{/each}}
 </div>
+<div class="container">
+  <h2 class="display-2">
+    {{ui-label title='ui-input' mood='success'}}&nbsp;addon
+  </h2>
+  {{#ui-navbar onChange=(action 'navChange') selected=currentPath as |nav|}}
+    {{#nav.brand  linkTo='https://github.com/lifegadget/ui-input'}}
+    {{ui-icon 'github' size='2x'}}
+    {{/nav.brand}}
+    {{#nav.items}}
+      {{nav.item title='README' routeTo='index'}}
+      {{nav.item title='text-input' routeTo='demo-text-input'}}
+      {{nav.item title='email-input' routeTo='demo-email-input'}}
+      {{nav.item title='numeric-input' routeTo='demo-numeric-input'}}
+      {{nav.item title='password-input' routeTo='demo-password-input'}}
+    {{/nav.items}}
+  {{/ui-navbar}}
+  <p>
+    &nbsp;
+  </p>
+  {{outlet}}
 
-{{#if notIndexPage}}
-    {{#link-to 'index'}}
-    <div class="back-navigation">
-        {{ui-icon icon='arrow-circle-left' size='5x' class='animated fadeIn'}}
-    </div>
-    {{/link-to}}
-{{/if}}
+</div>

@@ -143,24 +143,24 @@ Ember.Controller.extend {
     <div class="config-icon col-xs-1">{{icon-cog size="2x"}}</div>
     <div class="config-section col-xs-11">
         <span class="col-xs-12 col-sm-9">
-            Rules: {{ui-button-radio size='small' choices='none,invalidEmail,invalidDomain' selected=rules}}&nbsp;&nbsp;&nbsp;
+            Rules: {{ui-buttons size='small' choices='none,invalidEmail,invalidDomain' selected=rules}}&nbsp;&nbsp;&nbsp;
             Default Rules: {{defaultRules}}
             <p></p>
             Domain Whitelist: {{text-input width='30%' size='small' disabled=hasInvalidDomainRule}} &nbsp;&nbsp;
             Blacklist: {{text-input width='30%' size='small' disabled=hasInvalidDomainRule}}
             <hr/>
-            Size: {{ui-button-radio size='small' choices='tiny,small,default,large,huge' selected=size}}
+            Size: {{ui-buttons size='small' choices='tiny,small,default,large,huge' selected=size}}
             Width: {{text-input size='small' value=width width='60px'}} 
             Height: {{text-input size='small' value=height width='60px'}} <br/>
             <p></p>
             Style:
-            {{ui-button-radio size='small' choices='bootstrap,flat' selected=style}} &nbsp;&nbsp;
+            {{ui-buttons size='small' choices='bootstrap,flat' selected=style}} &nbsp;&nbsp;
             Text Alignment: 
-            {{ui-button-radio size='small' choices='left,center,right' selected=textAlign}}
+            {{ui-buttons size='small' choices='left,center,right' selected=textAlign}}
             <p></p>
             <hr/>
             Color Class:            
-            {{ui-button-radio size='small' choices='default,success,info,primary,warning,error' selected=color}}
+            {{ui-buttons size='small' choices='default,success,info,primary,warning,error' selected=color}}
             <p></p>
             Color (using style props):
             <p></p>

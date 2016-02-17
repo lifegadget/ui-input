@@ -1,1 +1,35 @@
-{{yield}}
+<div id="group-{{id}}" class="input-group {{name}}">
+  {{#if hasBlock}}
+    {{yield (hash
+      addon = (component 'input-group-addon'
+        pre=pre
+        post=post
+        preIcon=preIcon
+        postIcon=postIcon
+      )
+      button = (component 'input-group-button'
+        mood=buttonMood
+        title=(if button button buttonTitle)
+        onClick=onClick
+      )
+      input = (component 'input-primitive'
+        id=id
+        type=type
+        placeholder=placeholder
+        name=name
+        value=value
+        label=label
+        disabled=disabled
+        readonly=readonly
+        autocomplete=autocomplete
+        autofocus=autofocus
+        form=form
+
+        onBlur=(action 'onBlur')
+        onChange=(action 'onChange')
+      )
+    )}}
+  {{else}}
+    <b>NOTE:</b> currently the "input-group" component only supports the block format
+  {{/if}}
+</div>
