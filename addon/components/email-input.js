@@ -1,25 +1,18 @@
 import Ember from 'ember';
-import BaseInput from '../components/ui-base-input';
-import SharedTextRules from '../mixins/ui-shared-rules-text';
-import SharedEmailRules from '../mixins/ui-shared-rules-email';
-import layout from '../templates/components/password-input';
 const { keys, create } = Object; // jshint ignore:line
-const {computed, observer, $, A, run, on, typeOf, debug, defineProperty, get, set, inject, isEmpty} = Ember;  // jshint ignore:line
+const { RSVP: {Promise, all, race, resolve, defer} } = Ember; // jshint ignore:line
+const { inject: {service} } = Ember; // jshint ignore:line
+const { computed, observer, $, run, on, typeOf, isPresent } = Ember;  // jshint ignore:line
+const { defineProperty, get, set, inject, isEmpty, merge } = Ember; // jshint ignore:line
+const a = Ember.A; // jshint ignore:line
 
-export default BaseInput.extend(SharedEmailRules, SharedTextRules, {
+import uiInput from 'ui-input/components/text-input';
+import layout from '../templates/components/text-input';
+
+const input = uiInput.extend({
   layout: layout,
   type: 'email',
-  emptyIsNull: true,
-  _rulesTypeLibrary: Ember.on('init', Ember.computed(function() {
-    let { _rulesTextLibrary, _rulesEmailLibrary } = this.getProperties('_rulesTextLibrary', '_rulesEmailLibrary');
-    return _rulesEmailLibrary.concat(_rulesTextLibrary);
-  })),
-  defaultRules: computed({
-    set(_,value) {
-      return value;
-    },
-    get() {
-      return [];
-    }
-  })
+
 });
+input[Ember.NAME_KEY] = 'email-input';
+export default input;

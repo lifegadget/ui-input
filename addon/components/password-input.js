@@ -1,29 +1,26 @@
 import Ember from 'ember';
-import BaseInput from '../components/ui-base-input';
-import SharedSecurityRules from '../mixins/ui-shared-security';
-import layout from '../templates/components/password-input';
 const { keys, create } = Object; // jshint ignore:line
-const {computed, observer, $, A, run, on, typeOf, debug, defineProperty, get, set, inject, isEmpty} = Ember;  // jshint ignore:line
+const { RSVP: {Promise, all, race, resolve, defer} } = Ember; // jshint ignore:line
+const { inject: {service} } = Ember; // jshint ignore:line
+const { computed, observer, $, run, on, typeOf, isPresent } = Ember;  // jshint ignore:line
+const { defineProperty, get, set, inject, isEmpty, merge } = Ember; // jshint ignore:line
+const a = Ember.A; // jshint ignore:line
 
-export default BaseInput.extend(SharedSecurityRules,{
+import uiInput from 'ui-input/components/text-input';
+import layout from '../templates/components/text-input';
+
+const input = uiInput.extend({
   layout: layout,
-  type: 'password',
-  emptyIsNull: true,
   showPassword: false,
-  _showPassword: Ember.on('init', Ember.observer('showPassword', function() {
-    if(this.get('showPassword')) {
-      this.set('type', 'text');
-    } else {
-      this.set('type', 'password');
-    }
-  })),
-  _rulesTypeLibrary: Ember.computed.alias('_securityRulesLibrary'),
-  defaultRules: computed({
+  type: computed('showPassword', {
     set(_,value) {
       return value;
     },
     get() {
-      return ['securePassword'];
+      return this.get('showPassword') ? 'text' : 'password';
     }
-  })
+  }),
+
 });
+input[Ember.NAME_KEY] = 'password-input';
+export default input;

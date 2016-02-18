@@ -1,1 +1,106 @@
-{{yield this}}
+{{#if hasBlock}}
+  {{yield (hash
+    label = (component 'ui-input-label'
+      for=(concat 'input-' elementId)
+      name=name
+    )
+    group = (component 'input-group'
+      id=elementId
+      type=type
+      skin=skin
+      name=name
+      class=classy
+      value=_value
+      placeholder=placeholder
+      disabled=disabled
+      readonly=readonly
+      autocomplete=autocomplete
+      autofocus=autofocus
+      form=form
+
+      onBlur=(action 'onBlur')
+      onChange=(action 'onChange')
+    )
+    input = (component 'input-primitive'
+      id=elementId
+      type=type
+      skin=skin
+      name=name
+      class=classy
+      value=_value
+      placeholder=placeholder
+      disabled=disabled
+      readonly=readonly
+      autocomplete=autocomplete
+      autofocus=autofocus
+      form=form
+
+      onBlur=(action 'onBlur')
+      onChange=(action 'onChange')
+    )
+  )}}
+{{else}}
+  {{#if label}}
+    {{ui-input-label for=(concat 'input-' elementId)}}
+  {{/if}}
+  {{#if (or pre post preIcon postIcon)}}
+    {{#input-group
+      id=elementId
+      type=type
+      skin=skin
+      name=name
+      class=classy
+      value=_value
+      placeholder=placeholder
+      disabled=disabled
+      readonly=readonly
+      autocomplete=autocomplete
+      autofocus=autofocus
+      form=form
+
+      onBlur=(action 'onBlur')
+      onChange=(action 'onChange')
+      as |g|
+    }}
+      {{#if (or pre preIcon)}}
+        {{#g.addon}}
+          {{#if preIcon}}
+            {{ui-icon preIcon}}
+          {{/if}}
+          {{pre}}
+        {{/g.addon}}
+      {{/if}}
+
+      {{g.input}}
+
+      {{#if (or post postIcon)}}
+        {{#g.addon}}
+          {{#if postIcon}}
+            {{ui-icon postIcon}}
+          {{/if}}
+          {{post}}
+        {{/g.addon}}
+      {{/if}}
+
+    {{/input-group}}
+  {{else}}
+    <input
+      id="input-{{elementId}}"
+      class="{{classy}}"
+      type="{{type}}"
+      name="{{name}}"
+      value="{{_value}}"
+      placeholder="{{placeholder}}"
+      disabled="{{if disabled 'disabled'}}"
+      autocomplete={{autocomplete}}
+      autofocus={{autofocus}}
+      inputmode="{{inputmode}}"
+      form="{{form}}"
+
+      onblur={{action 'onBlur'}}
+      oninput={{action 'onChange'}}
+    >
+  {{/if}}
+
+
+{{/if}}
