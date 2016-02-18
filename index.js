@@ -1,13 +1,12 @@
 /* jshint node: true */
 'use strict';
-var merge = require('merge');
 
 module.exports = {
   name: 'ui-input',
   description: 'Input controls for ambitious Ember applications',
   included: function(app) {
     this._super.included(app);
-    var o = merge(
+    const o = Object.assign(
       { fa: false, animate: false, quiet: false, animateOperation: 'override' },
       app.options['ui-input']
     );
@@ -15,9 +14,9 @@ module.exports = {
     app.import('vendor/ui-input/ui-input.css');
     app.import('vendor/ui-input/ui-input-bootstrap.css'); // only adds what is missing
     app.import('vendor/ui-input/ui-input-flat.css');
-    
+
     // animations
-    var defaultAnimations = [
+    const defaultAnimations = [
       'attention_seekers/bounce.css',
       'attention_seekers/flash.css',
       'attention_seekers/pulse.css',
@@ -29,7 +28,7 @@ module.exports = {
     ];
     // specific to this addon
     app.import('vendor/ui-icon/ui-icon.css');
-    var faMessage = 'font-awesome not referenced explicitly';
+    let faMessage = 'font-awesome not referenced explicitly';
     if(o.fa) {
       // font-awesome
       faMessage = 'fa fonts/css added';
@@ -41,9 +40,9 @@ module.exports = {
       app.import('bower_components/fontawesome/fonts/fontawesome-webfont.woff2',{destDir: 'fonts', overwrite: true});
       app.import('bower_components/fontawesome/fonts/FontAwesome.otf',{destDir: 'fonts', overwrite: true});
     }
-    var animations = [];
-    var animateRoot = 'bower_components/animate.css/source/';
-    var animateMessage = 'no animations loaded';
+    let animations = [];
+    let animateRoot = 'bower_components/animate.css/source/';
+    let animateMessage = 'no animations loaded';
     if(o.animate) {
       // annimate.css
       app.import(animateRoot + '_base.css');
@@ -59,10 +58,6 @@ module.exports = {
           animateMessage = 'replace default animations with configured';
           animations = o.animate;
         }
-        if(! animations instanceof array) {
-          animateMessage = 'tried to use config for animation but ran into problems!';
-          animations = [];
-        }
       }
 
       animations.forEach(function(cssFile) {
@@ -75,7 +70,7 @@ module.exports = {
       });
     }
     if(!o.quiet) {
-      console.log('ui-input:%s, %s', faMessage, animateMessage); 
+      console.log('ui-input:%s, %s', faMessage, animateMessage);
     }
 
   }

@@ -1,324 +1,328 @@
-<h3>text-input <span class='side-note'>component</span></h3>
+{{#markdown-convert style='github'}}
+  ## Component: `text-input`
 
-<h4>Overview</h4>
+  The `text-input` component provides a bootstrap and HTML5 friendly way of using the native HTML text input control.
+
+  ## Examples
+{{/markdown-convert}}
+
 <div class="row">
-    <desc>
-        The <prop>text-input</prop> control is the simplist of the set of atomic input controls. Since it's primary function is capturing <em>string</em> values
-        it is worth noting that an input control left blank will be equal to an empty string not a <em>null</em> value (this is opposite to a numeric input).
-        If you would prefer that an empty string is viewed as a <em>null</em> value then just set the <code>emptyIsNull</code> property to true.
-
-    </desc>
+  <div class="col-xs-3">
+    {{text-input
+      value=basicValue
+      placeholder='do it now'
+      onChange=(mut basicValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{basicValue}}"
+    </p>
+  </div>
+  <div class="col-sm-9  col-md-4">
+    <span>
+      <p><b>Immediate Update</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  value=basicValue
+  placeholder='do it now'
+  onChange=(mut basicValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      In the bad old _pre_-DDAU days we got "immediate" updates out of the box. A lot of people liked that. Well with this addon and the help of the `mut` helper you can now have it again with very little additional syntax but with the goodness of DDAU working for you.
+    {{/ui-markdown}}
+  </div>
 </div>
 
-{{#demo-css}}
-<h4>Basic Usage</h4>
-<row>
-  <widget>
+<div class="row">
+  <div class="col-xs-3">
     {{text-input
-      skin=skin
-      status=status
-      size=size
-      mood=mood
-      placeholder=placeholder
-      textAlign=textAlign
-      disabled=disabled
+      value=blurValue
+      placeholder='in your own time'
+      onBlur=(mut blurValue)
     }}
-  </widget>
-  <code>
-    {{display-component
-      componentName='text-input'
-      skin=skin
-      status=status
-      size=size
-      mood=mood
-      placeholder=placeholder
-      textAlign=textAlign
-      disabled=disabled
-    }}
-  </code>
-  <description>
-    Basic usage includes setting properties such as:
-    <br/>
-    <controls>
-      <control>
-        <span class='name'>placeholder:</span>
-        <span>
-          {{text-input value=placeholder skin='flat' size='small'}}
-        </span>
-      </control>
-      <control>
-        <span class='name'>mood:</span>
-        <span>{{radio-buttons buttons='default,primary,info,success,warning,error' value=mood size='tiny' defaultValue='default'}}</span>
-      </control>
-      <control>
-        <span class='name'>size:</span> <span>{{radio-buttons buttons='tiny,small,default,large,huge' value=size size='tiny' defaultValue='default'}}</span>
-      </control>
-      <control>
-        <span class='name'>text-align:</span> <span>{{radio-buttons buttons='left,center,right' value=textAlign size='tiny' defaultValue='default'}}</span>
-      </control>
-      <control>
-        <span class='name'>skin:</span>
-        <span>
-          {{radio-buttons buttons='bootstrap,flat' value=skin size='tiny' defaultValue='bootstrap'}}
-        </span>
-      </control>
-      <control>
-        <span class='name'>status:</span>
-        <span>
-          {{radio-buttons buttons='none:::null,info,success,warning,error' value=status size='tiny'}}
-        </span>
-      </control>
-      <control>
-        <span class='name'>disabled:</span>
-        <span>
-          {{ui-toggle-button size='small' on='disabled' off='enabled' value=disabled}}
-        </span>
-      </control>
-
-    </controls>
-
-  </description>
-</row>
-
-
-<h4>Style Properties</h4>
-<row>
-  <widget>
-    {{text-input
-      placeholder='text-input'
-      color=color
-      backgroundColor=backgroundColor
-      borderColor=borderColor
-      outlineColor=outlineColor
-      width=width
-      height=height
-    }}
-  </widget>
-  <code>
-    {{display-component
-      componentName='text-input'
-      placeholder='text-input'
-      color=color
-      backgroundColor=backgroundColor
-      borderColor=borderColor
-      outlineColor=outlineColor
-      width=width
-      height=height
-    }}
-  </code>
-  <description>
-    <p>
-      There are specific settings that can be dynamically controlled from the component which are then translated into the <b>skin</b> property of the HTML.
+    <p class="text-muted">
+      controller value: "{{blurValue}}"
     </p>
-    <p>
-      <b>Color</b> is a good example of this. Mood skins (from above) may be enough sometimes but if you need greater control:
-
-      <controls>
-        <control>
-          <span>text:</span>
-          <span>{{text-input skin='flat' size='small' value=color}}</span>
-          <span>backgrnd:</span>
-          <span>{{text-input skin='flat' size='small' value=backgroundColor}}</span>
-        </control>
-        <control>
-          <span>border:</span>
-          <span>{{text-input skin='flat' size='small' value=borderColor}}</span>
-          <span>outline:</span>
-          <span>{{text-input skin='flat' size='small' value=outlineColor}}</span>
-        </control>
-      </controls>
-    </p>
-    <p>
-      Another example is sizing ... <prop>size</prop> from above will suit many situations but sometimes you'll want to dig into <prop>width</prop> and <prop>height</prop> properties for greater control (note: trying setting height to 'square' or 'golden' to get a ratio):
-
-      <controls>
-        <control>
-          <span>width:</span>
-          <span>{{text-input skin='flat' size='small' value=width}}</span>
-          <span>height:</span>
-          <span>{{text-input skin='flat' size='small' value=height}}</span>
-        </control>
-      </controls>
-
-    </p>
-  </description>
-</row>
-
-<h4>Rules</h4>
-<row>
-  <widget>
-    {{text-input
-      placeholder='text-input'
-      animateRuleLengthLimit=animateRuleLength
-      animateRuleLengthWarn=animateRuleLength
-      animateRuleInvalidEmail=animateRuleInvalidEmail
-      rules=rules
-      length=length
-    }}
-  </widget>
-  <code>
-    {{display-component
-      componentName='text-input'
-      placeholder='text-input'
-      animateRuleLengthLimit=animateRuleLength
-      animateRuleLengthWarn=animateRuleLength
-      animateRuleInvalidEmail=animateRuleInvalidEmail
-      rules=rules
-      length=length
-    }}
-  </code>
-  <description>
-    <p>
-      Rules can be applied to enforce desired behaviour. The rules for a text input are:
-      <ul>
-        <li>
-          <code>lengthLimit</code> -
-          Limits input to an allowable length (set in component as 'length' but tranlated into HTML as 'size').
-        </li>
-        <li>
-          <code>lengthWarn</code> -
-          Warns visually when the suggested length has been exceeded but
-          does not prohibit further input. Instead is will trigger any animation, sound, or status change.
-        </li>
-        <li>
-          <code>invalidEmail</code> -
-          Triggers when input moves into an invalid representation of an email address (although ignores a null value).
-        </li>
-      </ul>
-    </p>
-    <p>
-      <controls>
-        <control>
-          <span class='name'>Rule:</span>
-          <span>{{radio-buttons buttons='none:::null,lengthLimit::lengthLimit,lengthWarn::lengthWarn,email::invalidEmail' value=rules size='small'}}</span>
-        </control>
-        <control>
-          <span class='name'>Length:</span>
-          <span>{{text-input skin='flat' size='small' value=length}}</span>
-          <span class='name'>animate invalidEmail:</span>
-          <span>{{text-input skin='flat' size='small' value=animateRuleInvalidEmail}}</span>
-        </control>
-        <control>
-          <span class='name'>animate lengthLimit:</span>
-          <span>{{text-input skin='flat' size='small' value=animateRuleLengthLimit}}</span>
-          <span class='name'>animate lengthWarn:</span>
-          <span>{{text-input skin='flat' size='small' value=animateRuleLengthWarn}}</span>
-        </control>
-      </controls>
-    </p>
-  </description>
-</row>
-
-<h4>Animation and Effects</h4>
-<row>
-  <widget>
-    {{text-input
-      placeholder='text-input'
-      animateFocusIn=animateFocusIn
-      animateMouseEnter=animateMouseEnter
-      animateMouseClick=animateMouseClick
-      animateSubmit=animateSubmit
-      animateChange=animateChange
-      animateRuleLengthLimit=animateRuleLength
-      animateRuleLengthWarn=animateRuleLength
-    }}
-  </widget>
-  <code>
-    {{display-component
-      componentName='text-input'
-      placeholder='text-input'
-      animateFocusIn=animateFocusIn
-      animateMouseEnter=animateMouseEnter
-      animateMouseClick=animateMouseClick
-      animateSubmit=animateSubmit
-      animateChange=animateChange
-      animateRuleLengthLimit=animateRuleLength
-      animateRuleLengthWarn=animateRuleLength
-    }}
-  </code>
-  <description>
-    <p>
-      When certain user events take place you can visually alert people with animation. Animations use CSS to animate and borrow from the <b>animate.css</b> library.
-    </p>
-    <p>
-      Choose an animation from (tada, bounce, pulse, shake, etc.):
-
-      <controls>
-        <control>
-          <span class='name'>focusIn:</span>
-          <span>{{text-input skin='flat' size='small' value=animateFocusIn}}</span>
-          <span class='name'>focusOut:</span>
-          <span>{{text-input skin='flat' size='small' value=animateFocusOut}}</span>
-        </control>
-        <control>
-          <span class='name'>mouseEnter:</span>
-          <span>{{text-input skin='flat' size='small' value=animateMouseEnter}}</span>
-          <span class='name'>mouseClick:</span>
-          <span>{{text-input skin='flat' size='small' value=animateMouseClick}}</span>
-        </control>
-        <control>
-          <span class='name'>submit:</span>
-          <span>{{text-input skin='flat' size='small' value=animateSubmit}}</span>
-          <span class='name'>change:</span>
-          <span>{{text-input skin='flat' size='small' value=animateChange}}</span>
-        </control>
-      </controls>
-    </p>
-    <p>
-      Beyond animation, inputs can trigger sound effects or <a href="http://www.w3.org/TR/vibration/">vibrations</a>. Like in animation you just attach the sound or vibration to an event.
-
-      <controls>
-        <control>
-          <span class='name'>focusIn:</span>
-          <span>{{text-input skin='flat' size='small' value=animateFocusIn}}</span>
-          <span class='name'>focusOut:</span>
-          <span>{{text-input skin='flat' size='small' value=animateFocusOut}}</span>
-        </control>
-      </controls>
-    </p>
-  </description>
-</row>
-
-<h4>Actions Up</h4>
-<row>
-  <widget>
-    {{text-input
-      placeholder='text-input'
-      changed='changed'
-      action='action'
-      error='error'
-      length=5
-      rules='lengthLimit'
-    }}
-  </widget>
-  <code>
-    {{display-component
-      componentName='text-input'
-      placeholder='text-input'
-      changed='changed'
-      action='action'
-      error='error'
-      length=5
-      rules='lengthLimit'
-    }}
-  </code>
-  <description>
-    <p>
-      While a user can create a two-way binding to <prop>value</prop> it is often desirable to rely on actions being passed back up to the container. This achieved with binding to one or more of the following actions:
-      <ul>
-        <li><b>action</b><span class="func-signature">(evt-type,obj,evt)</span> - user events</li>
-        <li><b>changed</b><span class="func-signature">(obj,evt)</span> - only broadcasts when the value has changed.</li>
-        <li><b>error</b><span class="func-signature">(code,obj,msg)</span> - when constraints are surpassed</li>
-      </ul>
-    </p>
-
-  </description>
-</row>
-<div class="flash-window">
-  {{#each flashMessages.queue as |flash|}}
-    {{flash-message flash=flash}}
-  {{/each}}
+  </div>
+  <div class="col-sm-9 col-md-4">
+    <span>
+      <p><b>Update on Blur</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  value=blurValue
+  placeholder='in your own time'
+  onBlur=(mut blurValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      In other cases, you may not want the "noise" of updating properties as you type but rather you'd like the container to only be updated when the input control losses focus (aka, blur). To do that just put the `mut` helper on the "onBlur" event.
+    {{/ui-markdown}}
+  </div>
 </div>
 
-{{/demo-css}}
+<hr>
 
+<div class="row">
+  <div class="col-xs-3">
+    {{text-input
+      value=sizeValue
+      size=size
+      placeholder='size me up'
+      onBlur=(mut sizeValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{sizeValue}}"
+    </p>
+    <p>
+      {{ui-buttons
+        buttons='tiny,small,default,large,huge'
+        size='tiny'
+        value=size
+        defaultValue='default'
+        onChange=(mut size)
+      }}
+    </p>
+  </div>
+  <div class="col-sm-9 col-md-4">
+    <span>
+      <p><b>Sizing</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  value=sizeValue
+  size={{size}}
+  placeholder='size me up'
+  onBlur=(mut sizeValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      In other cases, you may not want the "noise" of updating properties as you type but rather you'd like the container to only be updated when the input control losses focus (aka, blur). To do that just put the `mut` helper on the "onBlur" event.
+    {{/ui-markdown}}
+  </div>
+</div>
+
+{{! MOOD }}
+<hr>
+
+<div class="row">
+  <div class="col-xs-3">
+    {{text-input
+      value=moodyValue
+      mood=mood
+      inGroup=inGroup
+      placeholder='emotional train wreck'
+      onChange=(mut moodyValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{moodyValue}}"
+    </p>
+    <p>
+      {{ui-buttons
+        buttons='default,success,warning,danger'
+        size='tiny'
+        value=mood
+        defaultValue='default'
+        onChange=(mut mood)
+      }}
+    </p>
+  </div>
+  <div class="col-sm-9 col-md-4">
+    <span>
+      <p><b>Mood</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  value=moodyValue
+  mood="{{mood}}"
+  placeholder='emotional train wreck'
+  onChange=(mut moodyValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      If you've used any of the other `ui-*` addons you'll be familiar with the "mood" property. In Bootstrap they have a concept of "validation" which resembles what the _mood_ property would typically control (aka, visual color coding).
+
+      However, due to CSS design considerations, Bootstrap controls this in a parent container called a `form-group`. We have included that as a seperate component and you will need to wrap this component if you wish to get that functionality (which includes icon indicators as well as color coding).
+
+      However, if you'd like to just add some color, while maintaining atomicity of just an HTML 'input' tag then just set mood on this component.
+    {{/ui-markdown}}
+  </div>
+</div>
+
+<hr> {{! SKINNING }}
+<div class="row">
+  <div class="col-xs-3">
+    {{text-input
+      value=skinValue
+      skin=skin
+      placeholder='hey good looking'
+      onChange=(mut skinValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{skinValue}}"
+    </p>
+    <p>
+      {{ui-buttons
+        buttons='default,bs-flat,flat'
+        size='tiny'
+        value=skin
+        defaultValue='default'
+        onChange=(mut skin)
+      }}
+    </p>
+  </div>
+  <div class="col-sm-9  col-md-4">
+    <span>
+      <p><b>Skinning</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  skin="{{skin}}"
+  value=skinValue
+  placeholder='hey good looking'
+  onChange=(mut skinValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      Skinning is the ability to change the look and feel of a visual component with a simple configuration switch. This is largely applied with CSS but this addon hopefully helps a bit more with a structure for this skinning.
+
+      This point-of-view starts with the `skin` property which you can set to any value you please. If that value starts with "bs-" then it will simply add the `.skin-[name]` class to the input. If the name does _not_ start with "bs-" then it will remove most of the BS styling so you are working with a fresher palate.
+
+      > **Note:** not a lot has been done to flesh this out yet but feel free to contribute with a PR
+    {{/ui-markdown}}
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-3">
+    {{text-input
+      pre='@'
+      value=addonValue
+      placeholder='enter your email'
+      onChange=(mut addonValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{addonValue}}"
+    </p>
+    {{text-input
+      preIcon='calendar'
+      post='.00'
+      value=payupValue
+      placeholder='pay up'
+      onChange=(mut payupValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{payupValue}}"
+    </p>
+  </div>
+  <div class="col-sm-9  col-md-4">
+    <span>
+      <p><b>Addons</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  pre='@'
+  value=addonValue
+  placeholder='do it now'
+  onChange=(mut addonValue)
+}}
+
+\{{text-input
+  preIcon='calendar'
+  post='.00'
+  value=payupValue
+  placeholder='pay up'
+  onChange=(mut payupValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      _Addons_ are UI features that appear to be attached to the input control (either to the left or right). They do break the "atomicity" of a single HTML element but in this case we've felt it made sense to include as part of this component rather than mimic Bootstrap's structure (of course the components will produce a BS-compliant HTML output).
+
+      In the _inline_ mode the properties you can set are:
+
+      | text | icon | button |
+      |------|------|--------|
+      | pre | preIcon | preButton |
+      | post | postIcon | postButton |
+
+    {{/ui-markdown}}
+  </div>
+</div>
+
+{{! BLOCK STYLE ADDONS}}
+
+<div class="row">
+  <div class="col-xs-3">
+    {{#text-input
+      name='simpleton'
+      value=simpleValue
+      placeholder='simple is, what ...'
+      onBlur=(mut simpleValue)
+      as |i|
+    }}
+      {{i.label 'Simple'}}
+      {{i.input}}
+    {{/text-input}}
+    <p class="text-muted">
+      controller value: "{{simpleValue}}"
+    </p>
+
+
+    {{#text-input
+      name='quantity-checker'
+      value=blockValue
+      placeholder='quantity'
+      onChange=(mut blockValue)
+      as |i|
+    }}
+      {{#i.label}}Quantity{{/i.label}}
+      {{#i.group as |g|}}
+        {{g.addon '#'}}
+        {{g.input}}
+        {{g.button 'submit'}}
+      {{/i.group}}
+    {{/text-input}}
+    <p class="text-muted">
+      controller value: "{{blockValue}}"
+    </p>
+  </div>
+  <div class="col-sm-9  col-md-4">
+      <p><b>Block Style Addons</b></p>
+      <pre><code class='handlebars'>\{{#text-input
+  name='simpleton'
+  value=simpleValue
+  placeholder='simple is, what ...'
+  onBlur=(mut simpleValue)
+  as |i|
+}}
+  \{{i.label 'Simple'}}
+  \{{i.input}}
+\{{/text-input}}</code></pre>
+
+<hr>
+
+<pre><code class='handlebars'>\{{#text-input
+  name='quantity-checker'
+  value=blockValue
+  placeholder='quantity'
+  onChange=(mut blockValue)
+  as |i|
+}}
+  \{{#i.label}}Quantity\{{/i.label}}
+  \{{#i.group as |g|}}
+    \{{g.addon '#'}}
+    \{{g.input}}
+    \{{g.button 'submit'}}
+  \{{/i.group}}
+\{{/text-input}}</code></pre>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      When we start to explore the _block_ format we just need an understanding of what each component yields WRT to contextual components or variables. There are an almost unlimited number of ways you can combine these, to the left you see some relatively unimaginative examples.
+
+    {{/ui-markdown}}
+  </div>
+</div>

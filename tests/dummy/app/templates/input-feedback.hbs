@@ -91,9 +91,9 @@
         <columns>
             <column>
                 Feedback Status: <br/>
-                {{ui-button-radio choices=groupStatuses selected=feedbackStatus size='small'}}<br/>
+                {{ui-buttons choices=groupStatuses selected=feedbackStatus size='small'}}<br/>
                 Group Status: <br/>
-                {{ui-button-radio choices=groupStatuses selected=groupStatus size='small'}}
+                {{ui-buttons choices=groupStatuses selected=groupStatus size='small'}}
             </column>
             <column>
                 Size:<br/>
@@ -111,7 +111,7 @@
             </column>
             <column>
                 Style Family:<br/>        
-                {{ui-button-radio choices='bootstrap,flat' selected=style size='small' stretch=true}}<br/>
+                {{ui-buttons choices='bootstrap,flat' selected=style size='small' stretch=true}}<br/>
                 Icon Family:<br/>
                 {{ui-bs-button-choice choices=iconFamilies selected=iconFamily size='small' stretch=true}}<br/>                
             </column>
