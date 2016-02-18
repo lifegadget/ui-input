@@ -1,6 +1,6 @@
 {
   "name": "ui-input",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "Input controls for ambitious Ember applications",
   "directories": {
     "doc": "doc",

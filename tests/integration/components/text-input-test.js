@@ -1,25 +1,23 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('form-control-feedback', 'Integration | Component | form control feedback', {
+moduleForComponent('text-input', 'Integration | Component | text input', {
   integration: true
 });
 
 test('it renders', function(assert) {
-  assert.expect(2);
-
   // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  // Handle any actions with this.on('myAction', function(val) { ... });"
 
-  this.render(hbs`{{form-control-feedback}}`);
+  this.render(hbs`{{text-input}}`);
 
   assert.equal(this.$().text().trim(), '');
 
-  // Template block usage:
+  // Template block usage:"
   this.render(hbs`
-    {{#form-control-feedback}}
+    {{#text-input}}
       template block text
-    {{/form-control-feedback}}
+    {{/text-input}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');

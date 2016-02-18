@@ -9,7 +9,7 @@ const a = Ember.A; // jshint ignore:line
 import uiInput from 'ui-input/components/text-input';
 import layout from '../templates/components/text-input';
 
-export default uiInput.extend({
+const input = uiInput.extend({
   layout: layout,
   showPassword: false,
   type: computed('showPassword', {
@@ -22,3 +22,5 @@ export default uiInput.extend({
   }),
 
 });
+input[Ember.NAME_KEY] = 'password-input';
+export default input;
