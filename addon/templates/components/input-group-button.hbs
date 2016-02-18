@@ -1,1 +1,11 @@
-{{yield}}
+<div class="input-group-btn {{name}}">
+  {{#if hasBlock}}
+    {{yield (hash
+      button = (component 'ui-button')
+      dropdown = (component 'ui-dropdown-button')
+      toggle = (component 'ui-toggle-button')
+    )}}
+  {{else}}
+    {{ui-button title=content icon=icon mood=mood}}
+  {{/if}}
+</div>

@@ -1,6 +1,13 @@
 import Ember from 'ember';
 import layout from '../templates/components/input-group-button';
 
-export default Ember.Component.extend({
-  layout
+const button = Ember.Component.extend({
+  layout,
+  tagName: '',
+
 });
+button[Ember.NAME_KEY] = 'input-group-button';
+button.reopenClass({
+  positionalParams: ['content']
+});
+export default button;

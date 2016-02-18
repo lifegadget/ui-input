@@ -29,7 +29,16 @@ const input = Ember.Component.extend(ddau, {
     const proxy = this.get('class') || '';
     const mood = this.get('mood');
     const moodStyle = mood && mood !== 'default' ? ` input-${mood}` : '';
-    return `ui-input form-control ${proxy}${moodStyle}${get(this, '_size')}`;
+    const skin = this.get('skin');
+    let formControl = ' form-control';
+    let skinClass = '';
+    if(skin && skin !== 'default') {
+      if(skin.slice(0,3) !== 'bs-') {
+        formControl = '';
+      }
+      skinClass = ` skin-${skin}`;
+    }
+    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}`;
   }),
 
   // min: null,

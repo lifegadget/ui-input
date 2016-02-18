@@ -103,6 +103,7 @@
   </div>
 </div>
 
+{{! MOOD }}
 <hr>
 
 <div class="row">
@@ -145,6 +146,50 @@
       However, due to CSS design considerations, Bootstrap controls this in a parent container called a `form-group`. We have included that as a seperate component and you will need to wrap this component if you wish to get that functionality (which includes icon indicators as well as color coding).
 
       However, if you'd like to just add some color, while maintaining atomicity of just an HTML 'input' tag then just set mood on this component.
+    {{/ui-markdown}}
+  </div>
+</div>
+
+<hr> {{! SKINNING }}
+<div class="row">
+  <div class="col-xs-3">
+    {{text-input
+      value=skinValue
+      skin=skin
+      placeholder='hey good looking'
+      onChange=(mut skinValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{skinValue}}"
+    </p>
+    <p>
+      {{ui-buttons
+        buttons='default,bs-flat,flat'
+        size='tiny'
+        value=skin
+        defaultValue='default'
+        onChange=(mut skin)
+      }}
+    </p>
+  </div>
+  <div class="col-sm-9  col-md-4">
+    <span>
+      <p><b>Skinning</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  skin="{{skin}}"
+  value=skinValue
+  placeholder='hey good looking'
+  onChange=(mut skinValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      Skinning is the ability to change the look and feel of a visual component with a simple configuration switch. This is largely applied with CSS but this addon hopefully helps a bit more with a structure for this skinning.
+
+      This point-of-view starts with the `skin` property which you can set to any value you please. If that value starts with "bs-" then it will simply add the `.skin-[name]` class to the input. If the name does _not_ start with "bs-" then it will remove most of the BS styling so you are working with a fresher palate.
+
+      > **Note:** not a lot has been done to flesh this out yet but feel free to contribute with a PR
     {{/ui-markdown}}
   </div>
 </div>
@@ -212,7 +257,24 @@
 <div class="row">
   <div class="col-xs-3">
     {{#text-input
+      name='simpleton'
+      value=simpleValue
+      placeholder='simple is, what ...'
+      onBlur=(mut simpleValue)
+      as |i|
+    }}
+      {{i.label 'Simple'}}
+      {{i.input}}
+    {{/text-input}}
+    <p class="text-muted">
+      controller value: "{{simpleValue}}"
+    </p>
+
+
+    {{#text-input
       name='quantity-checker'
+      value=blockValue
+      placeholder='quantity'
       onChange=(mut blockValue)
       as |i|
     }}
@@ -229,13 +291,33 @@
   </div>
   <div class="col-sm-9  col-md-4">
       <p><b>Block Style Addons</b></p>
-      <pre><code class='handlebars'>\{{text-input
-  pre='@'
-  value=addonValue
-  placeholder='do it now'
-  onChange=(mut addonValue)
+      <pre><code class='handlebars'>\{{#text-input
+  name='simpleton'
+  value=simpleValue
+  placeholder='simple is, what ...'
+  onBlur=(mut simpleValue)
+  as |i|
 }}
-</code></pre>
+  \{{i.label 'Simple'}}
+  \{{i.input}}
+\{{/text-input}}</code></pre>
+
+<hr>
+
+<pre><code class='handlebars'>\{{#text-input
+  name='quantity-checker'
+  value=blockValue
+  placeholder='quantity'
+  onChange=(mut blockValue)
+  as |i|
+}}
+  \{{#i.label}}Quantity\{{/i.label}}
+  \{{#i.group as |g|}}
+    \{{g.addon '#'}}
+    \{{g.input}}
+    \{{g.button 'submit'}}
+  \{{/i.group}}
+\{{/text-input}}</code></pre>
   </div>
   <div class="col-md-5 hidden-sm-down">
     {{#ui-markdown style='github'}}

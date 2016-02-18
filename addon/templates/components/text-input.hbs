@@ -1,16 +1,43 @@
 {{#if hasBlock}}
   {{yield (hash
-    label = (component 'ui-input-label' for=(concat 'input-' elementId))
+    label = (component 'ui-input-label'
+      for=(concat 'input-' elementId)
+      name=name
+    )
     group = (component 'input-group'
       id=elementId
       type=type
-      value=_value
+      skin=skin
       name=name
+      class=classy
+      value=_value
+      placeholder=placeholder
+      disabled=disabled
+      readonly=readonly
+      autocomplete=autocomplete
+      autofocus=autofocus
+      form=form
 
+      onBlur=(action 'onBlur')
+      onChange=(action 'onChange')
     )
-    pre = (component 'ui-input-addon')
-    input = (component 'input-primitive')
-    post = (component 'ui-input-addon')
+    input = (component 'input-primitive'
+      id=elementId
+      type=type
+      skin=skin
+      name=name
+      class=classy
+      value=_value
+      placeholder=placeholder
+      disabled=disabled
+      readonly=readonly
+      autocomplete=autocomplete
+      autofocus=autofocus
+      form=form
+
+      onBlur=(action 'onBlur')
+      onChange=(action 'onChange')
+    )
   )}}
 {{else}}
   {{#if label}}
@@ -20,6 +47,7 @@
     {{#input-group
       id=elementId
       type=type
+      skin=skin
       name=name
       class=classy
       value=_value
@@ -34,7 +62,6 @@
       onChange=(action 'onChange')
       as |g|
     }}
-
       {{#if (or pre preIcon)}}
         {{#g.addon}}
           {{#if preIcon}}

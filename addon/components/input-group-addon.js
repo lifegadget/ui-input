@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/input-group-addon';
 
-export default Ember.Component.extend({
+const addon = Ember.Component.extend({
   layout,
   tagName: '',
   icon: Ember.computed('preIcon', 'postIcon', {
@@ -14,3 +14,8 @@ export default Ember.Component.extend({
   })
 
 });
+addon[Ember.NAME_KEY] = 'input-group-addon';
+addon.reopenClass({
+  positionalParams: ['content']
+});
+export default addon;

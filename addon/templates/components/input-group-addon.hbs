@@ -2,6 +2,9 @@
   {{#if hasBlock}}
     {{yield}}
   {{else}}
-    
+    {{#if icon}}
+      {{ui-icon icon}}
+    {{/if}}
+    {{content}}{{title}}
   {{/if}}
 </div>
