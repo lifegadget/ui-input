@@ -14,6 +14,7 @@ module.exports = {
     app.import('vendor/ui-input/ui-input.css');
     app.import('vendor/ui-input/ui-input-bootstrap.css'); // only adds what is missing
     app.import('vendor/ui-input/ui-input-flat.css');
+    app.import('vendor/ui-input/ui-input-minimal.css');
 
     // animations
     const defaultAnimations = [

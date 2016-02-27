@@ -1,54 +1,51 @@
-input.ui-input.skin-flat {
-    border-top: none;
-    border-right: none;
-    border-left-style: none;
-    border-bottom: 1px solid #ccc;
+input.ui-input.skin-minimal {
+    border: none;
     width: 100%;
     outline: none;
 }
 
-input.ui-input.skin-flat:focus {
+input.ui-input.skin-minimal:focus {
     background: #F9F9F9;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
 
-input.ui-input.skin-flat.input-xs {
+input.ui-input.skin-minimal.input-xs {
     height: 16px;
     font-size: 11px;
     padding: 3px 2px;
     line-height: 1.2;
 }
 
-input.ui-input.skin-flat.input-sm {
+input.ui-input.skin-minimal.input-sm {
     height: 24px;
     font-size: 0.875rem;
     padding: 3px 4px;
 }
 
-input.ui-input.skin-flat {
+input.ui-input.skin-minimal {
     height: 30px;
     font-size: 1rem;
     padding: 4px 4px;
 }
 
-input.ui-input.skin-flat.input-lg {
+input.ui-input.skin-minimal.input-lg {
     height: 32px;
     font-size: 1.25rem;
     padding: 6px 6px;
 }
 
-input.ui-input.skin-flat.input-hg {
+input.ui-input.skin-minimal.input-hg {
     height: 38px;
     font-size: 1.8rem;
     padding: 6px 6px;
 }
 
 /* AUGMENT ATOMIC COLOR */
-input.ui-input.skin-flat {
+input.ui-input.skin-minimal {
     background-color: inherit;
 }
-input.skin-flat.ui-input.status-success,input.skin-flat.ui-input.status-info,input.skin-flat.ui-input.status-warning, input.skin-flat.ui-input.status-error {
+input.skin-minimal.ui-input.status-success,input.skin-minimal.ui-input.status-info,input.skin-minimal.ui-input.status-warning, input.skin-minimal.ui-input.status-error {
     border-radius: 3px;
     border-left-style: solid;
 }

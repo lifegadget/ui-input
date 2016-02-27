@@ -164,7 +164,7 @@
     </p>
     <p>
       {{ui-buttons
-        buttons='default,bs-flat,flat'
+        buttons='default,bs-nada,flat,minimal'
         size='tiny'
         value=skin
         defaultValue='default'
@@ -190,6 +190,46 @@
       This point-of-view starts with the `skin` property which you can set to any value you please. If that value starts with "bs-" then it will simply add the `.skin-[name]` class to the input. If the name does _not_ start with "bs-" then it will remove most of the BS styling so you are working with a fresher palate.
 
       > **Note:** not a lot has been done to flesh this out yet but feel free to contribute with a PR
+    {{/ui-markdown}}
+  </div>
+</div>
+
+<hr> {{! EMPTY IS ... }}
+<div class="row">
+  <div class="col-xs-3">
+    {{text-input
+      value=emptyValue
+      ifEmpty=ifEmpty
+      placeholder='you\'re so vacuous'
+      onChange=(mut emptyValue)
+    }}
+    <p class="text-muted">
+      container value type: {{type-of emptyValue}}<br>
+    </p>
+    <p>
+      {{ui-buttons
+        buttons='default:::undefined,null,undefined'
+        size='tiny'
+        value=ifEmpty
+        defaultValue='default'
+        onChange=(mut ifEmpty)
+      }}
+    </p>
+  </div>
+  <div class="col-sm-9  col-md-4">
+    <span>
+      <p><b>Empty is ...</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  value=emptyValue
+  ifEmpty="{{ifEmpty}}"
+  placeholder='you\'re so vacuous'
+  onChange=(mut emptyValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      The `text-input` takes a "string input." Obviously. But what about when the control is empty? By default it will translate to an empty string but sometimes it would be better if it were _null_ or _undefined_. Both are possible by setting the `ifEmpty` parameter.
     {{/ui-markdown}}
   </div>
 </div>

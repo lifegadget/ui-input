@@ -25,11 +25,12 @@ const input = Ember.Component.extend(ddau, {
     }
   }),
 
-  classy: computed('class', 'mood', '_size', function() {
+  classy: computed('class', 'mood', '_size', 'skin', function() {
     const proxy = this.get('class') || '';
     const mood = this.get('mood');
     const moodStyle = mood && mood !== 'default' ? ` input-${mood}` : '';
-    const skin = this.get('skin');
+    let skin = this.get('skin');
+    if (typeOf(skin) === 'array') { skin = skin[0]; }
     let formControl = ' form-control';
     let skinClass = '';
     if(skin && skin !== 'default') {
@@ -72,6 +73,23 @@ const input = Ember.Component.extend(ddau, {
       default:
         return '';
     }
+  }),
+  _observeForEmpty: observer('isEmpty', 'ifEmpty', function() {
+    const {isEmpty, ifEmpty} = this.getProperties('isEmpty', 'ifEmpty');
+    if (isEmpty && ifEmpty) {
+      switch (ifEmpty) {
+        case 'null':
+          console.log('null');
+          this.handleDDAU('onChange', {message: 'setting for empty'}, null);
+          return;
+        case 'undefined':
+          this.handleDDAU('onChange', {message: 'setting for empty'}, undefined);
+          return;
+      }
+    }
+  }),
+  isEmpty: computed('_value', function() {
+    return Ember.isEmpty(this.get('_value'));
   }),
 
   actions: {
