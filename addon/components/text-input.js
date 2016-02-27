@@ -25,7 +25,7 @@ const input = Ember.Component.extend(ddau, {
     }
   }),
 
-  classy: computed('class', 'mood', '_size', 'skin', function() {
+  classy: computed('class', 'mood', '_size', 'skin', 'isEmpty', function() {
     const proxy = this.get('class') || '';
     const mood = this.get('mood');
     const moodStyle = mood && mood !== 'default' ? ` input-${mood}` : '';
@@ -39,7 +39,8 @@ const input = Ember.Component.extend(ddau, {
       }
       skinClass = ` skin-${skin}`;
     }
-    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}`;
+    const empty = this.get('isEmpty') ? 'empty' : '';
+    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}`;
   }),
 
   // min: null,
@@ -74,30 +75,40 @@ const input = Ember.Component.extend(ddau, {
         return '';
     }
   }),
-  _observeForEmpty: observer('isEmpty', 'ifEmpty', function() {
-    const {isEmpty, ifEmpty} = this.getProperties('isEmpty', 'ifEmpty');
-    if (isEmpty && ifEmpty) {
-      switch (ifEmpty) {
-        case 'null':
-          console.log('null');
-          this.handleDDAU('onChange', {message: 'setting for empty'}, null);
-          return;
-        case 'undefined':
-          this.handleDDAU('onChange', {message: 'setting for empty'}, undefined);
-          return;
-      }
-    }
-  }),
+
   isEmpty: computed('_value', function() {
     return Ember.isEmpty(this.get('_value'));
   }),
 
+  /**
+   * Takes the untyped value of the input control
+   * and intelligently reinstates the proper type
+   */
+  typeCheck(untypedValue) {
+    const {ifEmpty, type} = this.getProperties('ifEmpty', 'type');
+    if (type === 'number') {
+      return Number(untypedValue);
+    }
+    if (Ember.isEmpty(untypedValue) && ifEmpty) {
+      switch(ifEmpty) {
+        case 'null':
+          return null;
+        case 'undefined':
+          return undefined;
+      }
+    }
+
+    return untypedValue;
+  },
+
   actions: {
     onBlur(evt) {
-      this.handleDDAU('onBlur', evt, evt.target.value);
+      this.handleDDAU('onBlur', evt, this.typeCheck(evt.target.value));
     },
     onChange(evt) {
-      this.handleDDAU('onChange', evt, evt.target.value);
+      run.debounce(() => {
+        this.handleDDAU('onChange', evt, this.typeCheck(evt.target.value) );
+      }, 50);
     }
   }
 
