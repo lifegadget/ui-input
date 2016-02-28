@@ -39,7 +39,7 @@ const input = Ember.Component.extend(ddau, {
       }
       skinClass = ` skin-${skin}`;
     }
-    const empty = this.get('isEmpty') ? 'empty' : '';
+    const empty = this.get('isEmpty') ? ' empty' : '';
     return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}`;
   }),
 
