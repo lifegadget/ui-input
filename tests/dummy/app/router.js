@@ -10,4 +10,9 @@ export default Router.map(function() {
   this.route('demo-numeric-input');
   this.route('demo-password-input');
   this.route('demo-email-input');
+  this.route('performance', function() {
+    this.route('native');
+    this.route('component');
+    this.route('helper');
+  });
 });
