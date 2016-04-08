@@ -131,6 +131,15 @@ input.ui-number-input.hide-spinners::-webkit-outer-spin-button {
   margin: 0;
 }
 
+/* INPUT GROUP */
+.input-group {
+  display: flex;
+  flex: 1 1;
+}
+.input-group-addon {
+  line-height: 1.5 !important;
+}
+
 /* INPUT WRAPPER */
 .ui-input.wrapper {
     position: relative;
