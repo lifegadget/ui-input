@@ -8,6 +8,6 @@ const button = Ember.Component.extend({
 });
 button[Ember.NAME_KEY] = 'input-group-button';
 button.reopenClass({
-  positionalParams: ['content']
+  positionalParams: ['title']
 });
 export default button;
