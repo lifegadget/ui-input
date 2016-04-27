@@ -7,12 +7,20 @@
         preIcon=preIcon
         postIcon=postIcon
       )
+      pre = (component 'input-group-addon'
+        pre=pre
+        preIcon=preIcon
+      )
+      post = (component 'input-group-addon'
+        post=post
+        postIcon=postIcon
+      )
       button = (component 'input-group-button'
         mood=buttonMood
         title=(if button button buttonTitle)
         onClick=onClick
       )
-      input = (component 'input-primitive'
+      input = (component 'text-input'
         id=id
         type=type
         class=class

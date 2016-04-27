@@ -1,10 +1,14 @@
-{{ui-buttons
-  buttons='Native HTML::native,text-input Component::component,Input Helper::helper'
-  value=perfTest
-  onChange=(action 'changeTest')
-}}
+<p>
+  {{ui-buttons
+    buttons='Native HTML::native,text-input Component::component,Input Helper::helper'
+    value=perfTest
+    onChange=(action 'changeTest')
+  }}  
+</p>
+<p>
+  Open a console window to see the timed scores. In general native HTML is much more performant but this component is better than Ember's built-in input helper. If all you have is a few input forms than this shouldn't really make a difference but as you approach much large input counts you may need to consider just using native.
+</p>
 <p>
   <br>
 </p>
-
 {{outlet}}

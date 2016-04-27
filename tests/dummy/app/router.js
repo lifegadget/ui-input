@@ -15,4 +15,5 @@ export default Router.map(function() {
     this.route('component');
     this.route('helper');
   });
+  this.route('demo-other-inputs');
 });

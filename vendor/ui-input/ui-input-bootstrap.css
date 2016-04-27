@@ -1,3 +1,6 @@
+.ui-input.bump-left {
+  margin-left: -1px;
+}
 .ui-input.input-xs {
     height: 24px;
     padding: 3px 8px;

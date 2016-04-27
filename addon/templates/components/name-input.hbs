@@ -1,0 +1,15 @@
+{{#input-group as |g|}}
+  {{#if (or pre preIcon)}}
+    {{g.pre pre=pre preIcon=preIcon}}
+  {{/if}}
+
+  {{g.input placeholder='first' class='first-name' onChange=(action 'firstName') onBlur=(action 'blur')}}
+  {{g.input placeholder='last name' class='last-name bump-left' onChange=(action 'lastName') onBlur=(action 'blur')}}
+
+  {{#if (or post postIcon)}}
+    {{g.post post=post postIcon=postIcon}}
+  {{/if}}
+
+{{/input-group}}
+
+{{yield}}

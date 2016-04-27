@@ -12,6 +12,13 @@
   border-radius: 0.15rem;
 }
 
+.input-group input.first-name {
+  flex-grow: 1;
+}
+.input-group input.last-name {
+  flex-grow: 1.4;
+}
+
 /* INLINE STYLE */
 input.input-inliner {
     display: inline-block;
