@@ -18,18 +18,15 @@ export default Ember.Component.extend(ddau, {
     firstName(first) {
       const name = this.get('name');
       name.first = first.value;
-      console.log(`first: ${name.first}, last: ${name.last}`);
-      this.handleDDAU('onChange', name, name);
+      this.handleDDAU('onChange', name, JSON.parse(JSON.stringify(name)));
     },
     lastName(last) {
       const name = this.get('name');
       name.last = last.value;
-      console.log(`first: ${name.first}, last: ${name.last}`);
       this.handleDDAU('onChange', name, JSON.parse(JSON.stringify(name)));
     },
     blur() {
       const name = this.get('name');
-      console.log('blurring', name);
       this.handleDDAU('onBlur', name, JSON.parse(JSON.stringify(name)));
     }
   }
