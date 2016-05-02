@@ -100,11 +100,18 @@ const input = Ember.Component.extend(ddau, {
 
     return untypedValue;
   },
+  blurValidation() {
+    return true;
+  },
+  changeValidation() {
+    return true;
+  },
 
   actions: {
     onBlur(evt) {
       const oldValue = this.get('value');
       const value = this.typeCheck($(evt.target).val());
+      this.blurValidation(evt, value);
       this.handleDDAU('onBlur', {
         evt: evt,
         value: value,
@@ -116,6 +123,7 @@ const input = Ember.Component.extend(ddau, {
     onChange(evt) {
       const oldValue = this.get('value');
       const value = this.typeCheck($(evt.target).val());
+      this.changeValidation(evt, value);
       run.debounce(() => {
         this.handleDDAU('onChange', {
           evt: evt,
