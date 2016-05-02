@@ -103,13 +103,26 @@ const input = Ember.Component.extend(ddau, {
 
   actions: {
     onBlur(evt) {
-      const value = this.typeCheck(evt.target.value);
-      this.handleDDAU('onBlur', {evt: evt, value: value}, value);
+      const oldValue = this.get('value');
+      const value = this.typeCheck($(evt.target).val());
+      this.handleDDAU('onBlur', {
+        evt: evt,
+        value: value,
+        oldValue: oldValue,
+        context: this
+      }, value);
+      evt.stopPropagation();
     },
     onChange(evt) {
-      const value = this.typeCheck(evt.target.value);
+      const oldValue = this.get('value');
+      const value = this.typeCheck($(evt.target).val());
       run.debounce(() => {
-        this.handleDDAU('onChange', {evt: evt, value: value}, value);
+        this.handleDDAU('onChange', {
+          evt: evt,
+          value: value,
+          oldValue: oldValue,
+          context: this
+        }, value);
       }, 25);
     }
   }

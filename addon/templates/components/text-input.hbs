@@ -17,9 +17,6 @@
       autocomplete=autocomplete
       autofocus=autofocus
       form=form
-
-      onBlur=(action 'onBlur')
-      onChange=(action 'onChange')
     )
     input = (component 'input-primitive'
       id=elementId
@@ -58,8 +55,6 @@
       autofocus=autofocus
       form=form
 
-      onBlur=(action 'onBlur')
-      onChange=(action 'onChange')
       as |g|
     }}
       {{#if (or pre preIcon)}}
@@ -89,7 +84,7 @@
       class="{{classy}}"
       type="{{type}}"
       name="{{name}}"
-      value="{{_value}}"
+      value={{_value}}
       placeholder="{{placeholder}}"
       disabled="{{if disabled 'disabled'}}"
       autocomplete={{autocomplete}}
