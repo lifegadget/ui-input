@@ -1,9 +1,9 @@
 <div class="input-group-btn {{name}}">
   {{#if hasBlock}}
-    {{#ui-button title=title icon=icon mood=mood}}
+    {{#ui-button title=title icon=icon mood=mood disabled=disabled}}
       {{yield}}
     {{/ui-button}}
   {{else}}
-    {{ui-button title=title icon=icon mood=mood}}
+    {{ui-button title=title icon=icon mood=mood disabled=disabled}}
   {{/if}}
 </div>

@@ -13,6 +13,10 @@ const input = Ember.Component.extend(ddau, {
   layout,
   tagName: '',
   type:'text',
+  init() {
+    this._super(...arguments);
+    this.changeValidation(null, this.get('value'));
+  },
   // container sets "value" which overrides internal state
   // but allows input controll to move mildly out of step
   // with container which is often desired (aka, onBlur)
@@ -121,6 +125,7 @@ const input = Ember.Component.extend(ddau, {
       evt.stopPropagation();
     },
     onChange(evt) {
+      console.log('change');
       const oldValue = this.get('value');
       const value = this.typeCheck($(evt.target).val());
       this.changeValidation(evt, value);

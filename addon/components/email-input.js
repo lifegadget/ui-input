@@ -13,18 +13,34 @@ const input = uiInput.extend({
   layout: layout,
   type: 'email',
 
-  blurValidation(evt, value) {
-    console.log('blur validation');
-    if (value && value.trim().search(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/) === -1) {
-      this.handleDDAU('onValidity', {
-        validity: 'invalid',
-        context: this
-      }, 'invalid');
+  changeValidation(evt, value) {
+    if(value === null || value === undefined || value === '') {
+      if(this.get('isValid') !== 'empty') {
+        this.set('isValid', 'empty');
+        this.handleDDAU('onValidity', {
+          validity: 'empty',
+          context: this
+        }, 'empty');
+      }
+    }
+
+    else if (value && value.trim().search(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) === -1) {
+      if(this.get('isValid') !== false) {
+        this.set('isValid', false);
+        this.handleDDAU('onValidity', {
+          validity: 'invalid',
+          context: this
+        }, 'invalid');
+      }
     } else {
-      this.handleDDAU('onValidity', {
-        validity: 'valid',
-        context: this
-      }, 'valid');
+      if(this.get('isValid') !== true) {
+        this.set('isValid', true);
+        this.handleDDAU('onValidity', {
+          validity: 'valid',
+          context: this
+        }, 'valid');
+      }
+
     }
   }
 });
