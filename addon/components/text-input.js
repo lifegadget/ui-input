@@ -12,7 +12,7 @@ import ddau from '../mixins/input-ddau';
 const input = Ember.Component.extend(ddau, {
   layout,
   tagName: '',
-  type:'text',
+  type: 'text',
   init() {
     this._super(...arguments);
     this.changeValidation(null, this.get('value'));
@@ -125,7 +125,6 @@ const input = Ember.Component.extend(ddau, {
       evt.stopPropagation();
     },
     onChange(evt) {
-      console.log('change');
       const oldValue = this.get('value');
       const value = this.typeCheck($(evt.target).val());
       this.changeValidation(evt, value);

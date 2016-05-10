@@ -4,6 +4,7 @@ import layout from '../templates/components/input-group';
 const group = Ember.Component.extend({
   layout: layout,
   tagName: '',
+  type: 'text',
   id: Ember.computed('elementId', {
     set(_, value) {
       return value;
