@@ -29,11 +29,10 @@ const input = Ember.Component.extend(ddau, {
     }
   }),
 
-  classy: computed('class', 'mood', '_size', 'skin', 'isEmpty', function() {
-    const proxy = this.get('class') || '';
-    const mood = this.get('mood');
-    const moodStyle = mood && mood !== 'default' ? ` input-${mood}` : '';
-    let skin = this.get('skin');
+  classy: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', function() {
+    let proxy = this.get('class') || '';
+    let {mood, skin, isValid} = this.getProperties('mood', 'skin', 'isValid');
+    let moodStyle = mood && mood !== 'default' ? ` input-${mood}` : '';
     if (typeOf(skin) === 'array') { skin = skin[0]; }
     let formControl = ' form-control';
     let skinClass = '';
@@ -43,8 +42,12 @@ const input = Ember.Component.extend(ddau, {
       }
       skinClass = ` skin-${skin}`;
     }
+    let validity = '';
+    if (isValid !== 'empty') {
+      validity = ' ' + isValid;
+    }
     const empty = this.get('isEmpty') ? ' empty' : '';
-    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}`;
+    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}${validity}`;
   }),
 
   // min: null,

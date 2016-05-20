@@ -71,7 +71,7 @@ module.exports = {
       });
     }
     if(!o.quiet) {
-      console.log('ui-input:%s, %s', faMessage, animateMessage);
+      this.ui.writeLine('ui-input:%s, %s', faMessage, animateMessage);
     }
 
   }

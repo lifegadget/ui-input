@@ -25,16 +25,16 @@ const input = uiInput.extend({
     }
 
     else if (value && value.trim().search(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) === -1) {
-      if(this.get('isValid') !== false) {
-        this.set('isValid', false);
+      if(this.get('isValid') !== 'invalid') {
+        this.set('isValid', 'invalid');
         this.handleDDAU('onValidity', {
           validity: 'invalid',
           context: this
         }, 'invalid');
       }
     } else {
-      if(this.get('isValid') !== true) {
-        this.set('isValid', true);
+      if(this.get('isValid') !== 'valid') {
+        this.set('isValid', 'valid');
         this.handleDDAU('onValidity', {
           validity: 'valid',
           context: this
