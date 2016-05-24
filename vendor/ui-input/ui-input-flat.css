@@ -13,14 +13,16 @@ input.ui-input.skin-flat:focus {
     border-top-right-radius: 3px;
 }
 
-input.ui-input.skin-flat.input-xs {
+input.ui-input.skin-flat.input-xs,
+input.ui-input.skin-flat.form-control-xs {
     height: 16px;
     font-size: 11px;
     padding: 3px 2px;
     line-height: 1.2;
 }
 
-input.ui-input.skin-flat.input-sm {
+input.ui-input.skin-flat.input-sm,
+input.ui-input.skin-flat.form-control-sm {
     height: 24px;
     font-size: 0.875rem;
     padding: 3px 4px;
@@ -32,13 +34,15 @@ input.ui-input.skin-flat {
     padding: 4px 4px;
 }
 
-input.ui-input.skin-flat.input-lg {
+input.ui-input.skin-flat.input-lg,
+input.ui-input.skin-flat.form-control-lg {
     height: 32px;
     font-size: 1.25rem;
     padding: 6px 6px;
 }
 
-input.ui-input.skin-flat.input-hg {
+input.ui-input.skin-flat.input-hg,
+input.ui-input.skin-flat.form-control-hg {
     height: 38px;
     font-size: 1.8rem;
     padding: 6px 6px;
