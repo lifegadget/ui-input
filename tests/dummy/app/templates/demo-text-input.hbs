@@ -62,38 +62,6 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-3">
-    <form onsubmit={{action 'onSubmit'}}>
-
-      {{text-input
-        value=blurValue
-        placeholder='in your own time'
-        onBlur=(mut blurValue)
-      }}
-
-    </form>
-    <p class="text-muted">
-      controller value: "{{blurValue}}"
-    </p>
-  </div>
-  <div class="col-sm-9 col-md-4">
-    <span>
-      <p><b>Update and Submit on Enter</b></p>
-      <pre><code class='handlebars'>\{{text-input
-  value=blurValue
-  placeholder='in your own time'
-  onBlur=(mut blurValue)
-}}</code></pre>
-    </span>
-  </div>
-  <div class="col-md-5 hidden-sm-down">
-    {{#ui-markdown style='github'}}
-      If you're in a form it would be nice .
-    {{/ui-markdown}}
-  </div>
-</div>
-
 <hr>
 
 <div class="row">

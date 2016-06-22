@@ -23,6 +23,8 @@ export default Ember.Controller.extend({
       flashMessages.warning(`Rule constraint: ${code}`);
     },
     onSubmit(e) {
+      e.preventDefault();
+      e.stopPropagation();
       console.log(e);
     }
   }
