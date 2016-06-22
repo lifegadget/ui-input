@@ -1,1 +1,35 @@
-{{outlet}}
+{{#markdown-convert style='github'}}
+  ## Component: `numeric-input`
+
+  The `numeric-input` component extends the `text-input` component.
+
+  ## Examples
+{{/markdown-convert}}
+
+<div class="row">
+  <div class="col-xs-3">
+    {{numeric-input
+      value=basicValue
+      placeholder='count it up'
+      onChange=(mut basicValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{basicValue}}"
+    </p>
+  </div>
+  <div class="col-sm-9  col-md-4">
+    <span>
+      <p><b>Basic Numeric Input</b></p>
+      <pre><code class='handlebars'>\{{numeric-input
+  value=basicValue
+  placeholder='count it up'
+  onChange=(mut basicValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      Needs to be filled in.
+    {{/ui-markdown}}
+  </div>
+</div>

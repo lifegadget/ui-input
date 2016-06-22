@@ -4,31 +4,21 @@
 module.exports = {
   name: 'ui-input',
   description: 'Input controls for ambitious Ember applications',
-  included: function(app) {
+  included: function(app, parentAddon) {
+    const target = (parentAddon || app);
     this._super.included(app);
     const o = Object.assign(
       { fa: false, animate: false, quiet: false, animateOperation: 'override' },
       app.options['ui-input']
     );
     // component CSS
-    app.import('vendor/ui-input/ui-input.css');
-    app.import('vendor/ui-input/ui-input-bootstrap.css'); // only adds what is missing
-    app.import('vendor/ui-input/ui-input-flat.css');
-    app.import('vendor/ui-input/ui-input-minimal.css');
+    target.import('vendor/ui-input/ui-input.css');
+    target.import('vendor/ui-input/ui-input-bootstrap.css'); // only adds what is missing
+    target.import('vendor/ui-input/ui-input-flat.css');
+    target.import('vendor/ui-input/ui-input-minimal.css');
 
-    // animations
-    const defaultAnimations = [
-      'attention_seekers/bounce.css',
-      'attention_seekers/flash.css',
-      'attention_seekers/pulse.css',
-      'attention_seekers/rubberBand.css',
-      'attention_seekers/shake.css',
-      'attention_seekers/swing.css',
-      'attention_seekers/tada.css',
-      'attention_seekers/wobble.css'
-    ];
     // specific to this addon
-    app.import('vendor/ui-icon/ui-icon.css');
+    target.import('vendor/ui-icon/ui-icon.css');
     let faMessage = 'font-awesome not referenced explicitly';
     if(o.fa) {
       // font-awesome
@@ -46,20 +36,7 @@ module.exports = {
     let animateMessage = 'no animations loaded';
     if(o.animate) {
       // annimate.css
-      app.import(animateRoot + '_base.css');
-
-      if(o.animate === 'default') {
-        animations = defaultAnimations;
-        animateMessage = 'default animations loaded';
-      } else {
-        if(o.animateOperation === 'append' ) {
-          animateMessage = 'adding configured animations to default';
-          animations = o.animate.concat(defaultAnimations);
-        } else {
-          animateMessage = 'replace default animations with configured';
-          animations = o.animate;
-        }
-      }
+      target.import(animateRoot + '_base.css');
 
       animations.forEach(function(cssFile) {
         if(cssFile.slice(0,1) === '/' ) {

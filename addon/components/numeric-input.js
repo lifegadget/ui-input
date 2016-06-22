@@ -1,6 +1,10 @@
 import Ember from 'ember';
-import layout from '../templates/components/numeric-input';
+import layout from '../templates/components/text-input';
+import textInput from 'ui-input/components/text-input';
 
-export default Ember.Component.extend({
-  layout
+export default textInput.extend({
+  layout,
+  type: 'number',
+  step: 1,
+  
 });

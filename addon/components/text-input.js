@@ -53,7 +53,7 @@ const input = Ember.Component.extend(ddau, {
   // min: null,
   // max: null,
   // step: null,
-  autocomplete: false,
+  autocomplete: 'off',
   autofocus: false,
   disabled: false,
   inputmode: 'latin-prose',
@@ -139,6 +139,9 @@ const input = Ember.Component.extend(ddau, {
           context: this
         }, value);
       }, 25);
+    },
+    onSubmit(evt) {
+      console.log('submitted', evt);
     }
   }
 

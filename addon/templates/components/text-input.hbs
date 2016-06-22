@@ -69,6 +69,7 @@
       {{g.input
         onChange=onChange
         onBlur=onBlur
+        onSubmit=onSubmit
       }}
 
       {{#if (or post postIcon)}}
@@ -93,7 +94,6 @@
       autocomplete={{autocomplete}}
       autofocus={{autofocus}}
       inputmode="{{inputmode}}"
-      form="{{form}}"
 
       onblur={{action 'onBlur'}}
       oninput={{action 'onChange'}}

@@ -21,6 +21,9 @@ export default Ember.Controller.extend({
     error: function(code) {
       const flashMessages = Ember.get(this, 'flashMessages');
       flashMessages.warning(`Rule constraint: ${code}`);
+    },
+    onSubmit(e) {
+      console.log(e);
     }
   }
 });
