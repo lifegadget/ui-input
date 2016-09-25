@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-var Router = Ember.Router.extend({
-  location: config.locationType
+const Router = Ember.Router.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
 });
 
-export default Router.map(function() {
+Router.map(function() {
   this.route('demo-text-input');
   this.route('demo-numeric-input');
   this.route('demo-password-input');
@@ -17,3 +18,5 @@ export default Router.map(function() {
   });
   this.route('demo-other-inputs');
 });
+
+export default Router;
