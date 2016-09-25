@@ -161,3 +161,17 @@ input.ui-number-input.hide-spinners::-webkit-outer-spin-button {
 .ui-input.wrapper.has-error.includes-postfix .form-control-feedback {
     right: 45px;
 }
+
+/* NUMERIC SPINNERS */
+-webkit-inner-spin-button,
+-webkit-outer-spin-button,
+input[type=number] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    margin: 0.25em;
+    text-align: right;
+}
+input[type="number"]:hover,
+input[type="number"]:focus {
+  -moz-appearance: number-input;
+}

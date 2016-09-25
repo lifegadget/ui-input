@@ -14,7 +14,7 @@
       placeholder=placeholder
       disabled=disabled
       readonly=readonly
-      autocomplete=autocomplete
+      autocomplete=_autoComplete
       autofocus=autofocus
     )
     input = (component 'input-primitive'
@@ -27,7 +27,7 @@
       placeholder=placeholder
       disabled=disabled
       readonly=readonly
-      autocomplete=autocomplete
+      autocomplete=_autoComplete
       autofocus=autofocus
 
       onBlur=(action 'onBlur')
@@ -49,7 +49,7 @@
       placeholder=placeholder
       disabled=disabled
       readonly=readonly
-      autocomplete=autocomplete
+      autocomplete=_autoComplete
       autofocus=autofocus
 
       as |g|
@@ -88,7 +88,7 @@
       value={{_value}}
       placeholder="{{placeholder}}"
       disabled="{{if disabled 'disabled'}}"
-      autocomplete={{autocomplete}}
+      autocomplete={{_autoComplete}}
       autofocus={{autofocus}}
       inputmode="{{inputmode}}"
 

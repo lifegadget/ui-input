@@ -13,6 +13,10 @@ const input = Ember.Component.extend(ddau, {
   layout,
   tagName: '',
   type: 'text',
+  autoComplete: true,
+  _autoComplete: computed('autoComplete', function() {
+    return this.get('autoComplete') ? null : "new-password";
+  }),
   init() {
     this._super(...arguments);
     this.changeValidation(null, this.get('value'));
@@ -148,6 +152,9 @@ const input = Ember.Component.extend(ddau, {
     }
   }
 
+});
+input.reopenClass({
+  positionalParams: ['value']
 });
 input[Ember.NAME_KEY] = 'text-input';
 export default input;
