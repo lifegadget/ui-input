@@ -1,11 +1,11 @@
 {{#if hasBlock}}
   {{yield (hash
-    label = (component 'ui-input-label'
-      for=(concat 'input-' elementId)
+    label=(component 'ui-input-label'
+      for=(concat 'input-' id)
       name=name
     )
-    group = (component 'input-group'
-      id=elementId
+    group=(component 'input-group'
+      id=id
       type=type
       skin=skin
       name=name
@@ -18,7 +18,7 @@
       autofocus=autofocus
     )
     input = (component 'input-primitive'
-      id=elementId
+      id=id
       type=type
       skin=skin
       name=name
@@ -36,11 +36,11 @@
   )}}
 {{else}}
   {{#if label}}
-    {{ui-input-label for=(concat 'input-' elementId)}}
+    {{ui-input-label for=(concat 'input-' id)}}
   {{/if}}
   {{#if (or pre post preIcon postIcon)}}
     {{#input-group
-      id=elementId
+      id=id
       type=type
       skin=skin
       name=name
@@ -81,7 +81,7 @@
     {{/input-group}}
   {{else}}
     <input
-      id="input-{{elementId}}"
+      id="input-{{id}}"
       class="{{classy}}"
       type="{{type}}"
       name="{{name}}"

@@ -1,17 +1,13 @@
 import Ember from 'ember';
 import layout from '../templates/components/input-group';
+import { v4 } from 'ember-uuid';
 
 const group = Ember.Component.extend({
   layout: layout,
   tagName: '',
   type: 'text',
-  id: Ember.computed('elementId', {
-    set(_, value) {
-      return value;
-    },
-    get() {
-      return this.elementId;
-    }
+  id: Ember.computed(function() {
+    return v4();
   }),
   classy: Ember.computed('class', 'name', function() {
     const c = this.get('class');

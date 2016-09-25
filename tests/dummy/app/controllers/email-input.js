@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     'animateRuleMinMax','animateRuleMinMaxStretch', 'animateRuleStepUpDown',
     'color', 'textAlign', 'textColor','backgroundColor','borderColor','outlineColor'
   ],
-  
+
   _rules: null,
   rules: Ember.on('init',Ember.computed('rules', function(){
     let rules = this.get('_rules');
@@ -31,9 +31,9 @@ export default Ember.Controller.extend({
   animateRuleMinMax: 'tada',
   animateRuleMinMaxStretch: 'rubberBand',
   animateRuleStepUpDown: 'bounce',
-  
+
   hasInvalidDomainRule: Ember.on('init',Ember.computed('rules', function() {
-    return !this.EmberArray(this.get('rules')).contains('invalidDomain');
+    return !this.EmberArray(this.get('rules')).includes('invalidDomain');
   })),
   EmberArray: (value) => {
     if(Ember.typeOf(value) === 'array') {

@@ -8,20 +8,15 @@ const a = Ember.A; // jshint ignore:line
 
 import layout from '../templates/components/input-primitive';
 import ddau from '../mixins/input-ddau';
-
+import { v4 } from 'ember-uuid';
 
 export default Ember.Component.extend(ddau, {
   layout,
   tagName: '',
   name: null,
   disabled: false,
-  id: computed('elementId', {
-    set(_, value) {
-      return value;
-    },
-    get() {
-      return this.elementId;
-    }
+  id: Ember.computed(function() {
+    return v4();
   }),
   _label: computed('label', function() {
     const {label, type} = this.getProperties('label', 'type');

@@ -6,6 +6,7 @@ const { computed, observer, $, run, on, typeOf, isPresent } = Ember;  // jshint 
 const { defineProperty, get, set, inject, isEmpty, merge } = Ember; // jshint ignore:line
 const a = Ember.A; // jshint ignore:line
 
+import { v4 } from 'ember-uuid';
 import layout from '../templates/components/text-input';
 import ddau from '../mixins/input-ddau';
 
@@ -20,9 +21,7 @@ const input = Ember.Component.extend(ddau, {
   init() {
     this._super(...arguments);
     this.changeValidation(null, this.get('value'));
-    if(!this.get('elementId')) {
-      this.set('elementId', 'ember-' + Math.random().toString(36).substr(2, 9));
-    }
+    this.set('id', v4());
   },
   // container sets "value" which overrides internal state
   // but allows input controll to move mildly out of step

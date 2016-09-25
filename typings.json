@@ -1,0 +1,5 @@
+{
+  "globalDevDependencies": {
+    "bootstrap": "registry:dt/bootstrap#3.3.5+20160619023404"
+  }
+}
