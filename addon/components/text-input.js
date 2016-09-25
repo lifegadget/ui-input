@@ -21,8 +21,10 @@ const input = Ember.Component.extend(ddau, {
   init() {
     this._super(...arguments);
     this.changeValidation(null, this.get('value'));
-    this.set('id', v4());
   },
+  id: Ember.computed(function() {
+    return v4();
+  }),
   // container sets "value" which overrides internal state
   // but allows input controll to move mildly out of step
   // with container which is often desired (aka, onBlur)
