@@ -7,9 +7,11 @@ module.exports = {
   included: function(app, parentAddon) {
     const target = (parentAddon || app);
     this._super.included(app);
+    var options = typeof app.options === 'object' ? app.options : {};
+    var addonConfig = options['ui-list'] || {};
     const o = Object.assign(
       { fa: false, animate: false, quiet: false, animateOperation: 'override' },
-      app.options['ui-input']
+      addonConfig
     );
     // component CSS
     target.import('vendor/ui-input/ui-input.css');

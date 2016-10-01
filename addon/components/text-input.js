@@ -12,8 +12,8 @@ import ddau from '../mixins/input-ddau';
 
 const input = Ember.Component.extend(ddau, {
   layout,
-  tagName: '',
   type: 'text',
+  tagName: '',
   autoComplete: true,
   _autoComplete: computed('autoComplete', function() {
     return this.get('autoComplete') ? null : "new-password";
@@ -26,7 +26,7 @@ const input = Ember.Component.extend(ddau, {
     return v4();
   }),
   // container sets "value" which overrides internal state
-  // but allows input controll to move mildly out of step
+  // but allows input control to move mildly out of step
   // with container which is often desired (aka, onBlur)
   _value: computed('value', {
     set(_, value) {

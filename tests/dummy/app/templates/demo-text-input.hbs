@@ -238,12 +238,7 @@
 
 <div class="row">
   <div class="col-xs-3">
-    {{text-input
-      pre='@'
-      value=addonValue
-      placeholder='enter your email'
-      onChange=(mut addonValue)
-    }}
+
     <p class="text-muted">
       controller value: "{{addonValue}}"
     </p>
@@ -258,111 +253,6 @@
       controller value: "{{payupValue}}"
     </p>
   </div>
-  <div class="col-sm-9  col-md-4">
-    <span>
-      <p><b>Addons</b></p>
-      <pre><code class='handlebars'>\{{text-input
-  pre='@'
-  value=addonValue
-  placeholder='do it now'
-  onChange=(mut addonValue)
-}}
-
-\{{text-input
-  preIcon='calendar'
-  post='.00'
-  value=payupValue
-  placeholder='pay up'
-  onChange=(mut payupValue)
-}}</code></pre>
-    </span>
-  </div>
-  <div class="col-md-5 hidden-sm-down">
-    {{#ui-markdown style='github'}}
-      _Addons_ are UI features that appear to be attached to the input control (either to the left or right). They do break the "atomicity" of a single HTML element but in this case we've felt it made sense to include as part of this component rather than mimic Bootstrap's structure (of course the components will produce a BS-compliant HTML output).
-
-      In the _inline_ mode the properties you can set are:
-
-      | text | icon | button |
-      |------|------|--------|
-      | pre | preIcon | preButton |
-      | post | postIcon | postButton |
-
-    {{/ui-markdown}}
-  </div>
-</div>
-
-{{! BLOCK STYLE ADDONS}}
-
-<div class="row">
-  <div class="col-xs-3">
-    {{#text-input
-      name='simpleton'
-      value=simpleValue
-      placeholder='simple is, what ...'
-      onBlur=(mut simpleValue)
-      as |i|
-    }}
-      {{i.label 'Simple'}}
-      {{i.input}}
-    {{/text-input}}
-    <p class="text-muted">
-      controller value: "{{simpleValue}}"
-    </p>
 
 
-    {{#text-input
-      name='quantity-checker'
-      value=blockValue
-      placeholder='quantity'
-      onChange=(mut blockValue)
-      as |i|
-    }}
-      {{#i.label}}Quantity{{/i.label}}
-      {{#i.group as |g|}}
-        {{g.addon '#'}}
-        {{g.input}}
-        {{g.button 'submit'}}
-      {{/i.group}}
-    {{/text-input}}
-    <p class="text-muted">
-      controller value: "{{blockValue}}"
-    </p>
-  </div>
-  <div class="col-sm-9  col-md-4">
-      <p><b>Block Style Addons</b></p>
-      <pre><code class='handlebars'>\{{#text-input
-  name='simpleton'
-  value=simpleValue
-  placeholder='simple is, what ...'
-  onBlur=(mut simpleValue)
-  as |i|
-}}
-  \{{i.label 'Simple'}}
-  \{{i.input}}
-\{{/text-input}}</code></pre>
-
-<hr>
-
-<pre><code class='handlebars'>\{{#text-input
-  name='quantity-checker'
-  value=blockValue
-  placeholder='quantity'
-  onChange=(mut blockValue)
-  as |i|
-}}
-  \{{#i.label}}Quantity\{{/i.label}}
-  \{{#i.group as |g|}}
-    \{{g.addon '#'}}
-    \{{g.input}}
-    \{{g.button 'submit'}}
-  \{{/i.group}}
-\{{/text-input}}</code></pre>
-  </div>
-  <div class="col-md-5 hidden-sm-down">
-    {{#ui-markdown style='github'}}
-      When we start to explore the _block_ format we just need an understanding of what each component yields WRT to contextual components or variables. There are an almost unlimited number of ways you can combine these, to the left you see some relatively unimaginative examples.
-
-    {{/ui-markdown}}
-  </div>
 </div>

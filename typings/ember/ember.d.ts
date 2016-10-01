@@ -21,7 +21,7 @@ declare module 'ember' {
      */
     function deprecate(message: string, test: boolean, options: {});
     /**
-     * Define an assertion that will throw an exception if the condition is not met. Ember build tools will remove any calls to `Ember.assert()` when doing a production build. Example:
+     * Define an assertion that will throw an exception if the condition is not met. Ember build tools will remove any calls to `Ember.assert()` when doing an Ember.js framework production build and will make the assertion a no-op for an application production build. Example:
      */
     function assert(desc: string, test: boolean);
     /**
@@ -2794,7 +2794,7 @@ declare module 'ember' {
     /**
      * An `Ember.Component` is a view that is completely isolated. Properties accessed in its templates go to the view object and actions are targeted at the view object. There is no access to the surrounding context or outer controller; all contextual information must be passed in.
      */
-    export class Component extends View {
+    export class Component extends View implements ViewTargetActionSupport {
       /**
        * Calls a action passed to a component.
        */
@@ -2811,6 +2811,30 @@ declare module 'ember' {
        * Enables components to take a list of parameters as arguments
        */
       static positionalParams: any;
+      /**
+       * Renders the view again. This will work regardless of whether the view is already in the DOM or not. If the view is in the DOM, the rendering process will be deferred to give bindings a chance to synchronize.
+       */
+      rerender();
+      /**
+       * Returns the current DOM element for the view.
+       */
+      element: DOMElement;
+      /**
+       * Returns a jQuery object for this view's element. If you pass in a selector string, this method will return a jQuery object, using the current element as its buffer.
+       */
+      $(selector: string): JQuery;
+      /**
+       * The HTML `id` of the view's element in the DOM. You can provide this value yourself but it must be unique (just as in HTML):
+       */
+      elementId: string;
+      /**
+       * Tag name for the view's outer element. The tag name is only used when an element is first created. If you change the `tagName` for an element, you must destroy and recreate the view element.
+       */
+      tagName: string;
+      /**
+       * Normally, Ember's component model is "write-only". The component takes a bunch of attributes that it got passed in, and uses them to render its template.
+       */
+      readDOMAttr(name: string): void;
     }
     export class AriaRoleSupport {
       /**

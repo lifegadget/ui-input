@@ -40,7 +40,7 @@
   {{/if}}
   {{#if (or pre post preIcon postIcon)}}
     {{#input-group
-      id=id
+      id=(concat 'group-' id)
       type=type
       skin=skin
       name=name
@@ -54,7 +54,7 @@
 
       as |g|
     }}
-      {{#if (or pre preIcon)}}
+     {{#if (or pre preIcon)}}
         {{#g.addon}}
           {{#if preIcon}}
             {{ui-icon preIcon}}

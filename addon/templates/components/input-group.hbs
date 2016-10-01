@@ -1,26 +1,26 @@
 <div id="group-{{id}}" class="input-group {{name}}">
   {{#if hasBlock}}
     {{yield (hash
-      addon = (component 'input-group-addon'
+      addon=(component 'input-group-addon'
         pre=pre
         post=post
         preIcon=preIcon
         postIcon=postIcon
       )
-      pre = (component 'input-group-addon'
+      pre=(component 'input-group-addon'
         pre=pre
         preIcon=preIcon
       )
-      post = (component 'input-group-addon'
+      post=(component 'input-group-addon'
         post=post
         postIcon=postIcon
       )
-      button = (component 'input-group-button'
+      button=(component 'input-group-button'
         mood=buttonMood
         title=(if button button buttonTitle)
         onClick=onClick
       )
-      input = (component (concat type '-input')
+     input=(component (concat type '-input')
         id=id
         type=type
         class=class
