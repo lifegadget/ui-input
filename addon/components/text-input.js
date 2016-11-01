@@ -24,11 +24,15 @@ const input = Ember.Component.extend(ddau, {
   },
   didRender() {
     const id = this.get('id');
+    const focus = this.get('focus');
     const target = window.document.getElementById(`input-${id}`);
     if(target) {
       target.addEventListener('keyup', this.onEnterPressed.bind(this), {once: true});
     } else {
       Ember.debug(`Couldn't setup Enter event listener for id "input-${id}""`);
+    }
+    if(focus && target) {
+      target.focus();
     }
   },
   willDestroyElement() {
