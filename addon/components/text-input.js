@@ -34,13 +34,14 @@ const input = Ember.Component.extend(ddau, {
   willDestroyElement() {
     const id = this.get('id');
     const target = window.document.getElementById(id);
-    target.removeEventListener('keyup', this.onEnterPressed.bind(this));
+    if(target) {
+      target.removeEventListener('keyup', this.onEnterPressed.bind(this));
+    }
   },
   onEnterPressed(e) {
-    if(e.keyCode == 13) {
+    if(e.keyCode === 13) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('enter', e);
       const oldValue = this.get('value');
       const value = this.typeCheck($(e.target).val());
       this.handleDDAU('onSubmit', {
