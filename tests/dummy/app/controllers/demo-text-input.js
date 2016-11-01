@@ -10,6 +10,10 @@ const a = Ember.A; // jshint ignore:line
 export default Ember.Controller.extend({
   flashMessages: service(),
   actions: {
+    submitDetected(context) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      flashMessages.success('Submit was detected for input: ' + get(context, 'evt.target').id);
+    },
     changed: function(context) {
       const flashMessages = Ember.get(this, 'flashMessages');
       flashMessages.success('Input changed to: ' + get(context, 'value'));

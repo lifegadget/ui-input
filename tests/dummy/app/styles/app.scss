@@ -1,5 +1,13 @@
 @import 'bootstrap-flex';
 
+.flash-messages {
+  padding: 5rem;
+  position: absolute;
+  top: 20;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
 .row {
   margin-top: 20px;
 }
