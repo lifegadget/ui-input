@@ -1,5 +1,10 @@
 /* jshint node: true */
 'use strict';
+const path = require('path');
+const info = require('package-info');
+const chalk = require('chalk');
+const Funnel = require('broccoli-funnel');
+const mergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
   name: 'ui-input',
@@ -8,50 +13,36 @@ module.exports = {
     const target = (parentAddon || app);
     this._super.included(app);
     var options = typeof app.options === 'object' ? app.options : {};
-    var addonConfig = options['ui-list'] || {};
-    const o = Object.assign(
-      { fa: false, animate: false, quiet: false, animateOperation: 'override' },
-      addonConfig
-    );
+    var addonConfig = options['ui-input'] || {};
     // component CSS
     target.import('vendor/ui-input/ui-input.css');
     target.import('vendor/ui-input/ui-input-bootstrap.css'); // only adds what is missing
     target.import('vendor/ui-input/ui-input-flat.css');
     target.import('vendor/ui-input/ui-input-minimal.css');
 
-    // specific to this addon
-    target.import('vendor/ui-icon/ui-icon.css');
-    let faMessage = 'font-awesome not referenced explicitly';
-    if(o.fa) {
-      // font-awesome
-      faMessage = 'fa fonts/css added';
-      app.import('bower_components/fontawesome/css/font-awesome.css', {overwrite: true});
-      app.import('bower_components/fontawesome/fonts/fontawesome-webfont.eot',{destDir: 'fonts', overwrite: true});
-      app.import('bower_components/fontawesome/fonts/fontawesome-webfont.svg',{destDir: 'fonts', overwrite: true});
-      app.import('bower_components/fontawesome/fonts/fontawesome-webfont.ttf',{destDir: 'fonts', overwrite: true});
-      app.import('bower_components/fontawesome/fonts/fontawesome-webfont.woff',{destDir: 'fonts', overwrite: true});
-      app.import('bower_components/fontawesome/fonts/fontawesome-webfont.woff2',{destDir: 'fonts', overwrite: true});
-      app.import('bower_components/fontawesome/fonts/FontAwesome.otf',{destDir: 'fonts', overwrite: true});
-    }
-    let animations = [];
-    let animateRoot = 'bower_components/animate.css/source/';
-    let animateMessage = 'no animations loaded';
-    if(o.animate) {
-      // annimate.css
-      target.import(animateRoot + '_base.css');
-
-      animations.forEach(function(cssFile) {
-        if(cssFile.slice(0,1) === '/' ) {
-          cssFile = 'app/ui-icon/' + cssFile;
-        } else {
-          cssFile = animateRoot + cssFile;
-        }
-        app.import(cssFile);
-      });
-    }
-    if(!o.quiet) {
-      this.ui.writeLine('ui-input:%s, %s', faMessage, animateMessage);
+    if(!addonConfig.quiet) {
+      this.ui.writeLine(`ui-input: using ${chalk.bold(info.version)}`);
     }
 
-  }
+  },
+
+  treeForStyles: function(tree) {
+    const bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap/scss');
+    const trees = [];
+    if(tree) {
+      trees.push(tree);
+    }
+    const existingStyle = this._super.treeForStyles.apply(this, arguments);
+    const bootstrap = new Funnel(bootstrapPath, {
+      srcDir: '/',
+      destDir: '/bootstrap-source'
+    });
+    trees.push(bootstrap);
+    if (existingStyle) {
+      trees.push(existingStyle);
+    }
+
+    return mergeTrees(trees);
+  },
+
 };

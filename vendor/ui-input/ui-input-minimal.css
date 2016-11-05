@@ -1,6 +1,7 @@
 input.ui-input.skin-minimal {
     border: none;
     width: 100%;
+    font-size: 1rem;
     outline: none;
     padding: 4px 4px;
 }
@@ -41,7 +42,6 @@ input.ui-input.skin-minimal.form-control-lg {
 input.ui-input.skin-minimal.input-hg,
 input.ui-input.skin-minimal.form-control-huge {
     font-size: 2.6em;
-    padding: 6px 6px;
 }
 
 /* AUGMENT ATOMIC COLOR */

@@ -1,19 +1,4 @@
-<div class="flash-messages">
-  {{#each flashMessages.queue as |flash|}}
-    {{#flash-message flash=flash as |component flash|}}
-      {{#if flash.componentName}}
-        {{component flash.componentName content=flash.content}}
-      {{else}}
-        <h6>{{component.flashType}}</h6>
-        <p>{{flash.message}}</p>
-      {{/if}}
-    {{/flash-message}}
-  {{/each}}
-</div>
 <div class="container">
-  <h2 class="display-2">
-    {{ui-tag title='ui-input' mood='success'}}&nbsp;addon
-  </h2>
   {{#ui-navigation
     onChange=(action 'navHandler')
     selected=currentPath
@@ -24,7 +9,11 @@
       {{#nav.brand  linkTo='https://github.com/lifegadget/ui-input'}}
         {{ui-icon 'github' size='2.5rem'}}
       {{/nav.brand}}
-      {{nav.item title='README' routeTo='index'}}
+      {{#nav.item routeTo='index'}}
+        {{tag 'ui-input' size='2rem' mood='success'}}
+        &nbsp;
+        README
+      {{/nav.item}}
       {{nav.item title='text-input' routeTo='demo-text-input'}}
       {{nav.item title='numeric-input' routeTo='demo-numeric-input'}}
       {{nav.item title='other-inputs' routeTo='demo-other-inputs'}}
@@ -36,4 +25,16 @@
   </p>
   {{outlet}}
 
+</div>
+<div class="flash-messages">
+  {{#each flashMessages.queue as |flash|}}
+    {{#flash-message flash=flash as |component flash|}}
+      {{#if flash.componentName}}
+        {{component flash.componentName content=flash.content}}
+      {{else}}
+        <h6>{{component.flashType}}</h6>
+        <p>{{flash.message}}</p>
+      {{/if}}
+    {{/flash-message}}
+  {{/each}}
 </div>
