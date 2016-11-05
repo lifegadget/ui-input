@@ -3,33 +3,13 @@
 
 ## Install ##
 
+```sh
+ember install ui-input
+```
 
-- Ember-CLI versions 0.2.3+
-    ````bash
-    ember install ui-input
-    ````
+## Demo and Docs
 
-- Earlier CLI versions
-    ````bash
-    npm install ui-input --save-dev
-    ember g ui-input
-    ````
-
-## Usage ##
-For more details on the syntax check out the interactive demo:
-
-> [ui-input demo and examples](http://development.ui-input.divshot.io)
-
-![ ](docs/images/screen-shot.png)
-
-
-
-## Version Compatibility
-
-This may very well work with older version of Ember and Ember-CLI but it was intended for:
-
-- Ember 1.11.0+
-- Ember-CLI 0.2.3+
+[https://ui-input.firebaseapp.com/](https://ui-input.firebaseapp.com/)
 
 ## Repo Contribution
 
@@ -40,7 +20,7 @@ and send us a PR so we can incorporate your ideas without killing ourselves. :)
 
 This component is free to use under the MIT license:
 
-Copyright (c) 2015 LifeGadget Ltd
+Copyright (c) 2016 LifeGadget Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
