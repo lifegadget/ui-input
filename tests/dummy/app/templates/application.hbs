@@ -12,20 +12,25 @@
 </div>
 <div class="container">
   <h2 class="display-2">
-    {{ui-label title='ui-input' mood='success'}}&nbsp;addon
+    {{ui-tag title='ui-input' mood='success'}}&nbsp;addon
   </h2>
-  {{#ui-navbar onChange=(action 'navChange') selected=currentPath as |nav|}}
-    {{#nav.brand  linkTo='https://github.com/lifegadget/ui-input'}}
-    {{ui-icon 'github' size='2x'}}
-    {{/nav.brand}}
+  {{#ui-navigation
+    onChange=(action 'navHandler')
+    selected=currentPath
+    mood='dark'
+    as |nav|
+  }}
     {{#nav.items}}
+      {{#nav.brand  linkTo='https://github.com/lifegadget/ui-input'}}
+        {{ui-icon 'github' size='2.5rem'}}
+      {{/nav.brand}}
       {{nav.item title='README' routeTo='index'}}
       {{nav.item title='text-input' routeTo='demo-text-input'}}
       {{nav.item title='numeric-input' routeTo='demo-numeric-input'}}
       {{nav.item title='other-inputs' routeTo='demo-other-inputs'}}
       {{nav.right title='performance' routeTo='performance'}}
     {{/nav.items}}
-  {{/ui-navbar}}
+  {{/ui-navigation}}
   <p>
     &nbsp;
   </p>
