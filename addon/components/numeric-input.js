@@ -6,5 +6,6 @@ export default textInput.extend({
   layout,
   type: 'number',
   step: 1,
+  align: 'right'
 
 });

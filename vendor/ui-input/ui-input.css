@@ -39,13 +39,13 @@ input.input-inliner.input-huge, input.input-inliner.input-hg {
 }
 
 /* TEXT ALIGNMENT */
-input.ui-input.text-align-left {
+input.ui-input.input-align-left {
     text-align: left;
 }
-input.ui-input.text-align-center {
+input.ui-input.input-align-center {
     text-align: center;
 }
-input.ui-input.text-align-right {
+input.ui-input.input-align-right {
     text-align: right;
 }
 

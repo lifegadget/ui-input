@@ -14,6 +14,7 @@ const input = Ember.Component.extend(ddau, {
   layout,
   type: 'text',
   tagName: '',
+  align: 'left',
   autoComplete: true,
   _autoComplete: computed('autoComplete', function() {
     return this.get('autoComplete') ? null : "new-password";
@@ -71,9 +72,10 @@ const input = Ember.Component.extend(ddau, {
     }
   }),
 
-  classy: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', function() {
+  classy: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', 'align', function() {
     let proxy = this.get('class') || '';
-    let {mood, skin, isValid} = this.getProperties('mood', 'skin', 'isValid');
+    let {mood, skin, isValid, align} = this.getProperties('mood', 'skin', 'isValid', 'align');
+    let alignStyle = align ? ` input-align-${align}` : '';
     let moodStyle = mood && mood !== 'default' ? ` input-${mood}` : '';
     if (typeOf(skin) === 'array') { skin = skin[0]; }
     let formControl = ' form-control';
@@ -89,7 +91,7 @@ const input = Ember.Component.extend(ddau, {
       validity = ' ' + isValid;
     }
     const empty = this.get('isEmpty') ? ' empty' : '';
-    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}${validity}`;
+    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}${validity}${alignStyle}`;
   }),
 
   // min: null,

@@ -196,6 +196,47 @@
   </div>
 </div>
 
+<hr> {{! SKINNING }}
+<div class="row">
+  <div class="col-xs-3">
+    {{text-input
+      value=alignValue
+      align=alignment
+      placeholder='alignment'
+      onChange=(mut alignValue)
+    }}
+    <p class="text-muted">
+      controller value: "{{skinValue}}"
+    </p>
+    <p>
+      {{ui-buttons
+        buttons='left,right,center'
+        size='small'
+        value=alignment
+        defaultValue='left'
+        onChange=(mut alignment)
+      }}
+    </p>
+  </div>
+  <div class="col-sm-9  col-md-4">
+    <span>
+      <p><b>Alignment</b></p>
+      <pre><code class='handlebars'>\{{text-input
+  value=alignValue
+  align="{{alignment}}"
+  placeholder='alignment'
+  onChange=(mut alignValue)
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md-5 hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      Where the input value (and placeholder) goes within the input control can be important. By default a number will default to the right, everything else to the left. If you want to control this, however, you can state your preference explicitly.
+    {{/ui-markdown}}
+  </div>
+</div>
+
+
 <hr> {{! EMPTY IS ... }}
 <div class="row">
   <div class="col-xs-3">

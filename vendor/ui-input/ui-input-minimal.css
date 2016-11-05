@@ -1,7 +1,6 @@
 input.ui-input.skin-minimal {
     border: none;
     width: 100%;
-    height: 100%;
     outline: none;
     padding: 4px 4px;
 }
@@ -10,6 +9,10 @@ input.ui-input.skin-minimal:focus {
     background: #F9F9F9;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+}
+
+input.ui-input.skin-minimal::placeholder {
+  font-style: italic;
 }
 
 input.ui-input.skin-minimal.input-xs,
@@ -37,7 +40,6 @@ input.ui-input.skin-minimal.form-control-lg {
 
 input.ui-input.skin-minimal.input-hg,
 input.ui-input.skin-minimal.form-control-huge {
-    height: 100%;
     font-size: 2.6em;
     padding: 6px 6px;
 }
