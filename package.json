@@ -72,6 +72,7 @@
     "ember-addon"
   ],
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.5",
     "ember-cli-autoprefixer": "0.6.0",
     "ember-cli-babel": "^5.1.6",
     "ember-cli-htmlbars": "^1.0.3",
