@@ -6,9 +6,6 @@ const group = Ember.Component.extend({
   layout: layout,
   tagName: '',
   type: 'text',
-  id: Ember.computed(function() {
-    return v4();
-  }),
   classy: Ember.computed('class', 'name', function() {
     const c = this.get('class');
     const name = this.get('name');

@@ -16,15 +16,12 @@ module.exports = {
     var addonConfig = options['ui-input'] || {};
     // component CSS
     target.import('vendor/ui-input/ui-input.css');
-    target.import('vendor/ui-input/ui-input-bootstrap.css'); // only adds what is missing
     target.import('vendor/ui-input/ui-input-flat.css');
     target.import('vendor/ui-input/ui-input-minimal.css');
-
     // if(!addonConfig.quiet) {
     //   const info = JSON.parse(fs.readFileSync('node_modules/ui-input/package.json'));
     //   this.ui.writeLine(`ui-input: using ${chalk.bold(info.version)}`);
     // }
-
   },
 
   treeForStyles: function(tree) {

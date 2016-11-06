@@ -22,6 +22,7 @@ const input = Ember.Component.extend(ddau, {
   init() {
     this._super(...arguments);
     this.changeValidation(null, this.get('value'));
+    this.checkAPI(); // validate usage is inline with installed addons
   },
   didRender() {
     const id = this.get('id');
@@ -60,6 +61,29 @@ const input = Ember.Component.extend(ddau, {
   id: Ember.computed(function() {
     return v4();
   }),
+  /**
+   * Check API usage to ensure that all dependant
+   * addons are in place to render this component
+   * successfully
+   */
+  checkAPI() {
+    const id = this.get('id');
+    const deps = {
+      ['ui-button']: ['button', 'preButton', 'postbutton'],
+      ['ui-icon']: ['icon', 'preIcon', 'postIcon'],
+    };
+    Object.keys(deps).forEach(key => {
+      const props = deps[key];
+      const dependantAddon = Ember.getOwner(this).lookup(`component:${key}`);
+      if(!dependantAddon) {
+        props.forEach(prop => {
+          if(prop) {
+            Ember.debug(`The "ui-input" component detected your use of the "${prop}" property in instance "${id}"; in order to use this part of the API you must install the "${key}" addon.`);
+          }
+        });
+      }
+    });
+  },
   // container sets "value" which overrides internal state
   // but allows input control to move mildly out of step
   // with container which is often desired (aka, onBlur)

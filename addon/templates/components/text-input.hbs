@@ -50,7 +50,7 @@
   {{! GROUPED }}
   {{#if (or pre post preIcon postIcon button preButton postButton)}}
     {{#input-group
-      id=(concat 'group-' id)
+      id=id
       type=type
       skin=skin
       name=name
@@ -84,7 +84,6 @@
       {{/if}}
 
       {{g.input
-        id=id
         onChange=onChange
         onBlur=onBlur
         onSubmit=onSubmit
