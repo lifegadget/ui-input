@@ -32,6 +32,7 @@
   "author": "Ken Snyder <ken@ken.net>",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^6.0.46",
     "bootstrap": "4.0.0-alpha.5",
     "broccoli-asset-rev": "^2.4.2",
     "broccoli-funnel": "^1.0.9",

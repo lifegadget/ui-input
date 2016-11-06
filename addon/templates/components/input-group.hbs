@@ -16,7 +16,7 @@
         postIcon=postIcon
       )
       button=(component 'input-group-button'
-        mood=buttonMood
+        mood=(if mood mood buttonMood)
         title=(if button button buttonTitle)
         onClick=onClick
       )

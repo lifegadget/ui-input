@@ -299,3 +299,36 @@
 
 
 </div>
+
+<hr> {{! GROUP WITH BUTTON }}
+<div class="row">
+  <div class="col-xs-3">
+    {{text-input
+      value=groupWithButton
+      postButton='submit'
+      placeholder='pressing my button'
+      onChange=(mut groupWithButton)
+      onPressed=(action 'buttonPressed')
+    }}
+    <p class="text-muted">
+      container value type: "{{groupWithButton}}"<br>
+    </p>
+  </div>
+  <div class="col-xs-3">
+    <span>
+      <b>Submit with a Button</b>
+      <pre><code class='handlebars'>\{{text-input
+  value=groupWithButton
+  postButton='submit'
+  placeholder="pressing my button"
+  onChange=(mut groupWithButton)
+  onPressed=(action 'buttonPressed')
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      If the containing application has the `ui-button` component installed then the **preButton** and **postButton** properties on inputs will allow you place a button as included part of the inline component.
+    {{/ui-markdown}}
+  </div>
+</div>

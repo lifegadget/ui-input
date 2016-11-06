@@ -1,8 +1,8 @@
 /* jshint node: true */
 'use strict';
 const path = require('path');
-const info = require('package-info');
-const chalk = require('chalk');
+// const fs = require('fs');
+// const chalk = require('chalk');
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 
@@ -20,14 +20,15 @@ module.exports = {
     target.import('vendor/ui-input/ui-input-flat.css');
     target.import('vendor/ui-input/ui-input-minimal.css');
 
-    if(!addonConfig.quiet) {
-      this.ui.writeLine(`ui-input: using ${chalk.bold(info.version)}`);
-    }
+    // if(!addonConfig.quiet) {
+    //   const info = JSON.parse(fs.readFileSync('node_modules/ui-input/package.json'));
+    //   this.ui.writeLine(`ui-input: using ${chalk.bold(info.version)}`);
+    // }
 
   },
 
   treeForStyles: function(tree) {
-    const bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap/scss');
+    const bootstrapPath = path.join('node_modules', 'bootstrap/scss');
     const trees = [];
     if(tree) {
       trees.push(tree);

@@ -34,11 +34,16 @@
       onChange=(action 'onChange')
     )
   )}}
-{{else}}
+
+
+{{else}} {{! INLINE COMPONENT }}
+
   {{#if label}}
     {{ui-input-label for=(concat 'input-' id)}}
   {{/if}}
-  {{#if (or pre post preIcon postIcon)}}
+
+  {{! GROUPED }}
+  {{#if (or pre post preIcon postIcon preButton postButton)}}
     {{#input-group
       id=(concat 'group-' id)
       type=type
@@ -69,7 +74,20 @@
         onSubmit=onSubmit
       }}
 
-      {{#if (or post postIcon)}}
+      {{#if (or post postIcon postButton)}}
+      {{#if postButton}}
+        {{#g.addon}}
+          {{ui-button postButton
+            mood=mood
+            icon=postIcon
+            onClick=(action onPressed)
+          }}
+          {{#if postIcon}}
+            {{ui-icon postIcon}}
+          {{/if}}
+          {{post}}
+        {{/g.addon}}
+      {{else}}
         {{#g.addon}}
           {{#if postIcon}}
             {{ui-icon postIcon}}
@@ -77,8 +95,11 @@
           {{post}}
         {{/g.addon}}
       {{/if}}
+      {{/if}}
 
     {{/input-group}}
+
+    {{! NOT GROUPED }}
   {{else}}
     <input
       id="input-{{id}}"
