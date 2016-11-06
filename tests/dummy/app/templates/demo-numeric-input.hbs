@@ -7,7 +7,7 @@
 {{/markdown-convert}}
 
 <div class="row">
-  <div class="col-xs-3">
+  <div class="col-xs-12 col-sm-6 col-md-3">
     {{numeric-input
       value=basicValue
       placeholder='count it up'
@@ -17,7 +17,7 @@
       controller value: "{{basicValue}}"
     </p>
   </div>
-  <div class="col-sm-9  col-md-4">
+  <div class="col-xs-12 col-sm col-md-3">
     <span>
       <p><b>Basic Numeric Input</b></p>
       <pre><code class='handlebars'>\{{numeric-input
@@ -27,7 +27,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-5 hidden-sm-down">
+  <div class="col-sm hidden-sm-down">
     {{#ui-markdown style='github'}}
       Needs to be filled in.
     {{/ui-markdown}}

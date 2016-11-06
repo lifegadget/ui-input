@@ -1,6 +1,6 @@
 <h3>Passwords</h3>
 <div class="row">
-  <div class="col-xs-3">
+  <div class="col-xs-12 col-md-3">
     {{password-input
       placeholder='password'
       value=password
@@ -19,7 +19,7 @@
       }}
     </p>
   </div>
-  <div class="col-sm-9  col-md-4">
+  <div class="col-xs-12 col-md-3">
     <span>
       <pre><code class='handlebars'>\{{password-input
   placeholder='password'
@@ -30,7 +30,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-5 hidden-sm-down">
+  <div class="col-md hidden-sm-down">
     {{#ui-markdown style='github'}}
       Passwords are mainly just text-inputs but with a few extra tricks up their sleeves. As you can see here, toggling the `showPassword` property allows a user to expose the password when typing if so desired. Furthermore, there is a gauge of password security.
     {{/ui-markdown}}
@@ -39,7 +39,7 @@
 
 <h3>Emails</h3>
 <div class="row">
-  <div class="col-xs-3">
+  <div class="col-xs-12 col-md-3">
     {{email-input
       placeholder='email address'
       value=email
@@ -50,7 +50,7 @@
     value: {{email}}, validity: {{validEmail}}
 
   </div>
-  <div class="col-sm-9  col-md-4">
+  <div class="col-xs-12 col-md-3">
     <span>
       <pre><code class='handlebars'>\{{email-input
   placeholder='email address'
@@ -60,7 +60,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-5 hidden-sm-down">
+  <div class="col-md hidden-sm-down">
     {{#ui-markdown style='github'}}
       Email's are also very closely related to the text-input but have a "onValidity" action which indicates whether the current value is a valid email address. Possible values are "empty", "valid", and "invalid".
     {{/ui-markdown}}
@@ -69,7 +69,7 @@
 
 <h3>Name Input</h3>
 <div class="row">
-  <div class="col-xs-3">
+  <div class="col-xs-12 col-md-3">
     {{name-input
       preIcon='user'
       value=name
@@ -81,14 +81,14 @@
 
     </p>
   </div>
-  <div class="col-sm-9  col-md-4">
+  <div class="col-xs-12 col-md-3">
     <pre><code class='handlebars'>\{{name-input
   preIcon='user'
   value=name
   onBlur=(mut name)
 }}</code></pre>
   </div>
-  <div class="col-md-5 hidden-sm-down">
+  <div class="col-md hidden-sm-down">
     {{#ui-markdown style='github'}}
       While cutting your own name input dialog is easy enough it is common enough a pattern that we've built a
       container component to give you a structured first and last name input dialog.
