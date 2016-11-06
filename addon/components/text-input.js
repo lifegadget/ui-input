@@ -71,12 +71,22 @@ const input = Ember.Component.extend(ddau, {
       return this.get('value');
     }
   }),
+  pattern: computed('type', function() {
+    switch(this.get('type')) {
+      case 'number':
+        return '[0-9]*';
 
-  classy: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', 'align', function() {
+      default:
+        return '';
+    }
+  }),
+
+  classy: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', 'align', 'hideSpinners', function() {
     let proxy = this.get('class') || '';
-    let {mood, skin, isValid, align} = this.getProperties('mood', 'skin', 'isValid', 'align');
+    let {mood, skin, isValid, align, hideSpinners} = this.getProperties('mood', 'skin', 'isValid', 'align', 'hideSpinners');
     let alignStyle = align ? ` input-align-${align}` : '';
     let moodStyle = mood && mood !== 'default' ? ` input-${mood}` : '';
+    let spinners = hideSpinners === false ? ' hide-spinners' : '';
     if (typeOf(skin) === 'array') { skin = skin[0]; }
     let formControl = ' form-control';
     let skinClass = '';
@@ -86,12 +96,9 @@ const input = Ember.Component.extend(ddau, {
       }
       skinClass = ` skin-${skin}`;
     }
-    let validity = '';
-    if (isValid !== 'empty') {
-      validity = ' ' + isValid;
-    }
+    let validity = isValid !== undefined ? ' ' + isValid : '';
     const empty = this.get('isEmpty') ? ' empty' : '';
-    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}${validity}${alignStyle}`;
+    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}${validity}${alignStyle}${spinners}`;
   }),
 
   // min: null,

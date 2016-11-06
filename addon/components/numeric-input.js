@@ -6,6 +6,7 @@ export default textInput.extend({
   layout,
   type: 'number',
   step: 1,
-  align: 'right'
+  align: 'right',
+  hideSpinners: true,
 
 });
