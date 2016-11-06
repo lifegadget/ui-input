@@ -29,7 +29,18 @@ const group = Ember.Component.extend({
       if(this.attrs.onChange) {
         this.attrs.onChange(...arguments);
       }
-    }
+    },
+    onSubmit() {
+      if(this.attrs.onSubmit) {
+        this.attrs.onSubmit(...arguments);
+      }
+    },
+    onPressed() {
+      if(this.attrs.onPressed) {
+        this.attrs.onPressed(...arguments);
+      }
+    },
+
   }
 });
 group[Ember.NAME_KEY] = 'input-group';

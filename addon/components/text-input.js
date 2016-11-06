@@ -186,8 +186,20 @@ const input = Ember.Component.extend(ddau, {
     },
     onSubmit(evt) {
       console.log('submitted', evt);
-    }
-  }
+    },
+    onPressed(location, button) {
+      // ensure that even if container is listening on onBlur that we return the
+      // most current value on the page
+      const value = window.document.getElementById(`input-${this.get('id')}`).value;
+      // send event
+      this.handleDDAU('onPressed', {
+        location,
+        button,
+        value: this.typeCheck(value),
+        context: this
+      });
+    },
+  },
 
 });
 input.reopenClass({

@@ -18,7 +18,7 @@
       button=(component 'input-group-button'
         mood=(if mood mood buttonMood)
         title=(if button button buttonTitle)
-        onClick=onClick
+        onClick=(action 'onPressed' 'block-form')
       )
      input=(component (concat type '-input')
         id=id
@@ -34,8 +34,9 @@
         autofocus=autofocus
         form=form
 
-        onBlur=(action 'onBlur')
-        onChange=(action 'onChange')
+        onBlur=onBlur
+        onChange=onChange
+        onSubmit=onSubmit
       )
     )}}
   {{else}}

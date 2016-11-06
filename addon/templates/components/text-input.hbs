@@ -9,6 +9,7 @@
       type=type
       skin=skin
       name=name
+      mood=mood
       class=classy
       value=_value
       placeholder=placeholder
@@ -16,6 +17,10 @@
       readonly=readonly
       autocomplete=_autoComplete
       autofocus=autofocus
+
+      onPressed=(action 'onPressed')
+      onChange=onChange
+      onBlur=onBlur
     )
     input = (component 'input-primitive'
       id=id
@@ -43,7 +48,7 @@
   {{/if}}
 
   {{! GROUPED }}
-  {{#if (or pre post preIcon postIcon preButton postButton)}}
+  {{#if (or pre post preIcon postIcon button preButton postButton)}}
     {{#input-group
       id=(concat 'group-' id)
       type=type
@@ -59,42 +64,49 @@
 
       as |g|
     }}
-     {{#if (or pre preIcon)}}
-        {{#g.addon}}
-          {{#if preIcon}}
-            {{ui-icon preIcon}}
-          {{/if}}
-          {{pre}}
-        {{/g.addon}}
+      {{! PRE }}
+      {{#if (or pre preIcon preButton)}}
+        {{#if preButton}}
+          {{g.button preButton
+            id=(concat 'pre-btn-' id)
+            icon=preIcon
+            mood=(or preButtonMood mood)
+            onClick=(action 'onPressed' 'pre')
+          }}
+        {{else}}
+          {{#g.addon}}
+            {{#if preIcon}}
+              {{ui-icon preIcon}}
+            {{/if}}
+            {{pre}}
+          {{/g.addon}}
+        {{/if}}
       {{/if}}
 
       {{g.input
+        id=id
         onChange=onChange
         onBlur=onBlur
         onSubmit=onSubmit
       }}
 
-      {{#if (or post postIcon postButton)}}
-      {{#if postButton}}
-        {{#g.addon}}
-          {{ui-button postButton
-            mood=mood
+      {{! POST }}
+      {{#if (or post postIcon button postButton)}}
+        {{#if (or button postButton)}}
+          {{g.button (or button postButton)
+            id=(concat 'post-btn-' id)
             icon=postIcon
-            onClick=(action onPressed)
+            mood=(or buttonMood postButtomMood mood)
+            onClick=(action 'onPressed' 'post')
           }}
-          {{#if postIcon}}
-            {{ui-icon postIcon}}
-          {{/if}}
-          {{post}}
-        {{/g.addon}}
-      {{else}}
-        {{#g.addon}}
-          {{#if postIcon}}
-            {{ui-icon postIcon}}
-          {{/if}}
-          {{post}}
-        {{/g.addon}}
-      {{/if}}
+        {{else}}
+          {{#g.addon}}
+            {{#if postIcon}}
+              {{ui-icon postIcon}}
+            {{/if}}
+            {{post}}
+          {{/g.addon}}
+        {{/if}}
       {{/if}}
 
     {{/input-group}}

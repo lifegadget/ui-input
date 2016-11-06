@@ -24,7 +24,7 @@ export default Ember.Component.extend(SharedSizeMixin, {
 
   style: 'bootstrap',
   register: function() {
-    console.log('registration');
+    // TODO
   },
 
   // SECTIONAL FLAGS

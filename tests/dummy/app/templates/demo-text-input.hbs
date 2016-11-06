@@ -1,7 +1,7 @@
 {{#markdown-convert style='github'}}
   ## Component: `text-input`
 
-  The `text-input` component provides a bootstrap and HTML5 friendly way of using the native HTML text input control.
+  The `text-input` component provides a Bootstrap 4.x, HTML5 friendly way of using the native HTML text input control.
 
   ## Examples
 {{/markdown-convert}}
@@ -273,6 +273,8 @@
   <div class="col-md hidden-sm-down">
     {{#ui-markdown style='github'}}
       The `text-input` takes a "string input." Obviously. But what about when the control is empty? By default it will translate to an empty string but sometimes it would be better if it were _null_ or _undefined_. Both are possible by setting the `ifEmpty` parameter.
+
+      To see this in action, add some text and then remove it (when initialized the value is just whatever the container says it is).
     {{/ui-markdown}}
   </div>
 </div>
@@ -296,8 +298,6 @@
       controller value: "{{payupValue}}"
     </p>
   </div>
-
-
 </div>
 
 <hr> {{! GROUP WITH BUTTON }}
@@ -306,12 +306,40 @@
     {{text-input
       value=groupWithButton
       postButton='submit'
+      mood=moodForInputControl
       placeholder='pressing my button'
       onChange=(mut groupWithButton)
       onPressed=(action 'buttonPressed')
     }}
     <p class="text-muted">
-      container value type: "{{groupWithButton}}"<br>
+      component value: "{{groupWithButton}}"<br>
+    </p>
+    <p>
+      Mood of Input component:
+    </p>
+    <p>
+      {{ui-buttons
+        value=moodForInputControl
+        buttons='primary,success,danger,info'
+        size='small'
+        onChange=(mut moodForInputControl)
+      }}
+    </p>
+    <hr>
+    <p>
+      {{text-input
+        value=groupWithButton2
+        preIcon='times'
+        postIcon='check'
+        preButton=' '
+        button=' '
+        preButtonMood='danger'
+        buttonMood='success'
+        mood=moodForInputControl
+        placeholder='alt'
+        onChange=(mut groupWithButton2)
+        onPressed=(action 'buttonPressed')
+      }}
     </p>
   </div>
   <div class="col-xs-3">
@@ -319,9 +347,25 @@
       <b>Submit with a Button</b>
       <pre><code class='handlebars'>\{{text-input
   value=groupWithButton
-  postButton='submit'
+  mood="{{moodForInputControl}}"
+  postButton=' '
   placeholder="pressing my button"
   onChange=(mut groupWithButton)
+  onPressed=(action 'buttonPressed')
+}}</code></pre>
+      <hr>
+      <pre><code class='handlebars'>\{{text-input
+  value=groupWithButton2
+  preIcon='times'
+  postIcon='check'
+  preButton=' '
+  postButton=' '
+  preButtonMood='danger'
+  postButtonMood='success'
+  mood=moodForInputControl
+  button='submit'
+  placeholder="alt"
+  onChange=(mut groupWithButton2)
   onPressed=(action 'buttonPressed')
 }}</code></pre>
     </span>
@@ -329,6 +373,60 @@
   <div class="col-md hidden-sm-down">
     {{#ui-markdown style='github'}}
       If the containing application has the `ui-button` component installed then the **preButton** and **postButton** properties on inputs will allow you place a button as included part of the inline component.
+
+      > **Note:** you can use `button` as an alias for `postButton`
+
+      Also of note, if you change the "mood" of the input the button will by default take up that mood too (try this with controls to left). If, you want the button to stay fixed on particular mood independant of the input control you can do this too (see second example).
+
+      > **Note:** if you specify a _pre_ or _post_ icon and there is a button in that location than the icon becomes a part of the button.
+    {{/ui-markdown}}
+  </div>
+</div>
+
+<hr> {{! BLOCK STYLE }}
+<div class="row">
+  <div class="col-xs-3">
+     {{#text-input
+        value=blockStyle
+        placeholder='block styling'
+        onChange=(mut blockStyle)
+        onPressed=(action 'buttonPressed')
+        as |i|
+      }}
+        {{#i.group as |g|}}
+          {{g.input}}
+          {{g.button icon='times' mood='danger'}}
+          {{g.button icon='check' mood='success'}}
+        {{/i.group}}
+      {{/text-input}}
+    <p class="text-muted">
+      component value: "{{blockStyle}}"<br>
+    </p>
+
+  </div>
+  <div class="col-xs-3">
+    <span>
+      <b>Block Style</b>
+      <pre><code class='handlebars'>\{{#text-input
+  value=blockStyle
+  placeholder='block styling'
+  onChange=(mut blockStyle)
+  onPressed=(action 'buttonPressed')
+  as |i|
+}}
+  \{{#i.group as |g|}}
+    \{{g.input}}
+    \{{g.button icon='times' mood='danger'}}
+    \{{g.button icon='check' mood='success'}}
+  \{{/i.group}}
+\{{/text-input}}</code></pre>
+    </span>
+  </div>
+  <div class="col-md hidden-sm-down">
+    {{#ui-markdown style='github'}}
+      Up to now we've been trying to make the _inline_ style meet all of our needs but as we approach more bespoke conditions the API surface gets more verbose and a purely flat API to do everything starts to become impractical.
+
+      Fortunately the block style is also available as this example illustrates.
     {{/ui-markdown}}
   </div>
 </div>

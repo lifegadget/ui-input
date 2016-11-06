@@ -11,7 +11,9 @@ export default Ember.Controller.extend({
   flashMessages: service(),
   actions: {
     buttonPressed(hash) {
-      console.log(hash);
+      const flashMessages = Ember.get(this, 'flashMessages');
+      flashMessages.info(`Button pressed in the "${hash.location}" location.`);
+      console.log('buttonPressed:', hash);
     },
     submitDetected(context) {
       const flashMessages = Ember.get(this, 'flashMessages');

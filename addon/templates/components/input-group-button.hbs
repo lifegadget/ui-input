@@ -1,4 +1,4 @@
-<div class="input-group-btn {{name}}">
+<span class="input-group-btn {{name}}">
   {{#if hasBlock}}
     {{#ui-button title=title icon=icon mood=mood disabled=disabled onClick=onClick}}
       {{yield}}
@@ -6,4 +6,4 @@
   {{else}}
     {{ui-button title=title icon=icon mood=mood disabled=disabled onClick=onClick}}
   {{/if}}
-</div>
+</span>
