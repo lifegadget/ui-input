@@ -44,7 +44,9 @@
 {{else}} {{! INLINE COMPONENT }}
 
   {{#if label}}
-    {{ui-input-label for=(concat 'input-' id)}}
+    {{ui-input-label label
+      for=id
+    }}
   {{/if}}
 
   {{! GROUPED }}
@@ -54,7 +56,6 @@
       type=type
       skin=skin
       name=name
-      class=classy
       value=_value
       placeholder=placeholder
       disabled=disabled
@@ -84,6 +85,8 @@
       {{/if}}
 
       {{g.input
+        id=id
+        class=classy
         onChange=onChange
         onBlur=onBlur
         onSubmit=onSubmit
@@ -113,7 +116,7 @@
     {{! NOT GROUPED }}
   {{else}}
     <input
-      id="input-{{id}}"
+      id="{{id}}"
       class="{{classy}}"
       type="{{type}}"
       name="{{name}}"

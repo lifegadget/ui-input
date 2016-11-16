@@ -1,5 +1,6 @@
 $enable-flex: true;
 @import 'bootstrap-source/normalize';
+@import 'bootstrap-source/mixins/breakpoints';
 @import 'bootstrap-source/mixins/forms';
 @import 'bootstrap-source/forms';
 @import 'bootstrap-source/input-group';
