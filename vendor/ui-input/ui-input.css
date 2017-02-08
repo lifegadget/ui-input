@@ -11,6 +11,11 @@
   border-radius: 0.15rem;
 }
 
+.input-group {
+  padding: 0;
+  border: none;
+}
+
 .input-group input.first-name {
   flex-grow: 1;
 }

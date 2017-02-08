@@ -103,7 +103,7 @@ const input = Ember.Component.extend(ddau, {
     }
   }),
 
-  classy: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', 'align', 'hideSpinners', function() {
+  classy2: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', 'align', 'hideSpinners', function() {
     let proxy = this.get('class') || '';
     let {mood, skin, isValid, align, hideSpinners} = this.getProperties('mood', 'skin', 'isValid', 'align', 'hideSpinners');
     let alignStyle = align ? ` input-align-${align}` : '';
