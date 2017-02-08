@@ -11,7 +11,7 @@
   border-radius: 0.15rem;
 }
 
-.input-group {
+.ui-input.input-group {
   padding: 0;
   border: none;
 }

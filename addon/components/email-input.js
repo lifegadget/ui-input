@@ -23,7 +23,6 @@ const input = uiInput.extend({
         }, 'empty');
       }
     }
-
     else if (value && value.trim().search(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) === -1) {
       if(this.get('isValid') !== 'invalid') {
         this.set('isValid', 'invalid');

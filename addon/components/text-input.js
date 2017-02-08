@@ -22,8 +22,10 @@ const input = Ember.Component.extend(ddau, {
   }),
   init() {
     this._super(...arguments);
-    this.changeValidation(null, this.get('value'));
     this.checkAPI(); // validate usage is inline with installed addons
+  },
+  didInsertElement() {
+    this.changeValidation(null, this.get('value'));
   },
   didRender() {
     const id = this.get('id');
@@ -105,7 +107,7 @@ const input = Ember.Component.extend(ddau, {
 
   classy2: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', 'align', 'hideSpinners', function() {
     let proxy = this.get('class') || '';
-    let {mood, skin, isValid, align, hideSpinners} = this.getProperties('mood', 'skin', 'isValid', 'align', 'hideSpinners');
+    let {mood, skin, isValid, align, hideSpinners, _size} = this.getProperties('mood', 'skin', 'isValid', 'align', 'hideSpinners', '_size');
     let alignStyle = align ? ` input-align-${align}` : '';
     let moodStyle = mood && mood !== 'default' ? ` input-${mood}` : '';
     let spinners = hideSpinners === false ? ' hide-spinners' : '';
@@ -120,7 +122,7 @@ const input = Ember.Component.extend(ddau, {
     }
     let validity = isValid !== undefined ? ' ' + isValid : '';
     const empty = this.get('isEmpty') ? ' empty' : '';
-    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${get(this, '_size')}${empty}${validity}${alignStyle}${spinners}`;
+    return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${_size}${empty}${validity}${alignStyle}${spinners}`;
   }),
 
   // min: null,
