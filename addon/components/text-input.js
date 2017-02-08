@@ -15,6 +15,7 @@ const input = Ember.Component.extend(ddau, {
   type: 'text',
   tagName: '',
   align: 'left',
+  id: computed(function() { return v4(); }),
   autoComplete: true,
   _autoComplete: computed('autoComplete', function() {
     return this.get('autoComplete') ? null : "new-password";
@@ -58,9 +59,6 @@ const input = Ember.Component.extend(ddau, {
       }, value);
     }
   },
-  id: Ember.computed(function() {
-    return v4();
-  }),
   /**
    * Check API usage to ensure that all dependant
    * addons are in place to render this component

@@ -1,10 +1,10 @@
-{{#input-group as |g|}}
+{{#input-group class=class name=name as |g|}}
   {{#if (or pre preIcon)}}
     {{g.pre pre=pre preIcon=preIcon}}
   {{/if}}
 
-  {{g.input placeholder='first' class='first-name' onChange=(action 'firstName') onBlur=(action 'blur')}}
-  {{g.input placeholder='last name' class='last-name bump-left' onChange=(action 'lastName') onBlur=(action 'blur')}}
+  {{g.input id=(concat "first-" id) placeholder='first' class='first-name' onChange=(action 'firstName') onBlur=(action 'blur')}}
+  {{g.input id=(concat "second-" id) placeholder='last name' class='last-name' onChange=(action 'lastName') onBlur=(action 'blur')}}
 
   {{#if (or post postIcon)}}
     {{g.post post=post postIcon=postIcon}}

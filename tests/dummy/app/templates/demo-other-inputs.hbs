@@ -79,14 +79,17 @@
     <br>
 
     {{name-input
-      value=name
-      onBlur=(mut name)
+      value=name2
+      onChange=(mut name2)
     }}
 
     <p>
-      value: <br>
+      name: <br>
       <pre><code>{{json name}}</code></pre>
-
+    </p>
+    <p>
+      name2: <br>
+      <pre><code>{{json name2}}</code></pre>
     </p>
   </div>
   <div class="col-xs-12 col-md-3">
@@ -97,8 +100,8 @@
 }}</code></pre>
 <br>
 <pre><code class='handlebars'>\{{name-input
-  value=name
-  onBlur=(mut name)
+  value=name2
+  onChange=(mut name2)
 }}</code></pre>
 
   </div>
