@@ -16,6 +16,7 @@
 }
 .input-group input.last-name {
   flex-grow: 1.4;
+  margin-left: -1px;
 }
 
 /* INLINE STYLE */

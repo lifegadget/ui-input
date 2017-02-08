@@ -75,6 +75,14 @@
       value=name
       onBlur=(mut name)
     }}
+
+    <br>
+
+    {{name-input
+      value=name
+      onBlur=(mut name)
+    }}
+
     <p>
       value: <br>
       <pre><code>{{json name}}</code></pre>
@@ -87,6 +95,12 @@
   value=name
   onBlur=(mut name)
 }}</code></pre>
+<br>
+<pre><code class='handlebars'>\{{name-input
+  value=name
+  onBlur=(mut name)
+}}</code></pre>
+
   </div>
   <div class="col-md hidden-sm-down">
     {{#ui-markdown style='github'}}
