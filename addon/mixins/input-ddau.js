@@ -13,7 +13,7 @@ export default Ember.Mixin.create({
       this.attrs[action].update(value);
       return true;
     } else if (this.attrs[action]) {
-      return this.attrs[action](hash);
+      return this.attrs[action](value, hash);
     } else {
       return false;
     }
