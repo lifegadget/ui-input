@@ -14,22 +14,35 @@ export default Ember.Component.extend(ddau, {
   layout,
   tagName: '',
   name: computed(() => ({})),
+  previous: computed(() => ({})),
   actions: {
     firstName(first) {
-      const name = Ember.assign({}, this.get('name'));
-      name.first = first.value;
+      const oldValue = this.get('name');
+      const name = Ember.assign({}, oldValue);
+      name.first = first;
       this.set('name', name);
-      this.handleDDAU('onChange', name, name);
+      this.handleDDAU('onChange', name, {
+        oldValue,
+        type: 'object'
+      });
     },
     lastName(last) {
-      const name = Ember.assign({}, this.get('name'));
-      name.last = last.value;
+      const oldValue = this.get('name');
+      const name = Ember.assign({}, oldValue);
+      name.last = last;
       this.set('name', name);
-      this.handleDDAU('onChange', name, name);
+      this.handleDDAU('onChange', name, {
+        oldValue,
+        type: 'object'
+      });
     },
     blur() {
-      const name = this.get('name');
-      this.handleDDAU('onBlur', name, name);
+      const {name, previous} = this.getProperties('name', 'previous');
+      this.set('previous', name);
+      this.handleDDAU('onBlur', name, {
+        oldValue: previous,
+        type: 'object'
+      });
     }
   }
 });

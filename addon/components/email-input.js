@@ -17,27 +17,27 @@ const input = uiInput.extend({
     if(value === null || value === undefined || value === '') {
       if(this.get('isValid') !== 'empty') {
         this.set('isValid', 'empty');
-        this.handleDDAU('onValidity', {
+        this.handleDDAU('onValidity', 'empty', {
           validity: 'empty',
           context: this
-        }, 'empty');
+        });
       }
     }
     else if (value && value.trim().search(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) === -1) {
       if(this.get('isValid') !== 'invalid') {
         this.set('isValid', 'invalid');
-        this.handleDDAU('onValidity', {
+        this.handleDDAU('onValidity', 'invalid', {
           validity: 'invalid',
           context: this
-        }, 'invalid');
+        });
       }
     } else {
       if(this.get('isValid') !== 'valid') {
         this.set('isValid', 'valid');
-        this.handleDDAU('onValidity', {
+        this.handleDDAU('onValidity', 'valid', {
           validity: 'valid',
           context: this
-        }, 'valid');
+        });
       }
 
     }

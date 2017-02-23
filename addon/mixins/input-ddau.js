@@ -8,7 +8,7 @@ export default Ember.Mixin.create({
    * @param  {mixed}   value  A value that is passed to the "update" function (aka, mut helper) if available
    * @return {boolean}        Pass back true if `mut` not used; if used then proxies mut's response back
    */
-  handleDDAU(action, hash, value) {
+  handleDDAU(action, value, hash) {
     if (this.attrs[action] && this.attrs[action].update) {
       this.attrs[action].update(value);
       return true;

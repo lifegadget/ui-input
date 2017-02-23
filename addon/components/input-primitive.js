@@ -25,11 +25,11 @@ export default Ember.Component.extend(ddau, {
 
   actions: {
     onBlur(evt) {
-      this.handleDDAU('onBlur', evt, evt.target.value);
+      this.handleDDAU('onBlur', evt.target.value, evt);
     },
     onChange(evt) {
       Ember.run.debounce(this, () => {
-        this.handleDDAU('onChange', evt, evt.target.value);
+        this.handleDDAU('onChange', evt.target.value, evt);
       },75);
     }
   }

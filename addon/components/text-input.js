@@ -53,12 +53,12 @@ const input = Ember.Component.extend(ddau, {
       e.stopPropagation();
       const oldValue = this.get('value');
       const value = this.typeCheck($(e.target).val());
-      this.handleDDAU('onSubmit', {
+      this.handleDDAU('onSubmit', value, {
         evt: e,
         value: value,
         oldValue: oldValue,
         context: this
-      }, value);
+      });
     }
   },
   /**
@@ -169,7 +169,7 @@ const input = Ember.Component.extend(ddau, {
   typeCheck(untypedValue) {
     const {ifEmpty, type} = this.getProperties('ifEmpty', 'type');
     if (type === 'number') {
-      return Number(untypedValue);
+      return untypedValue ? Number(untypedValue) : undefined;
     }
     if (Ember.isEmpty(untypedValue) && ifEmpty) {
       switch(ifEmpty) {
@@ -192,27 +192,29 @@ const input = Ember.Component.extend(ddau, {
   actions: {
     onBlur(evt) {
       const oldValue = this.get('value');
+      const type = this.get('type');
       const value = this.typeCheck($(evt.target).val());
       this.blurValidation(evt, value);
-      this.handleDDAU('onBlur', {
+      this.handleDDAU('onBlur', value, {
         evt: evt,
-        value: value,
-        oldValue: oldValue,
+        type,
+        oldValue,
         context: this
-      }, value);
+      });
       evt.stopPropagation();
     },
     onChange(evt) {
       const oldValue = this.get('value');
+      const type = this.get('type');
       const value = this.typeCheck($(evt.target).val());
       this.changeValidation(evt, value);
       run.debounce(() => {
-        this.handleDDAU('onChange', {
+        this.handleDDAU('onChange', value, {
           evt: evt,
-          value: value,
-          oldValue: oldValue,
+          type,
+          oldValue,
           context: this
-        }, value);
+        });
       }, 25);
     },
     onSubmit(evt) {
@@ -222,9 +224,11 @@ const input = Ember.Component.extend(ddau, {
       // ensure that even if container is listening on onBlur that we return the
       // most current value on the page
       const value = window.document.getElementById(`input-${this.get('id')}`).value;
+      const type = this.get('type');
       // send event
-      this.handleDDAU('onPressed', {
+      this.handleDDAU('onPressed', value, {
         location,
+        type,
         button,
         value: this.typeCheck(value),
         context: this
