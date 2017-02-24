@@ -35,8 +35,9 @@
       autocomplete=_autoComplete
       autofocus=autofocus
 
-      onBlur=(action 'onBlur')
-      onChange=(action 'onChange')
+      onValidation=onValidation
+      onBlur=onBlur
+      onChange=onChange
     )
   )}}
 
@@ -50,7 +51,7 @@
   {{/if}}
 
   {{! GROUPED }}
-  {{#if (or pre post preIcon postIcon button preButton postButton)}}
+  {{#if groupLayout}}
     {{#input-group
       id=id
       type=type
@@ -87,6 +88,8 @@
       {{g.input
         id=id
         class=classy2
+        changeValidate=(action 'changeValidate')
+        blurValidate=(action 'blurValidate')
         onChange=onChange
         onBlur=onBlur
         onSubmit=onSubmit

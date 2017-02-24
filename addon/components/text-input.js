@@ -16,6 +16,8 @@ const input = Ember.Component.extend(ddau, {
   tagName: '',
   align: 'left',
   id: computed(function() { return v4(); }),
+  groupLayout: Ember.computed.or('pre', 'preIcon', 'preButton', 'button', 'icon', 'preButton', 'postButton', 'postIcon'),
+
   autoComplete: true,
   _autoComplete: computed('autoComplete', function() {
     return this.get('autoComplete') ? null : "new-password";
@@ -25,7 +27,9 @@ const input = Ember.Component.extend(ddau, {
     this.checkAPI(); // validate usage is inline with installed addons
   },
   didInsertElement() {
-    this.changeValidation(null, this.get('value'));
+    if(!this.get('groupLayout')) {
+      this.changeValidate(null, this.get('value'));
+    }
   },
   didRender() {
     const id = this.get('id');
@@ -182,19 +186,13 @@ const input = Ember.Component.extend(ddau, {
 
     return untypedValue;
   },
-  blurValidation() {
-    return true;
-  },
-  changeValidation() {
-    return true;
-  },
 
   actions: {
     onBlur(evt) {
       const oldValue = this.get('value');
       const type = this.get('type');
       const value = this.typeCheck($(evt.target).val());
-      this.blurValidation(evt, value);
+      this.blurValidate(evt, value);
       this.handleDDAU('onBlur', value, {
         evt: evt,
         type,
@@ -205,9 +203,11 @@ const input = Ember.Component.extend(ddau, {
     },
     onChange(evt) {
       const oldValue = this.get('value');
-      const type = this.get('type');
-      const value = this.typeCheck($(evt.target).val());
-      this.changeValidation(evt, value);
+      const {id, type} = this.getProperties('id', 'type');
+      const value = this.typeCheck($(`#${id}`).val());
+      console.log('ON CHANGE', this);
+      // this.get('changeValidation').bind(this)(evt, value);
+      this.changeValidate(evt, value);
       run.debounce(() => {
         this.handleDDAU('onChange', value, {
           evt: evt,
@@ -234,6 +234,13 @@ const input = Ember.Component.extend(ddau, {
         context: this
       });
     },
+    changeValidate(evt, value) {
+      return true;
+    },
+    blurValidate(evt, value) {
+      return true;
+    }
+
   },
 
 });

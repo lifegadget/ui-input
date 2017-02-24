@@ -5,8 +5,8 @@
       placeholder='password'
       value=password
       showPassword=show
-      onSecure=(mut security)
-      onChange=(mut password)
+      onSecure=(action (mut security))
+      onChange=(action (mut password))
     }}
     <p class="text-muted">
       <br>
@@ -25,8 +25,8 @@
   placeholder='password'
   value=password
   showPassword=show
-  onSecure=(mut security)
-  onChange=(mut password)
+  onSecure=(action (mut security))
+  onChange=(action (mut password))
 }}</code></pre>
     </span>
   </div>
@@ -43,8 +43,8 @@
     {{email-input
       placeholder='email address'
       value=email
-      onValidity=(mut validEmail)
-      onChange=(mut email)
+      onValidity=(action (mut validEmail))
+      onChange=(action (mut email))
     }}
     <br>
     value: {{email}}, validity: {{validEmail}}
@@ -55,8 +55,8 @@
       <pre><code class='handlebars'>\{{email-input
   placeholder='email address'
   value=email
-  onValidity=(mut validEmail)
-  onChange=(mut email)
+  onValidity=(action (mut validEmail))
+  onChange=(action (mut email))
 }}</code></pre>
     </span>
   </div>
@@ -73,14 +73,14 @@
     {{name-input
       preIcon='user'
       value=name
-      onBlur=(mut name)
+      onBlur=(action (mut name))
     }}
 
     <br>
 
     {{name-input
       value=name2
-      onChange=(mut name2)
+      onChange=(action (mut name2))
     }}
 
     <p>
@@ -96,12 +96,12 @@
     <pre><code class='handlebars'>\{{name-input
   preIcon='user'
   value=name
-  onBlur=(mut name)
+  onBlur=(action (mut name))
 }}</code></pre>
 <br>
 <pre><code class='handlebars'>\{{name-input
   value=name2
-  onChange=(mut name2)
+  onChange=(action (mut name2))
 }}</code></pre>
 
   </div>
