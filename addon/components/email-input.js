@@ -1,46 +1,28 @@
 import Ember from 'ember';
 import uiInput from 'ui-input/components/text-input';
 import layout from '../templates/components/text-input';
+import Validator from '../utils/validator';
+import emailValidator from 'ui-input/validators/email-validation';
+
+// Set the "isValid" property on every emailValidation check
+const emailIsValid = (context) => (validator) => {
+  context.set('isValid', validator.code === 'ok')
+};
 
 const input = uiInput.extend({
   layout: layout,
   type: 'email',
-
-  actions: {
-    changeValidate(evt, value) {
-      console.log('CHANGE VALIDATION', this);
-      if(value === null || value === undefined || value === '') {
-        if(this.get('isValid') !== 'empty') {
-          this.set('isValid', 'empty');
-          this.handleDDAU('onValidation', 'empty', {
-            validity: 'empty',
-            context: this
-          });
-        }
-      }
-      else if (value && value.trim().search(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) === -1) {
-        if(this.get('isValid') !== 'invalid') {
-          this.set('isValid', 'invalid');
-          console.log('invalid');
-          this.handleDDAU('onValidation', 'invalid', {
-            validity: 'invalid',
-            context: this
-          });
-        }
-      } else {
-        if(this.get('isValid') !== 'valid') {
-          this.set('isValid', 'valid');
-          this.handleDDAU('onValidation', 'valid', {
-            validity: 'valid',
-            context: this
-          });
-        }
-      }
-    },
-
+  init() {
+    this._super(...arguments);
+    const emailValidation = new Validator('emailValidator', emailValidator, {
+      context: this,
+      trigger: 'change',
+      domains: this.get('validDomains'),
+      callbacks: [ emailIsValid ].map(cb => cb(this))
+    });
+    console.log(emailValidation);
+    this.addValidator(emailValidation);
   }
-
-
 });
 input[Ember.NAME_KEY] = 'email-input';
 export default input;

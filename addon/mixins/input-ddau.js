@@ -9,10 +9,14 @@ export default Ember.Mixin.create({
    * @return {boolean}        Pass back true if `mut` not used; if used then proxies mut's response back
    */
   handleDDAU(action, value, options) {
-    if (this.get(action)) {
+    if (this.get(action) ? true : false) {
       return this.get(action)(value, options);
     } else {
       return false;
     }
+  },
+
+  containerIsListeningFor(action) {
+    return this.get(action) ? true : false;
   }
 });

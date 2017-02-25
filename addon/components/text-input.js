@@ -1,14 +1,10 @@
 import Ember from 'ember';
-const { keys, create } = Object; // jshint ignore:line
-const { RSVP: {Promise, all, race, resolve, defer} } = Ember; // jshint ignore:line
-const { inject: {service} } = Ember; // jshint ignore:line
-const { computed, observer, $, run, on, typeOf, isPresent } = Ember;  // jshint ignore:line
-const { defineProperty, get, set, inject, isEmpty, merge } = Ember; // jshint ignore:line
-const a = Ember.A; // jshint ignore:line
+const { computed,  $, run,  typeOf } = Ember;  
 
 import { v4 } from 'ember-uuid';
 import layout from '../templates/components/text-input';
 import ddau from '../mixins/input-ddau';
+import ValidationSet from '../utils/validation-set';
 
 const input = Ember.Component.extend(ddau, {
   layout,
@@ -24,6 +20,8 @@ const input = Ember.Component.extend(ddau, {
   }),
   init() {
     this._super(...arguments);
+    this._validators = [];
+    this.validationState = {};
     this.checkAPI(); // validate usage is inline with installed addons
   },
   didInsertElement() {
@@ -124,7 +122,7 @@ const input = Ember.Component.extend(ddau, {
       }
       skinClass = ` skin-${skin}`;
     }
-    let validity = isValid !== undefined ? ' ' + isValid : '';
+    let validity = isValid ? ' valid' : ' invalid';
     const empty = this.get('isEmpty') ? ' empty' : '';
     return `ui-input${formControl}${skinClass} ${proxy}${moodStyle}${_size}${empty}${validity}${alignStyle}${spinners}`;
   }),
@@ -187,12 +185,46 @@ const input = Ember.Component.extend(ddau, {
     return untypedValue;
   },
 
+  addValidators(validations) {
+    return this.addValidator(validations);
+  },
+
+  addValidator(validations) {
+    if (Ember.typeOf(validations) !== 'array') {
+      validations = validations ? [ validations ] : [];
+    }
+    this._validators = this._validators.concat(validations);
+    this.validate(null, this.get('value'), this._validators.filter(v => v.trigger = 'change'));
+  },
+
+  changeValidate(evt, value) {
+    const validations = this._validators.filter(v => v.trigger = 'change');
+    this.validate(evt, value, validations, this.validationState);
+  },
+
+  blurValidate(evt, value) {
+    const validations = this._validators.filter(v => v.trigger = 'blur');
+    this.validate(evt, value, validations, this.validationState);
+  },
+
+  validate(evt, value, validations) {
+    if(validations.length === 0) {
+      return; // no validations so stop
+    }
+
+    console.log('validating: ', value, validations, this.validationState);
+    const validationSet = new ValidationSet(evt, value, this.validationState);
+    validationSet.validate(validations);
+    validationSet.sendActions(this.handleDDAU.bind(this)); // onValidation, onError, onWarning
+    this.validationState = validationSet.updatedState(this.validationState);
+  },
+
   actions: {
     onBlur(evt) {
       const oldValue = this.get('value');
       const type = this.get('type');
       const value = this.typeCheck($(evt.target).val());
-      this.blurValidate(evt, value);
+      this.validationState = this.blurValidate(evt, value);
       this.handleDDAU('onBlur', value, {
         evt: evt,
         type,
@@ -205,8 +237,6 @@ const input = Ember.Component.extend(ddau, {
       const oldValue = this.get('value');
       const {id, type} = this.getProperties('id', 'type');
       const value = this.typeCheck($(`#${id}`).val());
-      console.log('ON CHANGE', this);
-      // this.get('changeValidation').bind(this)(evt, value);
       this.changeValidate(evt, value);
       run.debounce(() => {
         this.handleDDAU('onChange', value, {
@@ -234,13 +264,6 @@ const input = Ember.Component.extend(ddau, {
         context: this
       });
     },
-    changeValidate(evt, value) {
-      return true;
-    },
-    blurValidate(evt, value) {
-      return true;
-    }
-
   },
 
 });

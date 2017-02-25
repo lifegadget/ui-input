@@ -43,11 +43,12 @@
     {{email-input
       placeholder='email address'
       value=email
-      onValidity=(action (mut validEmail))
+      onValidation=(action (mut validity))
+      onWarning=(action 'emailWarn')
       onChange=(action (mut email))
     }}
     <br>
-    value: {{email}}, validity: {{validEmail}}
+    value: {{email}}, validation: {{validity.emailValidator.state}}
 
   </div>
   <div class="col-xs-12 col-md-3">
@@ -55,7 +56,8 @@
       <pre><code class='handlebars'>\{{email-input
   placeholder='email address'
   value=email
-  onValidity=(action (mut validEmail))
+  onValidation=(action (mut validity))
+  onWarning=(action 'emailWarn')
   onChange=(action (mut email))
 }}</code></pre>
     </span>
