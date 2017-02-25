@@ -20,7 +20,6 @@ const input = uiInput.extend({
       domains: this.get('validDomains'),
       callbacks: [ emailIsValid ].map(cb => cb(this))
     });
-    console.log(emailValidation);
     this.addValidator(emailValidation);
   }
 });

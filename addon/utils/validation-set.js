@@ -8,8 +8,8 @@ export default class ValidationSet {
     this.state = {};
     this.code = {};
     this.options = {};
-    this.errors = [];
-    this.warn = [];
+    this.errors = {};
+    this.warnings = {};
     this.status = {};
   }
 
@@ -20,45 +20,44 @@ export default class ValidationSet {
 
         return false;
       }
-      const status = v.fn(this.evt, this.value);
-      v.callbacks.map(cb => cb(status));
-      const { state, code, options, error, warning } = status;
+      const result = v.fn(this.evt, this.value);
+      v.callbacks.map(cb => cb(result));
+      const { state, code, options, error, warning } = result;
       this.status[v.name] = {
         state,
         code,
-        options
+        trigger: v.trigger,
+        options,
+        warning,
+        error
       }
-      this.state[v.name] = state;
-      this.code[v.name] = code;
-      this.options[v.name] = options;
       if(warning) {
-        this.warn.push(error);
+        this.warnings[v.name] = Ember.assign({trigger: v.trigger}, warning);
       }
       if(error) {
-        this.errors.push(error);
+        this.errors[v.name] = Ember.assign({trigger: v.trigger}, error);
       }
     });
   }
 
   sendActions(ddau) {
-    console.log('sending actions', this.status, this.value, this.priorValue);
     if (this.value === this.priorValue) {
       return true;
     }
 
     ddau('onValidation', this.status, {
-      warn: this.warn,
+      warnings: this.warnings,
       errors: this.errors,
       evt: this.evt,
       value: this.value,
     });
 
-    if(this.warn.length > 0) {
-      ddau('onWarning', this.warn, { warn: this.warn, evt: this.evt, value: this.value });
+    if(Object.keys(this.warnings).length > 0) {
+      ddau('onWarning', this.warnings, { evt: this.evt, value: this.value });
     }
 
     if(this.errors.length > 0) {
-      ddau('onError', this.errors, { errors: this.errors, evt: this.evt, value: this.value });
+      ddau('onError', this.errors, { evt: this.evt, value: this.value });
     }
   }
 

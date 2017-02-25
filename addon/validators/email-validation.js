@@ -5,11 +5,10 @@ const emailValidator = (options = {}) => (evt, value, currentState = {}) => {
   let state;
   let code = 'ok';
   let warnError = null;
-  let warn;
+  let warning;
   let error;
   let createWarnError = (hash) => {
     return Ember.assign({}, {
-      validator: options.name,
       currentValue: value,
       message: 'The email is not of a valid format',
     }, hash);
@@ -42,14 +41,13 @@ const emailValidator = (options = {}) => (evt, value, currentState = {}) => {
     if(options.errorOnInvalid) {
       error = warnError;
     } else {
-      warn = warnError;
+      warning = warnError;
     }
   } else {
     state = null;
   }
 
-  console.log('validated to: ', {state, code, priorState, error, warn });
-  return { state, code, error, warn };
+  return { state, code, error, warning };
 };
 
 export default emailValidator;
