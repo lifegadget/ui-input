@@ -4,7 +4,6 @@ export default class Validator {
     options.name = name;
     this.name = name;
     this.fn = fn(options);
-    console.log('options are: ', options);
     this.trigger = options.trigger || 'change';
     this.context = options.context || {};
     this.callbacks = options.callbacks || [];

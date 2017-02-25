@@ -212,7 +212,6 @@ const input = Ember.Component.extend(ddau, {
       return; // no validations so stop
     }
 
-    console.log('validating: ', value, validations, this.validationState);
     const validationSet = new ValidationSet(evt, value, this.validationState);
     validationSet.validate(validations);
     validationSet.sendActions(this.handleDDAU.bind(this)); // onValidation, onError, onWarning
