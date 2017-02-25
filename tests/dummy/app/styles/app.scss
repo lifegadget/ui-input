@@ -1,3 +1,4 @@
+@import 'ui-bootstrap';
 @import 'ui-grid';
 @import 'ui-tag';
 @import 'ui-navigation';
@@ -9,10 +10,10 @@ body {
 }
 
 .flash-messages {
-  padding: 5rem;
-  position: absolute;
-  top: 20;
-  left: 0;
+  padding: 2rem;
+  position: fixed;
+  top: 20px;
+  left: 20%;
   width: 60%;
   z-index: 100;
 }

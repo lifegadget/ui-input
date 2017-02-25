@@ -252,7 +252,7 @@ const input = Ember.Component.extend(ddau, {
     onPressed(location, button) {
       // ensure that even if container is listening on onBlur that we return the
       // most current value on the page
-      const value = window.document.getElementById(`input-${this.get('id')}`).value;
+      const value = window.document.getElementById(this.get('id')).value;
       const type = this.get('type');
       // send event
       this.handleDDAU('onPressed', value, {

@@ -1,7 +1,6 @@
 {
   "name": "ui-input",
   "dependencies": {
-    "prism": "^1.4.1",
     "showdown": "^1.3.0"
   },
   "devDependencies": {}

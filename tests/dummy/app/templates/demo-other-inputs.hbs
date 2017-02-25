@@ -1,3 +1,17 @@
+<div class="flash-messages">
+  {{#each flashMessages.queue as |flash|}}
+    {{#flash-message flash=flash as |component flash|}}
+      {{#if flash.componentName}}
+        {{component flash.componentName content=flash.content}}
+      {{else}}
+        <h6>{{component.flashType}}</h6>
+        <p>{{flash.message}}</p>
+      {{/if}}
+    {{/flash-message}}
+  {{/each}}
+</div>
+
+
 <h3>Passwords</h3>
 <div class="row">
   <div class="col-xs-12 col-md-3">
@@ -48,7 +62,9 @@
       onChange=(action (mut email))
     }}
     <br>
-    value: {{email}}, validation: {{validity.emailValidator.state}} ({{validity.emailValidator.code}})
+    value: {{email}}
+    <br>
+    validation: {{validity.emailValidator.state}} ({{validity.emailValidator.code}})
 
   </div>
   <div class="col-xs-12 col-md-3">

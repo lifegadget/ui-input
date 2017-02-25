@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/input-group';
-import { v4 } from 'ember-uuid';
 
 const group = Ember.Component.extend({
   layout: layout,

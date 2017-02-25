@@ -1,21 +1,16 @@
 import Ember from 'ember';
-const { keys, create } = Object; // jshint ignore:line
-const { RSVP: {Promise, all, race, resolve, defer} } = Ember; // jshint ignore:line
-const { inject: {service} } = Ember; // jshint ignore:line
-const { computed, observe, $, run, on, typeOf } = Ember;  // jshint ignore:line
-const { get, set, debug } = Ember; // jshint ignore:line
-const a = Ember.A; // jshint ignore:line
+const { inject: {service} } = Ember; 
+const { get } = Ember; 
 
 
 export default Ember.Controller.extend({
   flashMessages: service(),
   actions: {
-    buttonPressed(hash) {
+    buttonPressed(value, hash) {
       const flashMessages = Ember.get(this, 'flashMessages');
-      flashMessages.info(`Button pressed in the "${hash.location}" location.`);
-      console.log('buttonPressed:', hash);
+      flashMessages.info(`Button pressed in the "${hash.location}" location. The value was ${value}.`);
     },
-    submitDetected(context) {
+    submitDetected(value, context) {
       const flashMessages = Ember.get(this, 'flashMessages');
       flashMessages.success('Submit was detected for input: ' + get(context, 'evt.target').id);
     },
