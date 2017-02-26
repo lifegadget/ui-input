@@ -12,7 +12,7 @@ const input = Ember.Component.extend(ddau, {
   tagName: '',
   align: 'left',
   id: computed(function() { return v4(); }),
-  groupLayout: Ember.computed.or('pre', 'preIcon', 'preButton', 'button', 'icon', 'preButton', 'postButton', 'postIcon'),
+  groupLayout: computed.or('pre', 'preIcon', 'preButton', 'button', 'icon', 'preButton', 'postButton', 'postIcon'),
 
   autoComplete: true,
   _autoComplete: computed('autoComplete', function() {
@@ -215,7 +215,7 @@ const input = Ember.Component.extend(ddau, {
     const validationSet = new ValidationSet(evt, value, this.validationState);
     validationSet.validate(validations);
     validationSet.sendActions(this.handleDDAU.bind(this)); // onValidation, onError, onWarning
-    this.validationState = validationSet.updatedState(this.validationState);
+    this.validationState = validationSet.updatedState();
   },
 
   actions: {
@@ -223,7 +223,7 @@ const input = Ember.Component.extend(ddau, {
       const oldValue = this.get('value');
       const type = this.get('type');
       const value = this.typeCheck($(evt.target).val());
-      this.validationState = this.blurValidate(evt, value);
+      this.blurValidate(evt, value);
       this.handleDDAU('onBlur', value, {
         evt: evt,
         type,

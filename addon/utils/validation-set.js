@@ -1,10 +1,10 @@
 import Ember from 'ember';
 export default class ValidationSet {
 
-  constructor(evt, value, priorValue) {
+  constructor(evt, value, priorStatus) {
     this.evt = evt;
     this.value = value;
-    this.priorValue = priorValue;
+    this.priorStatus = priorStatus;
     this.state = {};
     this.code = {};
     this.options = {};
@@ -61,8 +61,8 @@ export default class ValidationSet {
     }
   }
 
-  updatedState(priorState) {
-    return Ember.assign({}, priorState, this.state);
+  updatedState() {
+    return Ember.assign({value: this.value}, this.status);
   }
 
 }

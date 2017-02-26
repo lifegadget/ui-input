@@ -3,11 +3,12 @@ const { computed } = Ember;
 
 import layout from '../templates/components/name-input';
 import ddau from '../mixins/input-ddau';
-
+import { v4 } from 'ember-uuid';
 
 export default Ember.Component.extend(ddau, {
   layout,
   tagName: '',
+  id: computed(() => v4()),
   name: computed(() => ({})),
   previous: computed(() => ({})),
   actions: {

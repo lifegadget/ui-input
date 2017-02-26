@@ -61,7 +61,7 @@
       controller value: "{{blurValue}}"
     </p>
   </div>
-  <div class="col-3">
+  <div class="col-6 col-lg-4">
     <span>
       <b>Update on Blur</b>
       <pre><code class='handlebars'>\{{text-input
@@ -71,7 +71,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-4 hidden-sm-down">
+  <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
       In other cases, you may not want the "noise" of updating properties as you type but rather you'd like the container to only be updated when the input control losses focus (aka, blur). To do that just put the `mut` helper on the "onBlur" event.
     {{/ui-markdown}}
@@ -101,7 +101,7 @@
       }}
     </p>
   </div>
-  <div class="col-3">
+  <div class="col-6 col-lg-4">
     <span>
       <b>Sizing</b>
       <pre><code class='handlebars'>\{{text-input
@@ -112,7 +112,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-4 hidden-sm-down">
+  <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
       In other cases, you may not want the "noise" of updating properties as you type but rather you'd like the container to only be updated when the input control losses focus (aka, blur). To do that just put the `mut` helper on the "onBlur" event.
     {{/ui-markdown}}
@@ -123,7 +123,7 @@
 <hr>
 
 <div class="row">
-  <div class="col-3">
+  <div class="col-6 col-lg-3">
     {{text-input
       value=moodyValue
       mood=mood
@@ -144,7 +144,7 @@
       }}
     </p>
   </div>
-  <div class="col-3">
+  <div class="col-6 col-lg-4">
     <span>
       <b>Mood</b>
       <pre><code class='handlebars'>\{{text-input
@@ -155,7 +155,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-4 hidden-sm-down">
+  <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
       If you've used any of the other `ui-*` addons you'll be familiar with the "mood" property. In Bootstrap they have a concept of "validation" which resembles what the _mood_ property would typically control (aka, visual color coding).
 
@@ -168,7 +168,7 @@
 
 <hr> {{! SKINNING }}
 <div class="row">
-  <div class="col-3">
+  <div class="col-6 col-lg-3">
     {{text-input
       value=skinValue
       skin=skin
@@ -188,7 +188,7 @@
       }}
     </p>
   </div>
-  <div class="col-3">
+  <div class="col-6 col-lg-4">
     <span>
       <b>Skinning</b>
       <pre><code class='handlebars'>\{{text-input
@@ -199,7 +199,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-4 hidden-sm-down">
+  <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
       Skinning is the ability to change the look and feel of a visual component with a simple configuration switch. This is largely applied with CSS but this addon hopefully helps a bit more with a structure for this skinning.
 
@@ -212,7 +212,7 @@
 
 <hr> {{! ALIGNMENT }}
 <div class="row">
-  <div class="col-3">
+  <div class="col-6 col-lg-3">
     {{text-input
       value=alignValue
       align=alignment
@@ -232,7 +232,7 @@
       }}
     </p>
   </div>
-  <div class="col-3">
+  <div class="col-6 col-lg-4">
     <span>
       <b>Alignment</b>
       <pre><code class='handlebars'>\{{text-input
@@ -243,7 +243,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-4 hidden-sm-down">
+  <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
       Where the input value (and placeholder) goes within the input control can be important. By default a number will default to the right, everything else to the left. If you want to control this, however, you can state your preference explicitly.
     {{/ui-markdown}}
@@ -253,7 +253,7 @@
 
 <hr> {{! EMPTY IS ... }}
 <div class="row">
-  <div class="col-3">
+  <div class="col-6 col-lg-3">
     {{text-input
       value=emptyValue
       ifEmpty=ifEmpty
@@ -273,7 +273,7 @@
       }}
     </p>
   </div>
-  <div class="col-3">
+  <div class="col-6 col-lg-4">
     <span>
       <b>Empty is ...</b>
       <pre><code class='handlebars'>\{{text-input
@@ -284,7 +284,7 @@
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-4 hidden-sm-down">
+  <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
       The `text-input` takes a "string input." Obviously. But what about when the control is empty? By default it will translate to an empty string but sometimes it would be better if it were _null_ or _undefined_. Both are possible by setting the `ifEmpty` parameter.
 
@@ -296,17 +296,14 @@
 <hr>
 
 <div class="row">
-  <div class="col-3">
+  <div class="col-6 col-lg-3">
 
-    <p class="text-muted">
-      controller value: "{{addonValue}}"
-    </p>
     {{text-input
       preIcon='calendar'
       post='.00'
       value=payupValue
       placeholder='pay up'
-      onChange=(mut payupValue)
+      onChange=(action (mut payupValue))
     }}
     <p class="text-muted">
       controller value: "{{payupValue}}"
@@ -316,7 +313,7 @@
 
 <hr> {{! GROUP WITH BUTTON }}
 <div class="row">
-  <div class="col-3">
+  <div class="col-6 col-lg-3">
     {{text-input
       value=groupWithButton
       postButton='submit'
@@ -356,7 +353,7 @@
       }}
     </p>
   </div>
-  <div class="col-3">
+  <div class="col-6 col-lg-4">
     <span>
       <b>Submit with a Button</b>
       <pre><code class='handlebars'>\{{text-input
@@ -364,7 +361,7 @@
   mood="{{moodForInputControl}}"
   postButton='submit'
   placeholder="pressing my button"
-  onChange=(mut groupWithButton)
+  onChange=(action (mut groupWithButton))
   onPressed=(action 'buttonPressed')
 }}</code></pre>
       <hr>
@@ -379,12 +376,12 @@
   mood=moodForInputControl
   button='submit'
   placeholder="alt"
-  onChange=(mut groupWithButton2)
+  onChange=(action (mut groupWithButton2))
   onPressed=(action 'buttonPressed')
 }}</code></pre>
     </span>
   </div>
-  <div class="col-md-4 hidden-sm-down">
+  <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
       If the containing application has the `ui-button` component installed then the **preButton** and **postButton** properties on inputs will allow you place a button as included part of the inline component.
 
@@ -399,7 +396,7 @@
 
 <hr> {{! BLOCK STYLE }}
 <div class="row">
-  <div class="col-3">
+  <div class="col-6 col-lg-3">
      {{#text-input
         value=blockStyle
         placeholder='block styling'
@@ -418,7 +415,7 @@
     </p>
 
   </div>
-  <div class="col-3">
+  <div class="col-6 col-lg-4">
     <span>
       <b>Block Style</b>
       <pre><code class='handlebars'>\{{#text-input
@@ -436,7 +433,7 @@
 \{{/text-input}}</code></pre>
     </span>
   </div>
-  <div class="col-md-4 hidden-sm-down">
+  <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
       Up to now we've been trying to make the _inline_ style meet all of our needs but as we approach more bespoke conditions the API surface gets more verbose and a purely flat API to do everything starts to become impractical.
 
