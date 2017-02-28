@@ -129,7 +129,7 @@
       mood=mood
       inGroup=inGroup
       placeholder='emotional train wreck'
-      onChange=(mut moodyValue)
+      onChange=(action (mut moodyValue))
     }}
     <p class="text-muted">
       controller value: "{{moodyValue}}"
@@ -151,7 +151,7 @@
   value=moodyValue
   mood="{{mood}}"
   placeholder='emotional train wreck'
-  onChange=(mut moodyValue)
+  onChange=(action (mut moodyValue))
 }}</code></pre>
     </span>
   </div>
@@ -173,7 +173,7 @@
       value=skinValue
       skin=skin
       placeholder='hey good looking'
-      onChange=(mut skinValue)
+      onChange=(action (mut skinValue))
     }}
     <p class="text-muted">
       controller value: "{{skinValue}}"
@@ -195,7 +195,7 @@
   skin="{{skin}}"
   value=skinValue
   placeholder='hey good looking'
-  onChange=(mut skinValue)
+  onChange=(action (mut skinValue))
 }}</code></pre>
     </span>
   </div>

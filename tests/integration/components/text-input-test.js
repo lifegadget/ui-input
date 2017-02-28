@@ -46,7 +46,6 @@ test('modifying DOM\'s value changes inline component value through ddau', funct
   const done = assert.async();
 
   this.on('onBlur', function(hash) {
-    console.log(hash);
     assert.equal(hash.oldValue, 'foobar', 'changed detected with correct old value');
     assert.equal(hash.value, 'foobaz', 'changed detected with correct new value');
     assert.ok(hash.context, 'found context object on action');

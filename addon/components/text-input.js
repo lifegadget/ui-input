@@ -194,24 +194,22 @@ const input = Ember.Component.extend(ddau, {
       validations = validations ? [ validations ] : [];
     }
     this._validators = this._validators.concat(validations);
-    this.validate(null, this.get('value'), this._validators.filter(v => v.trigger = 'change'));
   },
 
   changeValidate(evt, value) {
-    const validations = this._validators.filter(v => v.trigger = 'change');
-    this.validate(evt, value, validations, this.validationState);
+    const validations = this._validators.filter(v => v.trigger === 'change');
+    this.validate(evt, value, validations);
   },
 
   blurValidate(evt, value) {
-    const validations = this._validators.filter(v => v.trigger = 'blur');
-    this.validate(evt, value, validations, this.validationState);
+    const validations = this._validators.filter(v => v.trigger === 'blur');
+    this.validate(evt, value, validations);
   },
 
   validate(evt, value, validations) {
     if(validations.length === 0) {
       return; // no validations so stop
     }
-
     const validationSet = new ValidationSet(evt, value, this.validationState);
     validationSet.validate(validations);
     validationSet.sendActions(this.handleDDAU.bind(this)); // onValidation, onError, onWarning
@@ -247,7 +245,7 @@ const input = Ember.Component.extend(ddau, {
       }, 25);
     },
     onSubmit(evt) {
-      console.log('submitted', evt);
+      console.log('submitted event not implemented yet', evt);
     },
     onPressed(location, button) {
       // ensure that even if container is listening on onBlur that we return the
