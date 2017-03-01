@@ -18,10 +18,11 @@ const input = Ember.Component.extend(ddau, {
   _autoComplete: computed('autoComplete', function() {
     return this.get('autoComplete') ? null : "new-password";
   }),
+  icon: computed.alias('preIcon'),
   init() {
     this._super(...arguments);
     this._validators = [];
-    this.validationState = {};
+    this.set('validationState', {});
     this.checkAPI(); // validate usage is inline with installed addons
   },
   didRender() {
@@ -213,7 +214,7 @@ const input = Ember.Component.extend(ddau, {
     const validationSet = new ValidationSet(evt, value, this.validationState);
     validationSet.validate(validations);
     validationSet.sendActions(this.handleDDAU.bind(this)); // onValidation, onError, onWarning
-    this.validationState = validationSet.updatedState();
+    this.set('validationState',validationSet.updatedState());
   },
 
   actions: {
