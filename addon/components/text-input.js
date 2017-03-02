@@ -68,13 +68,13 @@ const input = Ember.Component.extend(ddau, {
     if(this.get('onChange')) {
       this.handleDDAU('onChange', defaultValue, eventPayload);
     } else if (this.get('onBlur')) {
+      this.handleDDAU('onChange', defaultValue, eventPayload); // to ensure "change validations"
       this.handleDDAU('onBlur', defaultValue, eventPayload);
     } else {
       Ember.debug('ui-input: a default value was provided but container is not listening to either onBlur or onChange so no way to pass the default value up.');
     }
   },
   _shouldDefaultValue(value, defaultValue) {
-    console.log('checking', value, defaultValue);
   if (!defaultValue) {
     return false;
   }
