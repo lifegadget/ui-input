@@ -88,7 +88,6 @@ export default class ValidationSet {
       currentNotifications += validation + ':' + this.status[validation].code + '/' + this.status[validation].state + '||';
     });
 
-
     ddau('onValidation', this.status, {
       warnings: this.warnings,
       errors: this.errors,

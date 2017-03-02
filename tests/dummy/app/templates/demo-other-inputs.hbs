@@ -46,7 +46,11 @@
   </div>
   <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
-      Passwords are mainly just text-inputs but with a few extra tricks up their sleeves. As you can see here, toggling the `showPassword` property allows a user to expose the password when typing if so desired. Furthermore, there is a gauge of password security.
+      Passwords are mainly just text-inputs but with a few extra tricks up their sleeves:
+
+      **Show Passwords**: toggling the `showPassword` property allows a user to expose the password when typing.
+
+      **Password Stength**: _this is still a work in progress_
     {{/ui-markdown}}
   </div>
 </div>
@@ -80,7 +84,12 @@
   </div>
   <div class="col-12 col-lg-5">
     {{#ui-markdown style='github'}}
-      Email's are also closely related to the text-input but have a _validation_ "emailValidity" which indicates whether the current value is a valid email address. Possible values for `state` include "empty", "valid", and "invalid". The `code` variable (shown in parenthesis in the demo), is "ok" in all "valid" use-cases but provides a unique _reason_ for the invalid states when it isn't.
+      Email's are also closely related to the text-input but have a _validation_ "emailValidity" which indicates whether the current value is a valid email address. This validation rule is applied like others validation rules (see "validation" tab) and is named `emailValidator` and like other validations returns a "state", and "code" property which specifies whether the field is in a valid state or not:
+
+      - `state` values include "empty", "valid", and "invalid"
+      - `code` values are "ok" if state is _empty_ or _valid_
+
+      In this case we are mutating the _validity_ property on the controller and we can then access the "state" with `\{{validity.emailValidator.state}}`
     {{/ui-markdown}}
   </div>
 </div>

@@ -25,6 +25,11 @@ const input = Ember.Component.extend(ddau, {
     this.set('validationState', {});
     this.checkAPI(); // validate usage is inline with installed addons
   },
+  didInsertElement() {
+    if(!this.get('groupLayout')) {
+      this.changeValidate(null, this.get('value'));
+    }
+  },  
   didRender() {
     const id = this.get('id');
     const focus = this.get('focus');
@@ -36,10 +41,6 @@ const input = Ember.Component.extend(ddau, {
     }
     if(focus && target) {
       target.focus();
-    }
-
-    if(!this.get('groupLayout')) {
-      this.changeValidate(null, this.get('value'));
     }
 
   },
