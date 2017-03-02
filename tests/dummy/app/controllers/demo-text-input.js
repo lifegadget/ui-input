@@ -5,7 +5,14 @@ const { get } = Ember;
 
 export default Ember.Controller.extend({
   flashMessages: service(),
+  recycling: false,
   actions: {
+    recycleInput() {
+      this.set('recycling', true);
+      Ember.run.later(() => {
+        this.set('recycling', false);
+      }, 750);
+    },
     buttonPressed(value, hash) {
       const flashMessages = Ember.get(this, 'flashMessages');
       flashMessages.info(`Button pressed in the "${hash.location}" location. The value was ${value}.`);

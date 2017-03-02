@@ -24,10 +24,16 @@ const input = Ember.Component.extend(ddau, {
     this._validators = [];
     this.set('validationState', {});
     this.checkAPI(); // validate usage is inline with installed addons
+
   },
   didInsertElement() {
+    if(this._shouldDefaultValue(this.get('value'), this.get('defaultValue'))) {
+      this.setDefaultValue();
+    }
     if(!this.get('groupLayout')) {
       this.changeValidate(null, this.get('value'));
+    } else {
+      // console.log(this.get('groupLayout'));
     }
   },  
   didRender() {
@@ -51,6 +57,40 @@ const input = Ember.Component.extend(ddau, {
       target.removeEventListener('keyup', this.onEnterPressed.bind(this));
     }
   },
+
+  setDefaultValue() {
+    const { defaultValue, value } = this.getProperties('defaultValue', 'value');
+    const eventPayload = {
+      value: defaultValue,
+      code: 'default-value',
+      oldValue: value
+    };
+    if(this.get('onChange')) {
+      this.handleDDAU('onChange', defaultValue, eventPayload);
+    } else if (this.get('onBlur')) {
+      this.handleDDAU('onBlur', defaultValue, eventPayload);
+    } else {
+      Ember.debug('ui-input: a default value was provided but container is not listening to either onBlur or onChange so no way to pass the default value up.');
+    }
+  },
+  _shouldDefaultValue(value, defaultValue) {
+    console.log('checking', value, defaultValue);
+  if (!defaultValue) {
+    return false;
+  }
+  if (value === undefined) {
+    return true;
+  }
+  if(this.get('defaultOnFalsy') === true && !value) {
+    return true;
+  }
+  if(this.get('defaultAlways') === true) {
+    return true;
+  }
+
+  return false;
+},
+
   onEnterPressed(e) {
     if(e.keyCode === 13) {
       e.preventDefault();

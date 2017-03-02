@@ -78,8 +78,72 @@
   </div>
 </div>
 
-<hr>
+<hr>  {{! DEFAULT VALUE}}
 
+<div class="row">
+  <div class="col-6 col-lg-3">
+    {{#if recycling}}
+      <i>recycling</i>
+      <br>
+    {{else}}
+      {{text-input
+        defaultValue='my default value'
+        defaultOnFalsy=defOnFaulty
+        defaultAlways=defAlways
+        value=demoDefault
+        placeholder='empty'
+        onChange=(action (mut demoDefault))
+      }}
+      <p class="text-muted">
+        controller value: "{{skinValue}}"
+      </p>
+    {{/if}}
+    <p>
+      {{ui-button 'recycle input'
+        onClick=(action 'recycleInput')
+      }}
+      <p>&nbsp;</p>
+      <p>
+        Default on all "false" values?
+        <br>
+        {{ui-toggle-button
+          value=defOnFaulty
+          onToggle=(mut defOnFaulty)
+        }}
+      </p>
+      <p>
+        Default on all values?
+        <br>
+        {{ui-toggle-button
+          value=defAlways
+          onToggle=(mut defAlways)
+        }}
+      </p>
+    </p>
+  </div>
+  <div class="col-6 col-lg-4">
+    <span>
+      <b>Default Values</b>
+      <pre><code class='handlebars'>\{{text-input
+  defaultValue='my default value'
+  defaultOnFalsy={{defOnFaulty}}
+  defaultAlways={{defAlways}}
+  value=demoDefault
+  placeholder='empty'
+  onChange=(action (mut demoDefault))
+}}</code></pre>
+    </span>
+  </div>
+  <div class="col-12 col-lg-5">
+    {{#ui-markdown style='github'}}
+      You can state a default value by setting the `defaultValue` property. If the value property is _undefined_ then the component will fire a **onChange** or **onBlur** event (depending on what you're listening to) and it will set the value to the defaultValue via DDAU.
+
+      If you want the default value to fire an update on any "falsy" value than you can set `defaultOnFalsy` and it will do that. In some rarer cases you may even want it to set the default value to fire regardless of what the "value" is, this can be achieved by setting `defaultAlways` to _true_.
+    {{/ui-markdown}}
+  </div>
+</div>
+
+<hr>
 <div class="row">
   <div class="col-3">
     {{text-input
@@ -209,6 +273,7 @@
     {{/ui-markdown}}
   </div>
 </div>
+
 
 <hr> {{! ALIGNMENT }}
 <div class="row">
