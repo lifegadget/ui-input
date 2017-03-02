@@ -15,6 +15,7 @@ export default Ember.Controller.extend({
   max: 10,
   color: 'default',
   textAlign: 'center',
+  pattern: '[0-9]*',
   textColor: null,
   backgroundColor: null,
   borderColor: null,

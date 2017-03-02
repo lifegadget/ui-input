@@ -139,15 +139,7 @@ const input = Ember.Component.extend(ddau, {
       return this.get('value');
     }
   }),
-  pattern: computed('type', function() {
-    switch(this.get('type')) {
-      case 'number':
-        return '[0-9]*';
-
-      default:
-        return '';
-    }
-  }),
+  pattern: '.*',
 
   classy2: computed('class', 'mood', '_size', 'skin', 'isEmpty', 'isValid', 'align', 'hideSpinners', function() {
     let proxy = this.get('class') || '';
