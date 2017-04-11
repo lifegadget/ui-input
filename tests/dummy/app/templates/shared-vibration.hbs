@@ -24,7 +24,7 @@
 <examples>
     <widget>
         {{text-input size='large' length=length placeholder='text-field' rules='lengthLimit'}}<br/>
-        {{number-input size='large' max=max placeholder='number-field'}}
+        {{numeric-input size='large' max=max placeholder='number-field'}}
     </widget>
     <sourcecode>
 {{#code-block language="handlebars" poll=100}}
@@ -32,7 +32,7 @@
 
 
 
-\{{number-input {{#if max}}max={{max}} {{/if}}size='large'}}
+\{{numeric-input {{#if max}}max={{max}} {{/if}}size='large'}}
 {{/code-block}}
     </sourcecode>
 </examples>
@@ -43,7 +43,7 @@
         <columns>
             <column class="col-xs-12 col-sm-6">
                 <strong>TEXT FIELD</strong><br/>
-                length: {{number-input placeholder='max length' width='150px' value=length}}<br/>
+                length: {{numeric-input placeholder='max length' width='150px' value=length}}<br/>
                 rules: [ 'lengthLimit' ]<br/>
                 <note>
                     <strong>Note:</strong> 
@@ -52,7 +52,7 @@
             </column>
             <column class="col-xs-12 col-sm-6">
                 <strong>NUMERIC FIELD</strong><br/>
-                max: {{number-input placeholder='max value' width='150px' value=max}}<br/>
+                max: {{numeric-input placeholder='max value' width='150px' value=max}}<br/>
                 rules: [ 'maxStretch' ]<br/>
                 rulesMaxStretchVibrate: {{text-input placeholder='vibration signal' width='150px' value=signal}}<br/>
                 <note>
