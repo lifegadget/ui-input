@@ -169,5 +169,5 @@ input[type=number] {
 }
 input[type="number"]:hover,
 input[type="number"]:focus {
-  -moz-appearance: numeric-input;
+  -moz-appearance: number-input;
 }

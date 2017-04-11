@@ -167,12 +167,12 @@
         <div class="widget col-xs-3">
             <strong>Maximum Number Enforced</strong><br/>
             <desc>default animation of "bounce"</desc>
-            {{numeric-input placeholder='max 10' min=1 max=10 rules='numeric,max' animateRuleMax=_animation}} 
+            {{number-input placeholder='max 10' min=1 max=10 rules='numeric,max' animateRuleMax=_animation}} 
         </div>
         <div class="handlebars col-xs-9">
             <note><strong>Note:</strong> if animation is chosen above, it should override default</note>
             <br/>
-            <code> \{{numeric-input placeholder='max 10' max=10 rules='max,numeric'}}</code>  
+            <code> \{{number-input placeholder='max 10' max=10 rules='max,numeric'}}</code>  
         </div>
     </div>    
     <div class="row">
@@ -184,8 +184,8 @@
         </div>
         <div class="handlebars col-xs-9">
             <br/>
-            {{numeric-input width='90px' size='tiny' value=error placeholder='error' textAlign='center' tooltip='error threashold'}} 
-            {{numeric-input width='90px' size='tiny' value=warn placeholder='warn' textAlign='center'  tooltip='warning threashold'}} <br/>
+            {{number-input width='90px' size='tiny' value=error placeholder='error' textAlign='center' tooltip='error threashold'}} 
+            {{number-input width='90px' size='tiny' value=warn placeholder='warn' textAlign='center'  tooltip='warning threashold'}} <br/>
             <p>&nbsp;<br/></p>
             <code> \{{text-input rules='lengthWarn' length={{error}} ruleParamsLengthWarn={{warn}} placeholder='Length'}} </code>  
         </div>
@@ -201,9 +201,9 @@
         </div>
         <div class="handlebars col-xs-9">
             <br/>
-            {{numeric-input width='90px' size='tiny' value=maxLength placeholder='max length' textAlign='center' tooltip='max length'}} 
-            {{numeric-input width='90px' size='tiny' value=error placeholder='error' textAlign='center' tooltip='error threashold'}} 
-            {{numeric-input width='90px' size='tiny' value=warn placeholder='warn' textAlign='center'  tooltip='warning threashold'}} <br/>
+            {{number-input width='90px' size='tiny' value=maxLength placeholder='max length' textAlign='center' tooltip='max length'}} 
+            {{number-input width='90px' size='tiny' value=error placeholder='error' textAlign='center' tooltip='error threashold'}} 
+            {{number-input width='90px' size='tiny' value=warn placeholder='warn' textAlign='center'  tooltip='warning threashold'}} <br/>
             <note>Note: lengthWarn given explicit params, lengthLimit picks up HTML 'length' param<br/></note>
             <code> \{{text-input rules='lengthWarn,lengthLimit' length={{maxLength}} ruleParamsLengthWarn='{"warning": {{warn}}, "error": {{error}} }' placeholder='Length'}} </code>  
         </div>

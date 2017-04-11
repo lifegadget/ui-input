@@ -1,23 +1,24 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('numeric-input', 'Integration | Component | numeric input', {
+moduleForComponent('number-input', 'Integration | Component | number input', {
   integration: true
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });"
 
-  this.render(hbs`{{numeric-input}}`);
+  // Set any properties with this.set('myProperty', 'value');
+  // Handle any actions with this.on('myAction', function(val) { ... });
+
+  this.render(hbs`{{number-input}}`);
 
   assert.equal(this.$().text().trim(), '');
 
-  // Template block usage:"
+  // Template block usage:
   this.render(hbs`
-    {{#numeric-input}}
+    {{#number-input}}
       template block text
-    {{/numeric-input}}
+    {{/number-input}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');

@@ -1,14 +1,14 @@
 {{#markdown-convert style='github'}}
-  ## Component: `numeric-input`
+  ## Component: `number-input`
 
-  The `numeric-input` component extends the `text-input` component.
+  The `number-input` component extends the `text-input` component.
 
   ## Examples
 {{/markdown-convert}}
 
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-3">
-    {{numeric-input
+    {{number-input
       value=basicValue
       placeholder='count it up'
       onChange=(mut basicValue)
@@ -20,7 +20,7 @@
   <div class="col-xs-12 col-sm col-md-3">
     <span>
       <p><b>Basic Numeric Input</b></p>
-      <pre><code class='handlebars'>\{{numeric-input
+      <pre><code class='handlebars'>\{{number-input
   value=basicValue
   placeholder='count it up'
   onChange=(mut basicValue)

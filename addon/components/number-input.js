@@ -8,5 +8,4 @@ export default textInput.extend({
   step: 1,
   align: 'right',
   hideSpinners: true,
-
 });
