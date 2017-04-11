@@ -466,13 +466,16 @@
         value=blockStyle
         placeholder='block styling'
         onChange=(mut blockStyle)
-        onPressed=(action 'buttonPressed')
         as |i|
       }}
         {{#i.group as |g|}}
           {{g.input}}
-          {{g.button icon='times' mood='danger'}}
-          {{g.button icon='check' mood='success'}}
+          {{g.button icon='times' mood='danger' onClick=(action 'buttonPressed' 'cancel' (hash
+            location='cancel'
+          ))}}
+          {{g.button icon='check' mood='success' onClick=(action 'buttonPressed' 'continue' (hash
+            location='continue'
+          ))}}
         {{/i.group}}
       {{/text-input}}
     <p class="text-muted">
@@ -492,8 +495,18 @@
 }}
   \{{#i.group as |g|}}
     \{{g.input}}
-    \{{g.button icon='times' mood='danger'}}
-    \{{g.button icon='check' mood='success'}}
+      \{{g.button 
+        icon='times' 
+        mood='danger' 
+        onClick=(action 'buttonPressed' 'cancel' (hash
+          location='cancel'
+      ))}}
+      \{{g.button 
+        icon='check' 
+        mood='success' 
+        onClick=(action 'buttonPressed' 'continue' (hash
+          location='continue'
+      ))}}
   \{{/i.group}}
 \{{/text-input}}</code></pre>
     </span>
