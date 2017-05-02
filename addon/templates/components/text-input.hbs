@@ -25,6 +25,7 @@
     input = (component 'input-primitive'
       id=id
       type=type
+      class=classy2
       skin=skin
       name=name
       class=classy2
@@ -58,6 +59,7 @@
     {{#input-group
       id=id
       type=type
+      class=class
       skin=skin
       name=name
       value=_value
@@ -75,6 +77,7 @@
           {{g.button preButton
             id=(concat 'pre-btn-' id)
             icon=preIcon
+            size=size
             mood=(or preButtonMood mood)
             onClick=(action 'onPressed' 'pre')
           }}
@@ -91,6 +94,7 @@
       {{g.input
         id=id
         class=classy2
+        size=size
         changeValidate=changeValidate
         blurValidate=blurValidate
         onChange=onChange
@@ -104,6 +108,8 @@
         {{#if (or button postButton)}}
           {{g.button (or button postButton)
             id=(concat 'post-btn-' id)
+            size=size
+            class=(concat 'button-' classy2)
             icon=postIcon
             mood=(or buttonMood postButtomMood mood)
             onClick=(action 'onPressed' 'post')

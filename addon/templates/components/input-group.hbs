@@ -17,6 +17,8 @@
       )
       button=(component 'input-group-button'
         mood=(if mood mood buttonMood)
+        class=(concat 'button-' class)
+        size=size
         title=(if button button buttonTitle)
         onClick=(action 'onPressed' 'block-form')
       )
@@ -24,6 +26,7 @@
         id=id
         type=type
         class=class
+        size=size
         placeholder=placeholder
         name=name
         value=value
